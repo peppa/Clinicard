@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.18, created on 2015-01-09 11:49:50
+<?php /* Smarty version Smarty-3.1.18, created on 2015-01-14 18:03:29
          compiled from "Smarty_dir\templates\body_patientChecks.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:416354afb24e83f279-99955385%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'c81d47528002a9988bd3db20992ebde298043800' => 
     array (
       0 => 'Smarty_dir\\templates\\body_patientChecks.tpl',
-      1 => 1420799833,
+      1 => 1421254916,
       2 => 'file',
     ),
   ),
@@ -15,6 +15,8 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   'function' => 
   array (
   ),
+  'version' => 'Smarty-3.1.18',
+  'unifunc' => 'content_54afb24e889572_10153234',
   'variables' => 
   array (
     'name' => 0,
@@ -24,8 +26,6 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'pat' => 0,
   ),
   'has_nocache_code' => false,
-  'version' => 'Smarty-3.1.18',
-  'unifunc' => 'content_54afb24e889572_10153234',
 ),false); /*/%%SmartyHeaderCode%%*/?>
 <?php if ($_valid && !is_callable('content_54afb24e889572_10153234')) {function content_54afb24e889572_10153234($_smarty_tpl) {?><div>
     <br>
