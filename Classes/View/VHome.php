@@ -24,5 +24,6 @@ class VHome extends View {
         $about=$this->fetch('contact.tpl');
         return $about;
     }
+    
 
 }

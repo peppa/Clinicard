@@ -2,11 +2,11 @@
 
 class CCheckup {
     
-    public function getCheckupBody() {
+    public function getContent() {
         $VCheckup=  USingleton::getInstance("VCheckup");
         
-        $body=$VCheckup->getBody();
-        return $body;
+        $content=$VCheckup->getContent();
+        return $content;
     }
     
     

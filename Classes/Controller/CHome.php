@@ -11,21 +11,39 @@ class CHome {
     }
     
     /**
-     * All pages are built here
+     * All pages are built here. It adds additional Head and Footer and the proper
+     * body
      */
     public function buildPage() {
-        $body=$this->controlSwitch();
+        $content=$this->controlSwitch();
         $VHome=USingleton::getInstance('VHome');
-        if($body){
-            $VHome->setBody($body); 
-        }else{
+        if($content){
+            foreach ($content as $key => $value) {
+                switch ($key) {
+                    case "body":
+                        if($value){
+                            $VHome->setBody($value);
+                        }
+                        else die("switch principale non ritorna un body.. fixare");
+                        break;
+
+                    case "header":
+                        if($value){$VHome->setHeader($value);}
+                        break;
+
+                    case "footer":
+                        if($value){$VHome->setFooter($value);}
+                        break;
+                }
+            }
+        }else{//means no content returned.. 
             $VHome->setBody($VHome->getHomeBody());
         }
         $this->addLoginBox();
     }
     
     /**
-     * Calls the VHome class to show the page
+     * Calls VHome->showPage to display the page
      */
     public function showPage() {
         $VHome=  USingleton::getInstance('VHome');
@@ -44,7 +62,7 @@ class CHome {
             $username=$USession->get('username');
             debug('username: '.$username);
             $VHome->showUser($username);
-            $VHome->loadLogoutButton($username);                
+            $VHome->loadLogoutButton();                
         }
         else {
             $VHome->loadLoginForm();
@@ -97,35 +115,35 @@ class CHome {
             
             case 'Checkup':
                 $CCheckup=  USingleton::getInstance('CCheckup');
-                return $CCheckup->getCheckupBody();
+                return $CCheckup->getContent();
                 
 
             case 'login':
                 $CLogin=USingleton::getInstance('CLogin');
                 $return=$CLogin->manageLogin();
-                return FALSE;
+                return FALSE; // vedere bene.. secondo me ritorna html di home
                 
 
             case 'logout':
                 $CLogin=USingleton::getInstance('CLogin');
                 $CLogin->logout();
-                return FALSE;
+                return FALSE; //come sopra
 
             case 'manageDB':
-                return $this->checkUser();
+                return array("body"  => $this->checkUser());
 
             case 'Services':
-                return $VHome->getServicesBody();
+                return array("body"  => $VHome->getServicesBody());
 
             case 'Registration':
                 $CRegistration=  USingleton::getInstance('CRegistration');
-                return $CRegistration->newUser();
+                return array("body"  => $CRegistration->newUser());
 
             case 'Contacts':
-                return $VHome->getContactsBody();
+                return array("body"  => $VHome->getContactsBody());
         
             default:
-                return $VHome->getHomeBody();
+                return array("body"  => $VHome->getHomeBody());
         }
     }
 

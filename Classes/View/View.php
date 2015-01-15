@@ -62,4 +62,30 @@ Class View extends Smarty {
         $this->assign('body',$body);
     }
     
+    public function setHeader($header){
+        $this->assign('header',$header);
+    }
+    /**
+     * Makes an array wich contains body, header and footer passed as parameters
+     * 
+     * @param string $body
+     * @param string $header
+     * @param string $footer
+     * @return array content ready to be used
+     */
+    public function makeContentArray($body=null,$header=null,$footer=null) {
+        $return=null;
+        if($body){
+            if($header){
+                if($footer){
+                    $return["footer"]=$footer;
+                }
+                $return["header"]=$header;
+            }
+            $return["body"]=$body;
+        }
+        return $return;
+        
+    }
+    
 }

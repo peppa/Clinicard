@@ -7,15 +7,18 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <!DOCTYPE HTML>
 <html>
     <head>
-	<title>Healthy Website Template | Home :: W3layouts</title>
+	<title>Clinicard</title>
         <link href='http://fonts.googleapis.com/css?family=Noto+Sans' rel='stylesheet' type='text/css'>
         <link rel="shortcut icon" type="image/x-icon" href="images/pageicon.png" /><!-- website icon -->
         <link href="css/style.css" rel="stylesheet" type="text/css"  media="all" />
         <link rel="stylesheet" href="css/camera.css" type="text/css" media="all" />
         <meta name="keywords" content="Healthy iphone web template, Andriod web template, Smartphone web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design" />
         <link rel="stylesheet" href="css/responsiveslides.css">
-        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
-        <script src="js/responsiveslides.min.js"></script>
+        <script src="lib/js/jquery-2.1.3.js"></script>
+        <script src="lib/js/responsiveslides.min.js"></script>
+        {if isset($head)}
+            {$head}
+        {/if}
 		  
     </head>
     

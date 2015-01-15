@@ -2,11 +2,7 @@
 
 class VPatientsDB extends View {
 
-    public function loadHomePage(){
-    	$body=$this->fetch('body_DB.tpl');
-    	$this->setBody($body);
-    }
-
+   
 
     
     public function fetchHomePatients($arrayPat){
