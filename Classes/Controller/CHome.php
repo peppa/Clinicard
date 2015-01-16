@@ -11,8 +11,8 @@ class CHome {
     }
     
     /**
-     * All pages are built here. It adds additional Head and Footer and the body
-     * all passed by the proper controller
+     * All pages are built here. It demands to add additional Head, Footer and body.
+     * In case no content returned from controlSwitch, assigns the home content
      */
     public function buildPage() {
         $content=$this->controlSwitch();
@@ -24,6 +24,11 @@ class CHome {
         $this->addLoginBox();
     }
     
+    /**
+     * Sets the page applying the $content array passed as param
+     * 
+     * @param array[] $content
+     */
     public function setPage($content) {
         $VHome=  USingleton::getInstance("VHome");
         foreach ($content as $key => $value) {
