@@ -14,15 +14,15 @@ class VHome extends View {
     
     
     //questo va messo in una Vservice con relativo controllore o è statica e la lasciamo qua?
-    public function getServicesBody(){
-        $about=$this->fetch('services.tpl');
-        return $about;
+    public function getServicesContent(){
+        $body=$this->fetch('services.tpl');
+        return $this->makeContentArray($body);
     }
     
     //questo va messo in una VContact con relativo controllore o è statica e la lasciamo qua?
-    public function getContactsBody(){
-        $about=$this->fetch('contact.tpl');
-        return $about;
+    public function getContactsContent(){
+        $body=$this->fetch('contact.tpl');
+        return $this->makeContentArray($body);
     }
     
 

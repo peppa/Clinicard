@@ -11,29 +11,28 @@ class CHome {
     }
     
     /**
-     * All pages are built here. It adds additional Head and Footer and the proper
-     * body
+     * All pages are built here. It adds additional Head and Footer and the body
+     * all passed by the proper controller
      */
     public function buildPage() {
         $content=$this->controlSwitch();
         $VHome=USingleton::getInstance('VHome');
         if($content){
             foreach ($content as $key => $value) {
-                switch ($key) {
-                    case "body":
-                        if($value){
+                if($value){
+                    switch ($key) {
+                        case "body":
                             $VHome->setBody($value);
-                        }
-                        else die("switch principale non ritorna un body.. fixare");
-                        break;
+                            break;
 
-                    case "header":
-                        if($value){$VHome->setHeader($value);}
-                        break;
+                        case "header":
+                            $VHome->setHeader($value);
+                            break;
 
-                    case "footer":
-                        if($value){$VHome->setFooter($value);}
-                        break;
+                        case "footer":
+                            $VHome->setFooter($value);
+                            break;
+                    }
                 }
             }
         }else{//means no content returned.. 
@@ -103,9 +102,9 @@ class CHome {
     /**
      *controlSwitch is the core function of the system. Its behavior
      *is established by the controller passed by the HTML's get method.
-     * Returns False if body has not been calcolated
+     *Returns False if body has not been calcolated
      * 
-     * @return string HTML content, 0 if no HTML returned
+     * @return null|string[] HTML content, false if no HTML returned
      */
     public function controlSwitch() {
         $VHome=Usingleton::getInstance('VHome');
@@ -133,14 +132,14 @@ class CHome {
                 return array("body"  => $this->checkUser());
 
             case 'Services':
-                return array("body"  => $VHome->getServicesBody());
+                return $VHome->getServicesContent();
 
             case 'Registration':
                 $CRegistration=  USingleton::getInstance('CRegistration');
                 return array("body"  => $CRegistration->newUser());
 
             case 'Contacts':
-                return array("body"  => $VHome->getContactsBody());
+                return $VHome->getContactsContent();
         
             default:
                 return array("body"  => $VHome->getHomeBody());
