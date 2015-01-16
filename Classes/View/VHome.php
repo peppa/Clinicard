@@ -3,7 +3,12 @@
 
 class VHome extends View {
 	
-    public function getHomeBody(){
+    /**
+     * Do not use it. Use getHomeContent instead
+     * 
+     * @return string body HTML
+     */
+    private function getHomeBody(){
     	$body=$this->fetch('body_home.tpl');
     	return$body;
     }
@@ -23,6 +28,12 @@ class VHome extends View {
     public function getContactsContent(){
         $body=$this->fetch('contact.tpl');
         return $this->makeContentArray($body);
+    }
+    
+    public function getHomeContent() {
+        $body=$this->fetch('body_home.tpl');
+        return $this->makeContentArray($body);
+        
     }
     
 

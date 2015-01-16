@@ -17,29 +17,34 @@ class CHome {
     public function buildPage() {
         $content=$this->controlSwitch();
         $VHome=USingleton::getInstance('VHome');
-        if($content){
-            foreach ($content as $key => $value) {
-                if($value){
-                    switch ($key) {
-                        case "body":
-                            $VHome->setBody($value);
-                            break;
-
-                        case "header":
-                            $VHome->setHeader($value);
-                            break;
-
-                        case "footer":
-                            $VHome->setFooter($value);
-                            break;
-                    }
-                }
-            }
-        }else{//means no content returned.. 
-            $VHome->setBody($VHome->getHomeBody());
-        }
+        //!content= need to show homepage
+        if(!$content){$content=$VHome->getHomeContent();}
+        
+        $this->setPage($content);
         $this->addLoginBox();
     }
+    
+    public function setPage($content) {
+        $VHome=  USingleton::getInstance("VHome");
+        foreach ($content as $key => $value) {
+            if($value){
+                switch ($key) {
+                    case "body":
+                        $VHome->setBody($value);
+                        break;
+
+                    case "header":
+                        $VHome->setHeader($value);
+                        break;
+
+                    case "footer":
+                        $VHome->setFooter($value);
+                        break;
+                }
+            }
+        }
+    }
+    
     
     /**
      * Calls VHome->showPage to display the page
@@ -142,7 +147,7 @@ class CHome {
                 return $VHome->getContactsContent();
         
             default:
-                return array("body"  => $VHome->getHomeBody());
+                return $VHome->getHomeContent();
         }
     }
 
