@@ -1,3 +1,8 @@
-<link rel='stylesheet' type='text/css' href='fullcalendar.css' />
-<script type='text/javascript' src='jquery.js'></script>
-<script type='text/javascript' src='fullcalendar.js'></script>
+<link rel='stylesheet' href='lib/js/fullcalendar/fullcalendar.css' />
+<script src='lib/js/fullcalendar/lib/jquery.min.js'></script>
+<script src='lib/js/fullcalendar/lib/moment.min.js'></script>
+<script src='lib/js/fullcalendar/fullcalendar.js'></script>
+<script src="lib/js/calendario.js"></script>
+
+<!-- Google Calendar dependencies.. -->
+<script type='text/javascript' src='lib/js/fullcalendar/gcal.js'></script>

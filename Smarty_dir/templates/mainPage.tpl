@@ -16,8 +16,8 @@ License URL: http://creativecommons.org/licenses/by/3.0/
         <link rel="stylesheet" href="css/responsiveslides.css">
         <script src="lib/js/jquery-2.1.3.js"></script>
         <script src="lib/js/responsiveslides.min.js"></script>
-        {if isset($head)}
-            {$head}
+        {if isset($header)}
+            {$header}
         {/if}
 		  
     </head>

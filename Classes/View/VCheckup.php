@@ -13,7 +13,7 @@
  */
 class VCheckup extends View {
     public function getBody(){
-        $body= $this->fetch("googleCalendar.tpl");
+        $body= $this->fetch("body_checkup.tpl");
         return $body;
     }
     
@@ -24,7 +24,9 @@ class VCheckup extends View {
     }
     
     public function getContent() {
-        $content=  $this->makeContentArray($this->getBody(),$this->getHeader());
+        $body=  $this->getBody();
+        $header=  $this->getHeader();
+        $content=  $this->makeContentArray($body,$header);
         return $content;
         
     }

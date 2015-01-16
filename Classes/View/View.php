@@ -77,10 +77,11 @@ Class View extends Smarty {
         $return=null;
         if($body){
             if($header){
-                if($footer){
-                    $return["footer"]=$footer;
-                }
+                
                 $return["header"]=$header;
+            }
+            if($footer){
+                $return["footer"]=$footer;
             }
             $return["body"]=$body;
         }
