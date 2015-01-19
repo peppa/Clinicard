@@ -5,4 +5,4 @@
   -->
  
 
-<div id='calendar'></div>
+  <div id='calendar' draggable="false"></div>

@@ -14,6 +14,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
         <link rel="stylesheet" href="css/camera.css" type="text/css" media="all" />
         <meta name="keywords" content="Healthy iphone web template, Andriod web template, Smartphone web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design" />
         <link rel="stylesheet" href="css/responsiveslides.css">
+        <link rel="stylesheet" href="css/myStyle.css">
         <script src="lib/js/jquery-2.1.3.js"></script>
         <script src="lib/js/responsiveslides.min.js"></script>
         {if isset($header)}
