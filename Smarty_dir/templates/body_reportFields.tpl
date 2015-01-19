@@ -7,21 +7,21 @@
 	    <form method="POST" action="index.php?control=manageDB&action=printReport&fields=sent&pat={$patLink}&ch={$checkLink}" target="_blank">
 	    	<!-- Nome e Cognome, CF e Data di nascita vengono mostrati sempre -->
 
-	    	<input type="checkbox" name="allFields"/>Tutti
+	    	<input type="checkbox" name="allFields" id="select-all"/>Tutti
 	    	<br>
-	    	<input type="checkbox" name="dateCheck"/> Data visita
+	    	<input type="checkbox" name="dateCheck" class="checkbox-field"/> Data visita
 	    	<br>
-	    	<input type="checkbox" name="medHistory"/> Anamnesi
+	    	<input type="checkbox" name="medHistory" class="checkbox-field"/> Anamnesi
 	    	<br>
-	    	<input type="checkbox" name="medExam"/> Esame obiettivo
+	    	<input type="checkbox" name="medExam" class="checkbox-field"/> Esame obiettivo
 	    	<br>
-	    	<input type="checkbox" name="conclusions"/> conclusioni
+	    	<input type="checkbox" name="conclusions" class="checkbox-field"/> conclusioni
 	    	<br>
-	    	<input type="checkbox" name="toDoExams"/> prescrizione esami
+	    	<input type="checkbox" name="toDoExams" class="checkbox-field"/> prescrizione esami
 	    	<br>
-	    	<input type="checkbox" name="terapy"/> terapia
+	    	<input type="checkbox" name="terapy" class="checkbox-field"/> terapia
 	    	<br>
-	    	<input type="checkbox" name="checkup"/> controllo
+	    	<input type="checkbox" name="checkup" class="checkbox-field"/> controllo
 	    	<br>
 
 	    	<input type="submit" value="stampa">
