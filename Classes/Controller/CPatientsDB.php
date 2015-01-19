@@ -333,7 +333,7 @@ class CPatientsDB{
                     $FCheckup=  USingleton::getInstance('FCheckup');
                     
                     $FPatient->deletePatient($cfPatient);
-                    $FCheckup->deleteCheckup($cfPatient,"all");
+                    $FCheckup->deleteCheckup($cfPatient,"all"); //oltre al paziente cancello anche tutte le sue visite
                     $message="eliminazione completata con successo";
                     $this->bodyHTML=$VPatientsDB->showInfoMessage($message);
                 }
@@ -356,7 +356,13 @@ class CPatientsDB{
             
             if ( $VPatientsDB->get('conf')=="yes" ){
                 $FCheckup=  USingleton::getInstance('FCheckup');
-                $FCheckup->deleteCheckup($cfPatient,$dateCH);
+                if (count($this->Visite[$cfPatient])==1){ //Se viene cancellata l'unica visita del paziente viene cancellato anche il paziente stesso
+                    $FPatient=  USingleton::getInstance('FPatient');
+                    $FPatient->deletePatient($cfPatient);
+                }
+                else {
+                    $FCheckup->deleteCheckup($cfPatient,$dateCH);
+                }
                 $message="eliminazione completata con successo";
                 $this->bodyHTML=$VPatientsDB->showInfoMessage($message);
             }
