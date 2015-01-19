@@ -89,7 +89,6 @@ class CPatientsDB{
             for ( $i=0; $i<count($this->Pazienti); $i++){
                 $this->Visite=$FCheckup->fillCheckupsArray($this->Visite,$this->Pazienti[$i]->getCf() );
             }
-            //var_dump($this->Visite);
         }
         
     /**
@@ -102,8 +101,6 @@ class CPatientsDB{
                 for ( $i=0; $i<count($this->Pazienti); $i++){
                     $Patients[$i]=array('name'=>$this->Pazienti[$i]->getName(),'surname'=>$this->Pazienti[$i]->getSurname(),'cf'=>$this->Pazienti[$i]->getCf(),'dateBirth'=>$this->Pazienti[$i]->getDataN(),'link'=>md5($this->Pazienti[$i]->getCf()));
                 }
-                
-                //$this->addLogoutButton();
                 $this->bodyHTML=$VPatientsDB->fetchHomePatients($Patients);
     }
 
@@ -116,26 +113,25 @@ class CPatientsDB{
                     $FPatient=  USingleton::getInstance('FPatient');
                     $FCheckup=  USingleton::getInstance('FCheckup');
                     
-                    $arrayPatient=array('name'=>$_REQUEST['name'],
-                                        'surname'=>$_REQUEST['surname'],
-				        'gender'=>$_REQUEST['gender'],
-				        'dateBirth'=>$_REQUEST['dateBirth'],
-				        'CF'=>$_REQUEST['CF']);
+                    $arrayPatient=array('name'=>$VPatientsDB->get('name'),
+                                        'surname'=>$VPatientsDB->get('surname'),
+				        'gender'=>$VPatientsDB->get('gender'),
+				        'dateBirth'=>$VPatientsDB->get('dateBirth'),
+				        'CF'=>$VPatientsDB->get('CF'));
                     
-		    $arrayCheck=array('CF'=>$_REQUEST['CF'],
-                                      'dateCheck'=>$_REQUEST['dateCheck'],
-			 	      'medHistory'=>$_REQUEST['medHistory'],
-			 	      'medExam'=>$_REQUEST['medExam'],
-				      'conclusions'=>$_REQUEST['conclusions'],
-				      'toDoExams'=>$_REQUEST['toDoExams'],
-				      'terapy'=>$_REQUEST['terapy'],
-				      'checkup'=>$_REQUEST['checkup']);
+		    $arrayCheck=array('CF'=>$VPatientsDB->get('CF'),
+                                      'dateCheck'=>$VPatientsDB->get('dateCheck'),
+			 	      'medHistory'=>$VPatientsDB->get('medHistory'),
+			 	      'medExam'=>$VPatientsDB->get('medExam'),
+				      'conclusions'=>$VPatientsDB->get('conclusions'),
+				      'toDoExams'=>$VPatientsDB->get('toDoExams'),
+				      'terapy'=>$VPatientsDB->get('terapy'),
+				      'checkup'=>$VPatientsDB->get('checkup'));
                     
                     $FPatient->insertNewPatient($arrayPatient);
                     $FCheckup->insertNewCheckup($arrayCheck);
                     $message="Inserimento avvenuto con successo";
                     $this->bodyHTML=$VPatientsDB->showInfoMessage($message);
-                    //$this->bodyHTML=$VPatientsDB->getFormattedMessage($message);
 		}
 		else {
                     $this->bodyHTML=$VPatientsDB->showInsertForm();			
@@ -164,7 +160,6 @@ class CPatientsDB{
                     else {
                             $message="La ricerca non ha prodotto nessun risultato";
                             $this->bodyHTML=$VPatientsDB->showInfoMessage($message);
-                            //$this->bodyHTML=$VPatientsDB->getFormattedMessage($message);
                     }
 	    }
 	}
@@ -193,22 +188,10 @@ class CPatientsDB{
         public function buildInfoArray($encryptedCF,$encryptedDateCheck){ //OKv2
             $posCF=$this->getCfPosition($encryptedCF);
             $cfPatient=$this->Pazienti[$posCF]->getCF();
-            /*
-            for ( $i=0; $i<count($this->Pazienti);$i++ ){ 
-                if ( md5($this->Pazienti[$i]->getCF() )==$encryptedCF ) {
-                    $cfPaziente=$this->Pazienti[$i]->getCF();
-                    $posP=$i;
-                }
-            }*/
+            
             $posCH=$this->getDateCheckPosition($encryptedDateCheck,$cfPatient);
             $dateCH=$this->Visite[$cfPatient][$posCH]->getDateCheck();
-            /*
-            for ( $i=0;$i<count($this->Visite[$cfPaziente]);$i++ ){
-                if ( md5($this->Visite[$cfPaziente][$i]->getDateCheck())==$encryptedDateCheck ) {
-                    $dateCH=$this->Visite[$cfPaziente][$i]->getDateCheck();
-                    $posV=$i;
-                }
-            }*/            
+            
             $array=array('name'=>$this->Pazienti[$posCF]->getName(),
                                  'surname'=>$this->Pazienti[$posCF]->getSurname(),
                                  'gender'=>$this->Pazienti[$posCF]->getSex(),
@@ -275,12 +258,7 @@ class CPatientsDB{
 	private function modifyPatient() { //OKv2
             $VPatientsDB=  USingleton::getInstance('VPatientsDB');
             $encCF=$VPatientsDB->get('p');
-   /*         
-         /\_/\
-    ____/ o o \
-  /~____  =ø= /
- (______)__m_m)
-    */
+            
             $posCF=$this->getCfPosition($encCF);
             $cfPatient=$this->Pazienti[$posCF]->getCF();
             
@@ -301,47 +279,10 @@ class CPatientsDB{
                 $FPatient->updatePatient($arrayPatient,$cfPatient);
                 $message="modifica completata con successo";
                 $this->bodyHTML=$VPatientsDB->showInfoMessage($message);
-                //$this->bodyHTML=$VPatientsDB->getFormattedMessage($message);
             }
             else {
                 $this->bodyHTML=$VPatientsDB->getPatientModPage($cfPatient);
             }
-            /*
-		$VPatientsDB=USingleton::getInstance('VPatientsDB');
-                /*
-		if ( $VPatientsDB->get('mod')!="completed" ) {//i dati non sono stati inviati, stampa la form
-			for ( $i=0;$i<count($this->getPatientsArray());$i++ ) {
-				if (md5($this->getPatientsArray()[$i]['cf'])==$VPatientsDB->get('mod')) {
-                                    //$this->addLogoutButton();
-                                    $this->bodyHTML=$VPatientsDB->getModPage($this->getPatientsArray()[$i]);
-				}
-			}
-		}*//*
-                if ( $VPatientsDB->get('mod')!="completed" ) {
-                    
-                }
-                
-		else {
-			$cfCryp=$VPatientsDB->get('pat');
-			for ($i=0;$i<count($this->getPatientsArray());$i++) {
-				if (md5($this->getPatientsArray()[$i]['cf'])==$cfCryp) {
-					$cfPatient=$this->getPatientsArray()[$i]['cf'];
-				}
-			}
-			$FDatabase=Usingleton::getInstance('FDatabase');
-                        //passare valori a FDatabase invece che query ? //davvero? non ci avrei mai pensato... XD
-			$query="UPDATE `pazienti` SET `Nome`='".$VPatientsDB->get('name')."',`Cognome`='".$VPatientsDB->get('surname')."',`Sesso`='".$VPatientsDB->get('gender')."',`DataNascita`='".$VPatientsDB->get('dateBirth')."',`DataVisita`='".$VPatientsDB->get('dateCheck')."',`Anamnesi`='".$VPatientsDB->get('medHistory')."',`Esame Obiettivo`='".$VPatientsDB->get('medExam')."',`Conclusione`='".$VPatientsDB->get('conclusions')."',`Prescrizione Esami`='".$VPatientsDB->get('toDoExams')."',`Terapia`='".$VPatientsDB->get('terapy')."',`Controllo`='".$VPatientsDB->get('checkup')."' WHERE `Codice Fiscale`='".$cfPatient."' ";
-			$FDatabase->query($query);
-/*
-    * \    /\
-       )  ( ')
-      (  /  )
-       \(__)|
-
-                        $message="modifica completata con successo";
-                        //$this->addLogoutButton();
-                        $this->bodyHTML=$VPatientsDB->getFormattedMessage($message);
-		}*/
 	}
         
         public function modifyCheck(){//OKv2
@@ -360,18 +301,17 @@ class CPatientsDB{
             if ( $VPatientsDB->get('mod')=="completed" ){
                 $FCheckup=  USingleton::getInstance('FCheckup');
                 
-                $arrayCheck=array('dateCheck'=>$_REQUEST['dateCheck'],
-			 	  'medHistory'=>$_REQUEST['medHistory'],
-			 	  'medExam'=>$_REQUEST['medExam'],
-				  'conclusions'=>$_REQUEST['conclusions'],
-				  'toDoExams'=>$_REQUEST['toDoExams'],
-				  'terapy'=>$_REQUEST['terapy'],
-				  'checkup'=>$_REQUEST['checkup']);
+                $arrayCheck=array('dateCheck'=>$VPatientsDB->get('dateCheck'),
+			 	  'medHistory'=>$VPatientsDB->get('medHistory'),
+			 	  'medExam'=>$VPatientsDB->get('medExam'),
+				  'conclusions'=>$VPatientsDB->get('conclusions'),
+				  'toDoExams'=>$VPatientsDB->get('toDoExams'),
+				  'terapy'=>$VPatientsDB->get('terapy'),
+				  'checkup'=>$VPatientsDB->get('checkup'));
                 
                 $FCheckup->UpdateCheck($arrayCheck,$PatientInfo['CF'],$dateCH);
                 $message="modifica completata con successo";
                 $this->bodyHTML=$VPatientsDB->showInfoMessage($message);
-                //$this->bodyHTML=$VPatientsDB->getFormattedMessage($message);
             }
             else {
                 $this->bodyHTML=$VPatientsDB->getCheckModPage($PatientInfo,$dateCH);
@@ -396,7 +336,6 @@ class CPatientsDB{
                     $FCheckup->deleteCheckup($cfPatient,"all");
                     $message="eliminazione completata con successo";
                     $this->bodyHTML=$VPatientsDB->showInfoMessage($message);
-                    //$this->bodyHTML=$VPatientsDB->getFormattedMessage($message);
                 }
                 else {
                     $this->bodyHTML=$VPatientsDB->showPatientConfirmPage($cfPatient);
@@ -420,7 +359,6 @@ class CPatientsDB{
                 $FCheckup->deleteCheckup($cfPatient,$dateCH);
                 $message="eliminazione completata con successo";
                 $this->bodyHTML=$VPatientsDB->showInfoMessage($message);
-                //$this->bodyHTML=$VPatientsDB->getFormattedMessage($message);
             }
             else {
                 $this->bodyHTML=$VPatientsDB->showCheckConfirmPage($cfPatient,$dateCH);
@@ -443,38 +381,24 @@ class CPatientsDB{
             
             if ( $VPatientsDB->get('sent')=="y"){              
                 
-                $arrayCheck=array('CF'=>$_REQUEST['CF'],
-                                  'dateCheck'=>$_REQUEST['dateCheck'],
-			 	  'medHistory'=>$_REQUEST['medHistory'],
-			 	  'medExam'=>$_REQUEST['medExam'],
-				  'conclusions'=>$_REQUEST['conclusions'],
-				  'toDoExams'=>$_REQUEST['toDoExams'],
-				  'terapy'=>$_REQUEST['terapy'],
-				  'checkup'=>$_REQUEST['checkup']);
+                $arrayCheck=array('CF'=>$VPatientsDB->get('CF'),
+                                  'dateCheck'=>$VPatientsDB->get('dateCheck'),
+			 	  'medHistory'=>$VPatientsDB->get('medHistory'),
+			 	  'medExam'=>$VPatientsDB->get('medExam'),
+				  'conclusions'=>$VPatientsDB->get('conclusions'),
+				  'toDoExams'=>$VPatientsDB->get('toDoExams'),
+				  'terapy'=>$VPatientsDB->get('terapy'),
+				  'checkup'=>$VPatientsDB->get('checkup'));
                 
-                $FCheckup->insertNewCheckup($arrayCheck);//-C magari fare una funzione che ritorna false se non lo puo inserire?
-                                                         //-G si più fare ma per quale motivo non si potrebbe inserire ?
+                $FCheckup->insertNewCheckup($arrayCheck);
                 
-                $message="inserimento avvenuto con successo";//e que è con successo solo se lo ha inserito?
-                $this->bodyHTML=$VPatientsDB->showInfoMessage($message);
-                //$this->bodyHTML=$VPatientsDB->getFormattedMessage($message);
-                
+                $message="inserimento avvenuto con successo";
+                $this->bodyHTML=$VPatientsDB->showInfoMessage($message);                
             }
             else {
                 $this->bodyHTML=$VPatientsDB->showCheckForm($cfPatient,$name,$surname);                
             }
         }
-        
-        /**
-         * Col nuovo modo in cui è progettato il sito questo non servirà più
-         */
-//        public function addLogoutButton(){ 
-//            $USession=  USingleton::getInstance('USession');
-//            $VPatientsDB=  USingleton::getInstance('VPatientsDB');
-//            
-//            $username=$USession->get('username');
-//            $VPatientsDB->addLogoutButton($username);
-//        }
         
         public function getBody() {
             return $this->bodyHTML;            
@@ -505,10 +429,10 @@ class CPatientsDB{
         public function getDateCheckPosition($encryptedDateCheck,$cf){
             for ( $i=0;$i<count($this->Visite[$cf]);$i++ ){
                 if ( md5($this->Visite[$cf][$i]->getDateCheck())==$encryptedDateCheck ) {
-                    $posV=$i;
+                    $position=$i;
                 }
             }
-            return $posV;
+            return $position;
         }
                 
                 

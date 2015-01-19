@@ -21,7 +21,7 @@ $config['smarty']['caching']=FALSE;
 
 //MYSQL:
 //attivare per abilitare il debug del mysql
-$config['debug']=TRUE;
+$config['debug']=false;
 /*
 $config['mysql']['user'] = 'clinicard';
 $config['mysql']['password'] = 'splashnabbo';
