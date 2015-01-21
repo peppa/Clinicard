@@ -33,7 +33,7 @@ class CRegistration {
 
     public function addNewUser(){
         $VRegistration=  USingleton::getInstance('VRegistration');
-        $FDatabase=  USingleton::getInstance('FDatabase');
+        $FRegistration=  USingleton::getInstance('FRegistration');
 
         //getting data..
         $data=$VRegistration->getFormValues();
@@ -85,7 +85,7 @@ class CRegistration {
             $this->bodyHTML=$VRegistration->getErrorHTML($this->error);
         }else{
             //saving data..
-            $FDatabase->insertUser($name,$surname,$cf,$mail,$user,$pass);
+            $FRegistration->insertUser($name,$surname,$cf,$mail,$user,$pass);
 
             //$VRegistration->showMessage($message);
             $this->bodyHTML=$VRegistration->regSuccess();

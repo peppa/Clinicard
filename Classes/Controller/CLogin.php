@@ -4,7 +4,7 @@ class CLogin{
 	public function manageLogin(){
 		$VLogin=USingleton::getInstance('VLogin');
 		$USession=USingleton::getInstance('USession');
-		$FDatabase=USingleton::getInstance('FDatabase');
+		$FLogin=USingleton::getInstance('FLogin');
 
 		$user=$VLogin->get('username');
 		$pass=$VLogin->get('password');
@@ -12,7 +12,7 @@ class CLogin{
 		if($keep=="yes") {$remember=true;}  
 		else {$remember=false;}
 		$USession->keepAccess($remember);
-		if($FDatabase->checkUser($user,$pass)) {
+		if($FLogin->checkUser($user,$pass)) {
 
                     $USession->login($user,$pass);
                     $VLogin->loadLogoutButton();
