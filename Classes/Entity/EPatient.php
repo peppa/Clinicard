@@ -13,12 +13,15 @@ class EPatient {
     public $dataN;
     public $sex;
     
+    public static $istances=array();
+    
     public function __construct($n,$c,$cf,$d,$s){
         $this->nome=$n;
         $this->cognome=$c;
         $this->cf=$cf;
         $this->dataN=$d;
         $this->sex=$s;
+        self::$istances[]=$this;
     }
     
     public function getName(){

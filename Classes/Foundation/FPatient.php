@@ -8,15 +8,15 @@
 
 class FPatient extends FDatabase {
     
-    public function fillPatientsArray($patArray){
+    public function fillPatientsArray(){
         $query="SELECT * FROM `pazienti`";
         $result=$this->query($query);
         while ( $row=$result->fetch_assoc() ){
-            $string=$row['Codice Fiscale'];
-            $$string=new EPatient($row['Nome'],$row['Cognome'],$row['Codice Fiscale'],$row['DataNascita'],$row['Sesso']); //il nome dell'oggetto è $[codice fiscale]
-            $patArray[]=$$string;                
+            $cfEn=md5($row['Codice Fiscale']);
+            $$cfEn=new EPatient($row['Nome'],$row['Cognome'],$row['Codice Fiscale'],$row['DataNascita'],$row['Sesso']); //il nome dell'oggetto è $[codice fiscale]
+            //$patArray[]=$$string;                
         }
-        return $patArray;
+        //return $patArray;
     }
     
     public function findPatient($key){

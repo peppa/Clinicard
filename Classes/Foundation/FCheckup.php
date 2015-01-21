@@ -18,7 +18,7 @@ class FCheckup extends FDatabase {
      * @param type $cf
      * @return \EVisit
      */
-    public function fillCheckupsArray($checkArray,$cf){
+    public function fillCheckupsArray($cf){
         $cfPat=$cf; //togliere
                     $query="SELECT * FROM `visite` WHERE `Codice Fiscale`='".$cfPat."'";
                     $result=$this->query($query);
@@ -26,10 +26,10 @@ class FCheckup extends FDatabase {
                         $v=new EVisit($row['Codice Fiscale'], $row['DataVisita'], $row['Anamnesi'], $row['Esame Obiettivo'], $row['Conclusione'], $row['Prescrizione Esami'], $row['Terapia'], $row['Controllo']);
                         //var_dump($$cfPat);
                         //$checkArray[]=$$cfPat;
-                        $arr[]=$v;
+                        //$arr[]=$v;
                     }
-                    $checkArray[$cfPat]=$arr;
-                    return $checkArray;
+                    //$checkArray[$cfPat]=$arr;
+                    //return $checkArray;
     }
     
     public function insertNewCheckup($array){

@@ -17,6 +17,8 @@ class EVisit {
     public $terapy;
     public $checkup;
     
+    public static $istances=array();
+    
     public function __construct($cf,$dateC,$medH,$medE,$conc,$toDoE,$ter,$check) {
         $this->cf=$cf;
         $this->dateCheck=$dateC;
@@ -26,6 +28,7 @@ class EVisit {
         $this->toDoExam=$toDoE;
         $this->terapy=$ter;
         $this->checkup=$check;
+        self::$istances[]=$this;
     }
     
     public function getCF(){

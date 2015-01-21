@@ -6,17 +6,20 @@ class CPatientsDB{
     /**
      *Contiene tutti i pazienti nel DB
      * cambiare nome in Paztients ?
+     * non usato più
      * 
      * @var type array
      */
-    public $Pazienti=array();
+    //public $Pazienti=array();
+    
     /**
      *Contiene tutte le visite nel DB
      * cambiare nome in Visits ?
+     * non usato più
      * 
      * @var type array
      */
-    public $Visite=array();
+    //public $Visite=array();
     
     private $bodyHTML;
 
@@ -78,36 +81,44 @@ class CPatientsDB{
 	}
 
         /**
-         * Riempie gli array Pazienti e Visite
+         * Crea un'istanza di EPatient ed Evisit per ogni paziente e visita che sono nel database
          */
-        private function fillArrays(){ //OKv2
+        private function fillArrays(){ // va cambiato nome
             $FPatient=  USingleton::getInstance('FPatient');
             $FCheckup=  USingleton::getInstance('FCheckup');
             
-            $this->Pazienti=$FPatient->fillPatientsArray($this->Pazienti);
+            //$this->Pazienti=$FPatient->fillPatientsArray($this->Pazienti);
+            
+            $FPatient->fillPatientsArray(); //creare tutte le entity in CHome ? altrimenti vengono create solamente quando si accede
+                                            //alla sezione DB
                 
-            for ( $i=0; $i<count($this->Pazienti); $i++){
-                $this->Visite=$FCheckup->fillCheckupsArray($this->Visite,$this->Pazienti[$i]->getCf() );
+            for ( $i=0; $i<count(EPatient::$istances); $i++){
+                //$this->Visite=$FCheckup->fillCheckupsArray($this->Visite,$this->Pazienti[$i]->getCf() );
+                $FCheckup->fillCheckupsArray(EPatient::$istances[$i]->getCF());
             }
         }
         
     /**
-     * 
+     * Cerca tutti i pazienti che stanno nel DB e li mette in array che passa alla view per essere stampato
      */    
-    private function getHomePatients(){ // OKv2
+    private function getHomePatients(){ // OKv3
         $VPatientsDB=Usingleton::getInstance('VPatientsDB');
-        $USession=USingleton::getInstance('USession');
         
-                for ( $i=0; $i<count($this->Pazienti); $i++){
-                    $Patients[$i]=array('name'=>$this->Pazienti[$i]->getName(),'surname'=>$this->Pazienti[$i]->getSurname(),'cf'=>$this->Pazienti[$i]->getCf(),'dateBirth'=>$this->Pazienti[$i]->getDataN(),'link'=>md5($this->Pazienti[$i]->getCf()));
+                for ( $i=0; $i<count(EPatient::$istances); $i++){
+                    $name=EPatient::$istances[$i]->getName();
+                    $surname=EPatient::$istances[$i]->getSurname();
+                    $dateB=EPatient::$istances[$i]->getDataN();
+                    $cf=EPatient::$istances[$i]->getCF();
+                    $Patients[$i]=array('name'=>$name,'surname'=>$surname,'cf'=>$cf,'dateBirth'=>$dateB,'link'=>md5($cf));
                 }
                 $this->bodyHTML=$VPatientsDB->fetchHomePatients($Patients);
     }
 
     /**
-     * Inserisce una nuova riga sia nella tabella pazienti che in quella visite
+     * Inserisce una nuova voce sia nella tabella pazienti che in quella visite
+     * (non si può aggiungere un paziente senza una visita)
      */
-	private function insertPatient(){ //OKv2
+	private function insertPatient(){ //OKv3
 		$VPatientsDB=Usingleton::getInstance('VPatientsDB');
 		if( $VPatientsDB->get('sent') ){
                     $FPatient=  USingleton::getInstance('FPatient');
@@ -141,7 +152,7 @@ class CPatientsDB{
         /**
          * La ricerca avviene per nome, cognome o codice fiscale, a seconda di cosa viene inserito nel campo cerca
          */
-	private function searchPatient(){ //OKv2
+	private function searchPatient(){ //OKv3
 		$VPatientsDB=Usingleton::getInstance('VPatientsDB');
                 
 		if($VPatientsDB->get('keyValue')==null) {
@@ -150,16 +161,17 @@ class CPatientsDB{
 		else {
                     $FPatient=  USingleton::getInstance('FPatient');
 		    $searchKey=$VPatientsDB->get('keyValue');
+                    
                     $searchResult=$FPatient->findPatient($searchKey);
                     $numResults=count($searchResult);
                     if ( $numResults!=0 ) {
                             $message="la ricerca ha prodotto ".$numResults." risultato/i";
-                            $this->bodyHTML=$VPatientsDB->showInfoMessage($message);
-                            //$this->bodyHTML=$VPatientsDB->getSearchResult($message,$searchResult,$numResults);
+                            //$this->bodyHTML=$VPatientsDB->showInfoMessage($message);
+                            $this->bodyHTML=$VPatientsDB->getSearchResult($message,$searchResult,$numResults);
                     }
                     else {
                             $message="La ricerca non ha prodotto nessun risultato";
-                            $this->bodyHTML=$VPatientsDB->showInfoMessage($message);
+                            $this->bodyHTML=$VPatientsDB->showErrorMessage($message);
                     }
 	    }
 	}
@@ -169,7 +181,7 @@ class CPatientsDB{
          */
 	private function showPatientDetails(){ //OKv2
 		$VPatientsDB=Usingleton::getInstance('VPatientsDB');
-                $FPatient=  USingleton::getInstance('FPatient');
+                //$FPatient=  USingleton::getInstance('FPatient');
 		$encCF=$VPatientsDB->get('p');
                 $encCheck=$VPatientsDB->get('ch');
                 
@@ -178,49 +190,53 @@ class CPatientsDB{
 	}
         
         /**
-         * Mette insieme i dati recuperati dall'array Pazienti e da quello Visite in un unico array che poi viene 
+         * Mette insieme i dati recuperati dall'Entity Pazienti e da quella Visite in un unico array che poi viene 
          * passato alla view per stamparlo. Utilizzata sia da showPatientDetails che da printReport
          * 
          * @param type $encryptedCF Codice fiscale preso dalla view
          * @param type $encryptedDateCheck Data della visita presa dalla view
          * @return type array
          */
-        public function buildInfoArray($encryptedCF,$encryptedDateCheck){ //OKv2
+        public function buildInfoArray($encryptedCF,$encryptedDateCheck){ //OKv3
             $posCF=$this->getCfPosition($encryptedCF);
-            $cfPatient=$this->Pazienti[$posCF]->getCF();
+            $cfPatient=  EPatient::$istances[$posCF]->getCF();
             
-            $posCH=$this->getDateCheckPosition($encryptedDateCheck,$cfPatient);
-            $dateCH=$this->Visite[$cfPatient][$posCH]->getDateCheck();
+            $posCH=$this->getDateCheckPosition($encryptedDateCheck,$encryptedCF);
+            //$dateCH=$this->Visite[$cfPatient][$posCH]->getDateCheck();
             
-            $array=array('name'=>$this->Pazienti[$posCF]->getName(),
-                                 'surname'=>$this->Pazienti[$posCF]->getSurname(),
-                                 'gender'=>$this->Pazienti[$posCF]->getSex(),
-                                 'dateBirth'=>$this->Pazienti[$posCF]->getDataN(),
-                                 'CF'=>$this->Pazienti[$posCF]->getCF(),
-                                 'dateCheck'=>$this->Visite[$cfPatient][$posCH]->getDateCheck(),
-                                 'medHistory'=>$this->Visite[$cfPatient][$posCH]->getMedHistory(),
-                                 'medExam'=>$this->Visite[$cfPatient][$posCH]->getMedExam(),
-                                 'conclusions'=>$this->Visite[$cfPatient][$posCH]->getConclusions(),
-                                 'toDoExams'=>$this->Visite[$cfPatient][$posCH]->getToDoExam(),
-                                 'terapy'=>$this->Visite[$cfPatient][$posCH]->getTerapy(),
-                                 'checkup'=>$this->Visite[$cfPatient][$posCH]->getCheckup());
+            $array=array('name'=>  EPatient::$istances[$posCF]->getName(),
+                         'surname'=>EPatient::$istances[$posCF]->getSurname(),
+                         'gender'=>EPatient::$istances[$posCF]->getSex(),
+                         'dateBirth'=>EPatient::$istances[$posCF]->getDataN(),
+                         'CF'=>EPatient::$istances[$posCF]->getCF(),
+                         'dateCheck'=>  EVisit::$istances[$posCH]->getDateCheck(),
+                         'medHistory'=> EVisit::$istances[$posCH]->getMedHistory(),
+                         'medExam'=>EVisit::$istances[$posCH]->getMedExam(),
+                         'conclusions'=> EVisit::$istances[$posCH]->getConclusions(),
+                         'toDoExams'=> EVisit::$istances[$posCH]->getToDoExam(),
+                         'terapy'=> EVisit::$istances[$posCH]->getTerapy(),
+                         'checkup'=> EVisit::$istances[$posCH]->getCheckup());
             return $array;
         }
         
         /**
          * Mostra tutte le visite fatte da un paziente
          */
-        public function showPatientChecks(){ //OKv2
+        public function showPatientChecks(){ //OKv3
             $VPatientsDB=Usingleton::getInstance('VPatientsDB');
-            $FPatient=  USingleton::getInstance('FPatient');
+            //$FPatient=  USingleton::getInstance('FPatient');
+            
             $encCF=$VPatientsDB->get('p');            
             $posCF=$this->getCfPosition($encCF);
-            $cfPatient=$this->Pazienti[$posCF]->getCF();
-            $name=$this->Pazienti[$posCF]->getName();
-            $surname=$this->Pazienti[$posCF]->getSurname();            
             
-            for ( $i=0;$i<count($this->Visite[$cfPatient]);$i++ ){
-                $patChecks[]=$this->Visite[$cfPatient][$i]->getDateCheck(); //tutte le date delle visite del paziente
+            $cfPatient=EPatient::$istances[$posCF]->getCF();
+            $name=EPatient::$istances[$posCF]->getName();
+            $surname=EPatient::$istances[$posCF]->getSurname();
+            
+            for ( $i=0;$i<count(EVisit::$istances);$i++ ){
+                if ( EVisit::$istances[$i]->getCF()==$cfPatient ){
+                    $patChecks[]=EVisit::$istances[$i]->getDateCheck(); //tutte le date delle visite del paziente
+                }
             }
             
             $this->bodyHTML=$VPatientsDB->getPatientChecks($name,$surname,$patChecks,$encCF);
@@ -230,7 +246,7 @@ class CPatientsDB{
         /**
          * Stampa il report di una visita di un paziente
          */
-	private function printReport(){ //OKv2
+	private function printReport(){ //OKv3
 		$VPatientsDB=USingleton::getInstance('VPatientsDB');
                 $encCF=$VPatientsDB->get('pat');
                 $encCH=$VPatientsDB->get('ch');
@@ -239,7 +255,7 @@ class CPatientsDB{
                     $Updf=USingleton::getInstance('Updf');
                     $patArray=$this->buildInfoArray($encCF, $encCH);
                     $patInfo=$patArray['name']." ".$patArray['surname'].", ".$patArray['dateBirth']." \n".$patArray['CF'];
-                    $arrayToPrint=array();
+                    //$arrayToPrint=array();
                     
                     foreach ($patArray as $key=>$value) {
                         if ( $VPatientsDB->get($key) ) {
@@ -254,22 +270,24 @@ class CPatientsDB{
 	}
 
 
-        
-	private function modifyPatient() { //OKv2
+        /**
+         * Modifica i dati di un paziente
+         */
+	private function modifyPatient() { //OKv3
             $VPatientsDB=  USingleton::getInstance('VPatientsDB');
             $encCF=$VPatientsDB->get('p');
             
             $posCF=$this->getCfPosition($encCF);
-            $cfPatient=$this->Pazienti[$posCF]->getCF();
+            $cfPatient= EPatient::$istances[$posCF]->getCF();
             
             if ( $VPatientsDB->get('mod')=="completed" ){
                 $FPatient=  USingleton::getInstance('FPatient');
                 
-                $arrayPatient=array('name'=>$_REQUEST['name'],
-                                    'surname'=>$_REQUEST['surname'],
-				    'gender'=>$_REQUEST['gender'],
-				    'dateBirth'=>$_REQUEST['dateBirth'],
-				    'CF'=>$_REQUEST['CF']);
+                $arrayPatient=array('name'=>$VPatientsDB->get('name'),
+                                    'surname'=>$VPatientsDB->get('surname'),
+				    'gender'=>$VPatientsDB->get('gender'),
+				    'dateBirth'=>$VPatientsDB->get('dateBirth'),
+				    'CF'=>$VPatientsDB->get('CF'));
                 
                 if ( $arrayPatient['CF']!=$cfPatient ){ //se modifico il codice fiscale devo modificare anche quello nella tabella visite
                     $FCheckup=  USingleton::getInstance('FCheckup');
@@ -285,18 +303,21 @@ class CPatientsDB{
             }
 	}
         
-        public function modifyCheck(){//OKv2
+        /**
+         * Modifica una visita di un paziente
+         */
+        public function modifyCheck(){//OKv3
             $VPatientsDB=  USingleton::getInstance('VPatientsDB');
             $encCF=$VPatientsDB->get('p');
             $encCH=$VPatientsDB->get('ch');
             
             $posCF=$this->getCfPosition($encCF);
-            $PatientInfo=array("CF"=>$this->Pazienti[$posCF]->getCF(),
-                               "name"=>$this->Pazienti[$posCF]->getName(),
-                               "surname"=>$this->Pazienti[$posCF]->getSurname() );
+            $PatientInfo=array("CF"=>  EPatient::$istances[$posCF]->getCF(),
+                               "name"=>EPatient::$istances[$posCF]->getName(),
+                               "surname"=>EPatient::$istances[$posCF]->getSurname() );
             
-            $posCH=$this->getDateCheckPosition($encCH,$PatientInfo['CF']);
-            $dateCH=$this->Visite[$PatientInfo['CF']][$posCH]->getDateCheck();
+            $posCH=$this->getDateCheckPosition($encCH,$encCF);
+            $dateCH=  EVisit::$istances[$posCH]->getDateCheck();
             
             if ( $VPatientsDB->get('mod')=="completed" ){
                 $FCheckup=  USingleton::getInstance('FCheckup');
@@ -319,13 +340,15 @@ class CPatientsDB{
             
         }
 
-        
+        /**
+         * cancella un paziente (e tutte le sue visite) dal DB
+         */
 	private function deletePatient(){
             $VPatientsDB=USingleton::getInstance('VPatientsDB');
             $encCF=$VPatientsDB->get('p');
             
             $posCF=$this->getCfPosition($encCF);
-            $cfPatient=$this->Pazienti[$posCF]->getCF();
+            $cfPatient=EPatient::$istances[$posCF]->getCF();
             
                 
                 if ( $VPatientsDB->get('conf')=="yes" ){
@@ -342,7 +365,10 @@ class CPatientsDB{
                 }
 		}
                 
-                
+        /**
+         * cancella una sola visita di un paziente dal DB. Se la visita cancellata è l'unica che il 
+         * paziente ha, allora viene cancellato anche il paziente
+         */
         public function deleteCheck(){
             $VPatientsDB=  USingleton::getInstance('VPatientsDB');
             $encCF=$VPatientsDB->get('p');
@@ -375,15 +401,15 @@ class CPatientsDB{
         /**
          * Aggiunge una nuova visita alla lista delle visite di un paziente
          */
-        public function newVisit(){ //OKv2
+        public function newVisit(){ //OKv3
             $VPatientsDB=  USingleton::getInstance('VPatientsDB');
             $FCheckup=  USingleton::getInstance('FCheckup');            
             $encCF=$VPatientsDB->get('p');
             
             $posCF=$this->getCfPosition($encCF);
-            $cfPatient=$this->Pazienti[$posCF]->getCF();
-            $name=$this->Pazienti[$posCF]->getName();
-            $surname=$this->Pazienti[$posCF]->getSurname();
+            $cfPatient=EPatient::$istances[$posCF]->getCF();
+            $name=EPatient::$istances[$posCF]->getName();
+            $surname=EPatient::$istances[$posCF]->getSurname();
             
             if ( $VPatientsDB->get('sent')=="y"){              
                 
@@ -406,19 +432,21 @@ class CPatientsDB{
             }
         }
         
+        
         public function getBody() {
             return $this->bodyHTML;            
         }
         
         /**
+         * restituisce l'indice dell'oggetto di tipo EPatient che appartiene all'array istances
          * 
-         * @param type $encryptedCF string md5 del cf
-         * @return int indice del paziente nell'array Pazienti
+         * @param type $encryptedCF stringa md5 del cf del paziente
+         * @return int indice del paziente nell'array istances
          */
         public function getCfPosition($encryptedCF){
             
-            for ( $i=0; $i<count($this->Pazienti);$i++ ){ 
-                if ( md5($this->Pazienti[$i]->getCF() )==$encryptedCF ) {
+            for ( $i=0; $i<count(EPatient::$istances);$i++ ){ 
+                if ( md5(EPatient::$istances[$i]->getCF() )==$encryptedCF ) {
                     $position=$i;
                     }                
                 }
@@ -426,15 +454,15 @@ class CPatientsDB{
         }
         
         /**
-         * Visite è un array associativo, ogni elemento è a sua volta un array con tutte le visite del paziente
+         * restituisce l'indice dell'oggetto di tipo EVisit che appartiene all'array istances
          * 
-         * @param type $encryptedDateCheck string md5 della data della visita
-         * @param type $cf string codice fiscale del paziente
-         * @return int indice della visita nell'array Visite[$cf]
+         * @param type $encryptedDateCheck stringa md5 della date della visita del paziente
+         * @param type $encryptedCF stringa md5 del cf del paziente
+         * @return int indice del paziente nell'array istances
          */
-        public function getDateCheckPosition($encryptedDateCheck,$cf){
-            for ( $i=0;$i<count($this->Visite[$cf]);$i++ ){
-                if ( md5($this->Visite[$cf][$i]->getDateCheck())==$encryptedDateCheck ) {
+        public function getDateCheckPosition($encryptedDateCheck,$encryptedCF){
+            for ( $i=0;$i<count(EVisit::$istances);$i++ ){
+                if ( md5(EVisit::$istances[$i]->getCF()==$encryptedCF) && md5(EVisit::$istances[$i]->getDateCheck())==$encryptedDateCheck ) {
                     $position=$i;
                 }
             }
