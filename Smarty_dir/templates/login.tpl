@@ -1,10 +1,10 @@
 <div>
-  <form method="POST" action="index.php?control=login">
+  <form class="log" method="POST" action="index.php?control=login">
 
     <div>
-      <input type="text" name="username" placeholder="username">
-      <input type="password" name="password" placeholder="password">
-      <input type="submit" value="Login">
+      <input class="input-field" type="text" name="username" placeholder="username">
+      <input class="input-field" type="password" name="password" placeholder="password">
+      <input id="login" type="submit" value="Login">
     </div>
 
     <div>

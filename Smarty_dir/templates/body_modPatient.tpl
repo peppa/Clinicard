@@ -1,43 +1,50 @@
+<div class="title">
+    <p>Modifica i dati del paziente</p>
+</div>
 
-		<br>
-		Modifica i dati del paziente
-		<br>
-	    <br>
-		<form method="POST" action="index.php?control=manageDB&action=modPat&mod=completed&p={$link}">
-			<table>
+<div class="spacing"></div>
 
-				<tr>
-					<td> Nome: </td>
-					<td> <input type="text" name="name"/> </td>
-				</tr>
-
-				<tr>
-					<td> Cognome: </td>
-					<td> <input type="text" name="surname"/> </td>
-				</tr>
-
-				<tr>
-                <td>Sesso: </td> 
-                  <td>
-                    <input type="radio" name="gender"> M 
-                    <input type="radio" name="gender"> F 
-                  </td>
-                </tr>
-
-                <tr>
-                	<td>Data di nascita:</td>
-                	<td> <input type="date" name="dateBirth" /> </td>
-                </tr>
-
-                <tr>
-                    <td> Codice Fiscale: </td>
-                    <td> <input type="text" name="CF"/> </td>
-		</tr>
-
-		<tr>
-                    <td> <input type="submit" value="invia dati" /> </td>
-                    <td> <input type="reset" value = "reset" /> </td>
-                </tr>
-                
-            </table>
-        </form>
+<form clas method="POST" class="mod-pat" action="index.php?control=manageDB&action=modPat&mod=completed&p={$link}">
+    <table>
+        
+        <tr>
+            <td class="field-label"> Nome: </td>
+            <td> <input class="input-field" type="text" name="name" id="name-pat"/> </td>
+        </tr>
+        
+        <tr>
+            <td class="field-label"> Cognome: </td>
+            <td> <input class="input-field" type="text" name="surname" id="surname-pat"/> </td>
+        </tr>
+        
+        <tr>
+            <td class="field-label">Sesso: </td>
+            <td>
+                <input type="radio" name="gender" id="male" value="M"> M 
+                <input type="radio" name="gender" id="female" value="F"> F 
+            </td>
+        </tr>
+        
+        <tr>
+            <td class="field-label">Data di nascita:</td>
+            <td> <input class="input-field" type="date" name="dateBirth" id="dateB-pat" /> </td>
+        </tr>
+        
+        <tr>
+            <td class="field-label"> Codice Fiscale: </td>
+            <td> <input class="input-field" type="text" name="CF" id="cf-pat"/> </td>
+        </tr>
+        
+        <tr>
+            <td></td>
+        </tr>
+        
+        <tr>
+            <td> <button class="button" type="submit"/>invia dati</button> </td>
+            <td> <button class="button" type="reset"/>reset</button> </td>
+        </tr>
+        
+    </table>
+</form>
+    
+<div class="spacing"></div>

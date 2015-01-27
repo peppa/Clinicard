@@ -1,6 +1,6 @@
 <div>
-	<form method="POST" action="index.php?control=logout">
+	<form class="log" method="POST" action="index.php?control=logout">
 		<p>Ciao {ucfirst($username)}</p> <!-- ucfirst capitalizes first letter -->
-		<input type="submit" value="Esci">
+		<input id="logout" type="submit" value="Esci">
 	</form>
 </div>

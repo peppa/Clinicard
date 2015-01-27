@@ -20,12 +20,12 @@ class FPatient extends FDatabase {
     }
     
     public function findPatient($key){
-            $query="SELECT `Nome`,`Cognome`,`Codice Fiscale`,`DataNascita` FROM `pazienti` WHERE `Nome`='".$key."' or `Cognome`='".$key."' or `Codice Fiscale`='".$key."'";
+            $query="SELECT * FROM `pazienti` WHERE `Nome`='".$key."' or `Cognome`='".$key."' or `Codice Fiscale`='".$key."'";
             $result=$this->query($query);
             
             $numRows=0;
             while ( $row=$result->fetch_assoc() ){
-                $results[$numRows]=array('name'=>$row['Nome'],'surname'=>$row['Cognome'],'cf'=>$row['Codice Fiscale'],'dateBirth'=>$row['DataNascita'],'link'=>md5($row['Codice Fiscale']));
+                $results[$numRows]=array('name'=>$row['Nome'],'surname'=>$row['Cognome'],'cf'=>$row['Codice Fiscale'],'dateBirth'=>$row['DataNascita'],'gender'=>$row['Sesso'],'link'=>md5($row['Codice Fiscale']));
                 $numRows++;                
             }
             return $results;

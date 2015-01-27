@@ -109,7 +109,8 @@ class CPatientsDB{
                     $surname=EPatient::$istances[$i]->getSurname();
                     $dateB=EPatient::$istances[$i]->getDataN();
                     $cf=EPatient::$istances[$i]->getCF();
-                    $Patients[$i]=array('name'=>$name,'surname'=>$surname,'cf'=>$cf,'dateBirth'=>$dateB,'link'=>md5($cf));
+                    $gender=EPatient::$istances[$i]->getSex();
+                    $Patients[$i]=array('name'=>$name,'surname'=>$surname,'cf'=>$cf,'dateBirth'=>$dateB,'gender'=>$gender,'link'=>md5($cf));
                 }
                 $this->bodyHTML=$VPatientsDB->fetchHomePatients($Patients);
     }
@@ -123,12 +124,13 @@ class CPatientsDB{
 		if( $VPatientsDB->get('sent') ){
                     $FPatient=  USingleton::getInstance('FPatient');
                     $FCheckup=  USingleton::getInstance('FCheckup');
+                    debug($VPatientsDB->get('gender'));
                     
                     $arrayPatient=array('name'=>$VPatientsDB->get('name'),
                                         'surname'=>$VPatientsDB->get('surname'),
 				        'gender'=>$VPatientsDB->get('gender'),
 				        'dateBirth'=>$VPatientsDB->get('dateBirth'),
-				        'CF'=>$VPatientsDB->get('CF'));
+				        'CF'=>strtoupper($VPatientsDB->get('CF')));
                     
 		    $arrayCheck=array('CF'=>$VPatientsDB->get('CF'),
                                       'dateCheck'=>$VPatientsDB->get('dateCheck'),
@@ -142,7 +144,7 @@ class CPatientsDB{
                     $FPatient->insertNewPatient($arrayPatient);
                     $FCheckup->insertNewCheckup($arrayCheck);
                     $message="Inserimento avvenuto con successo";
-                    $this->bodyHTML=$VPatientsDB->showInfoMessage($message);
+                    $this->bodyHTML=$VPatientsDB->showInfoMessage($message,true);
 		}
 		else {
                     $this->bodyHTML=$VPatientsDB->showInsertForm();			
@@ -166,7 +168,6 @@ class CPatientsDB{
                     $numResults=count($searchResult);
                     if ( $numResults!=0 ) {
                             $message="la ricerca ha prodotto ".$numResults." risultato/i";
-                            //$this->bodyHTML=$VPatientsDB->showInfoMessage($message);
                             $this->bodyHTML=$VPatientsDB->getSearchResult($message,$searchResult,$numResults);
                     }
                     else {
@@ -287,7 +288,7 @@ class CPatientsDB{
                                     'surname'=>$VPatientsDB->get('surname'),
 				    'gender'=>$VPatientsDB->get('gender'),
 				    'dateBirth'=>$VPatientsDB->get('dateBirth'),
-				    'CF'=>$VPatientsDB->get('CF'));
+				    'CF'=>strtoupper($VPatientsDB->get('CF')));
                 
                 if ( $arrayPatient['CF']!=$cfPatient ){ //se modifico il codice fiscale devo modificare anche quello nella tabella visite
                     $FCheckup=  USingleton::getInstance('FCheckup');
@@ -296,7 +297,7 @@ class CPatientsDB{
                 
                 $FPatient->updatePatient($arrayPatient,$cfPatient);
                 $message="modifica completata con successo";
-                $this->bodyHTML=$VPatientsDB->showInfoMessage($message);
+                $this->bodyHTML=$VPatientsDB->showInfoMessage($message,true);
             }
             else {
                 $this->bodyHTML=$VPatientsDB->getPatientModPage($cfPatient);
@@ -332,7 +333,7 @@ class CPatientsDB{
                 
                 $FCheckup->UpdateCheck($arrayCheck,$PatientInfo['CF'],$dateCH);
                 $message="modifica completata con successo";
-                $this->bodyHTML=$VPatientsDB->showInfoMessage($message);
+                $this->bodyHTML=$VPatientsDB->showInfoMessage($message,true);
             }
             else {
                 $this->bodyHTML=$VPatientsDB->getCheckModPage($PatientInfo,$dateCH);
@@ -358,7 +359,7 @@ class CPatientsDB{
                     $FPatient->deletePatient($cfPatient);
                     $FCheckup->deleteCheckup($cfPatient,"all"); //oltre al paziente cancello anche tutte le sue visite
                     $message="eliminazione completata con successo";
-                    $this->bodyHTML=$VPatientsDB->showInfoMessage($message);
+                    $this->bodyHTML=$VPatientsDB->showInfoMessage($message,true);
                 }
                 else {
                     $this->bodyHTML=$VPatientsDB->showPatientConfirmPage($cfPatient);
@@ -369,20 +370,23 @@ class CPatientsDB{
          * cancella una sola visita di un paziente dal DB. Se la visita cancellata è l'unica che il 
          * paziente ha, allora viene cancellato anche il paziente
          */
-        public function deleteCheck(){
+        public function deleteCheck(){ //OKv3
             $VPatientsDB=  USingleton::getInstance('VPatientsDB');
             $encCF=$VPatientsDB->get('p');
             $encCH=$VPatientsDB->get('ch');
             
             $posCF=$this->getCfPosition($encCF);
-            $cfPatient=$this->Pazienti[$posCF]->getCF();
+            $cfPatient=  EPatient::$istances[$posCF]->getCF();
             
-            $posCH=$this->getDateCheckPosition($encCH,$cfPatient);
-            $dateCH=$this->Visite[$cfPatient][$posCH]->getDateCheck();
+            $posCH=$this->getDateCheckPosition($encCH,$encCF);
+            $dateCH=  EVisit::$istances[$posCH]->getDateCheck();
             
             if ( $VPatientsDB->get('conf')=="yes" ){
                 $FCheckup=  USingleton::getInstance('FCheckup');
-                if (count($this->Visite[$cfPatient])==1){ //Se viene cancellata l'unica visita del paziente viene cancellato anche il paziente stesso
+            
+                $numVisits=$this->checkNumVisit($cfPatient);
+                //scrivere funzione che cicla su tutte le istanze di EVisit per controllare se un paziente ne ha solo una
+                if ($numVisits==1){ //Se viene cancellata l'unica visita del paziente viene cancellato anche il paziente stesso
                     $FPatient=  USingleton::getInstance('FPatient');
                     $FPatient->deletePatient($cfPatient);
                 }
@@ -390,7 +394,7 @@ class CPatientsDB{
                     $FCheckup->deleteCheckup($cfPatient,$dateCH);
                 }
                 $message="eliminazione completata con successo";
-                $this->bodyHTML=$VPatientsDB->showInfoMessage($message);
+                $this->bodyHTML=$VPatientsDB->showInfoMessage($message,true);
             }
             else {
                 $this->bodyHTML=$VPatientsDB->showCheckConfirmPage($cfPatient,$dateCH);
@@ -413,7 +417,7 @@ class CPatientsDB{
             
             if ( $VPatientsDB->get('sent')=="y"){              
                 
-                $arrayCheck=array('CF'=>$VPatientsDB->get('CF'),
+                $arrayCheck=array('CF'=>EPatient::$istances[$posCF]->getCF(),
                                   'dateCheck'=>$VPatientsDB->get('dateCheck'),
 			 	  'medHistory'=>$VPatientsDB->get('medHistory'),
 			 	  'medExam'=>$VPatientsDB->get('medExam'),
@@ -425,7 +429,7 @@ class CPatientsDB{
                 $FCheckup->insertNewCheckup($arrayCheck);
                 
                 $message="inserimento avvenuto con successo";
-                $this->bodyHTML=$VPatientsDB->showInfoMessage($message);                
+                $this->bodyHTML=$VPatientsDB->showInfoMessage($message,true);                
             }
             else {
                 $this->bodyHTML=$VPatientsDB->showCheckForm($cfPatient,$name,$surname);                
@@ -467,6 +471,29 @@ class CPatientsDB{
                 }
             }
             return $position;
+        }
+        
+        public function checkNumVisit($cfPat){
+            $numVisits=0;
+            for ($i=0;$i<count(EVisit::$istances);$i++){
+                if ( EVisit::$istances[$i]->getCF()==$cfPat ){
+                    $numVisits++;
+                }
+            }
+            return $numVisits;
+        }
+        
+        public function manageData(){
+            $VPatientsDB=  USingleton::getInstance('VPatientsDB');
+            $encCF=$VPatientsDB->get('pat');
+            
+            $posCF=$this->getCfPosition($encCF);
+            $cf=  EPatient::$istances[$posCF]->getCF();
+            $name=EPatient::$istances[$posCF]->getName();
+            $surname=EPatient::$istances[$posCF]->getSurname();
+            $dateB=EPatient::$istances[$posCF]->getDataN();
+            $values=array("Name"=>$name,"Surname"=>$surname,"CF"=>$cf,"DateB"=>$dateB);
+            echo json_encode($values);
         }
                 
                 

@@ -9,9 +9,14 @@ License URL: http://creativecommons.org/licenses/by/3.0/
     <head>
 	<title>Clinicard</title>
         <link href='http://fonts.googleapis.com/css?family=Noto+Sans' rel='stylesheet' type='text/css'>
-        <link rel="shortcut icon" type="image/x-icon" href="images/pageicon.png" /><!-- website icon -->
+        <!--<link rel="shortcut icon" type="image/x-icon" href="images/pageicon.png" /><!-- website icon -->
+        <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+        <link rel="icon" href="images/favicon.ico" type="image/x-icon">
         <link href="css/style.css" rel="stylesheet" type="text/css"  media="all" />
         <link rel="stylesheet" href="css/camera.css" type="text/css" media="all" />
+        <link href="css/myStyle.css" rel="stylesheet" type="text/css"  media="all" />
+        <link href="css/style4.css" rel="stylesheet" type="text/css"  media="all" />
+        <link href="css/style3.css" rel="stylesheet" type="text/css"  media="all" />
         <meta name="keywords" content="Healthy iphone web template, Andriod web template, Smartphone web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design" />
         <link rel="stylesheet" href="css/responsiveslides.css">
         <link rel="stylesheet" href="css/myStyle.css">
@@ -27,7 +32,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
         <div class="header">
             <div class="wrap">
                 <div class="logo">
-                    <a href="index.php"><img src="images/logo.png" title="logo" /></a>
+                    <a href="index.php"><img src="images/logo_mine.png" title="logo" /></a>
                 </div>
 
 <!-- login -->

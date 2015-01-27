@@ -1,36 +1,50 @@
-PAGINA DI GESTIONE DEL DATABASE PAZIENTI
+<div class="title" id="home-title">
+    PAGINA DI GESTIONE DEL DATABASE PAZIENTI
+</div>
 
-		<form method="POST" action="index.php?control=manageDB&action=insert">
-			<div>
-				<input type="submit" value="inserisci">
-			</div>
-		</form>
+<form method="POST" action="index.php?control=manageDB&action=insert" class="button-form">
+    <div>
+        <button type="submit" class="a_demo_three" id="insert-pat">inserisci</button>
+    </div>
+</form>
 
-		<form method="POST" action="index.php?control=manageDB&action=search">
-			<div>
-				<input type="submit" value="cerca">
-			</div>
-		</form>
+<form method="POST" action="index.php?control=manageDB&action=search" class="button-form">
+    <div>
+        <button type="submit" class="a_demo_three"id="search-pat">cerca</button>
+    </div>
+</form>
 
 
 
-		<!-- show all patients in DB -->
+<!-- show all patients in DB -->
+<!--<div class="title">
+    <p>Tutti i pazienti nel DB</p>
+</div>-->
 
-		<br>
-		<br>
-		<br>
-		Tutti i pazienti nel DB (Nome, Cognome, CF)
-		<br>
-		<br>
-
-		<ul>
-		{foreach $people as $patient}
-	    <li> {$patient.name} {$patient.surname} {$patient.cf} {$patient.dateBirth}
-                <button><a href="index.php?control=manageDB&action=getChecks&p={$patient.link}">vai </a></button> <!-- part1 può essere sostituito dal valore perchè è statico -->
-                <button><a href="index.php?control=manageDB&action=modPat&p={$patient.link}">modifica </a></button>
-                <button><a href="index.php?control=manageDB&action=delPat&p={$patient.link}">elimina </a></button>
-	    </li>
-	    <br>
-	    {/foreach}
-	    </ul>
+<div class="CSSTableGenerator">
+<table>
+    <tbody>
+        <tr>
+            <td>Nome</td>
+            <td>Cognome</td>
+            <td>Codice Fiscale</td>
+            <td>Data di nascita</td>
+            <td>Sesso</td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        {foreach $people as $patient}
+            <tr>
+                <td>{$patient.name}</td> <td>{$patient.surname}</td> <td>{$patient.cf}</td> <td>{$patient.dateBirth}</td> <td>{$patient.gender}</td>
+                <td><a href="index.php?control=manageDB&action=getChecks&p={$patient.link}"><button class="a_demo_four">vai</button> </a></td>
+                <td><a href="index.php?control=manageDB&action=modPat&p={$patient.link}"><button class="a_demo_four">modifica</button></a></td>
+                <td><a href="index.php?control=manageDB&action=delPat&p={$patient.link}"><button class="a_demo_four">elimina</button></a></td>
+            </tr>
+        {/foreach}
+    </tbody>
+</table>
+</div>
+    
+<div class="spacing"></div>
 

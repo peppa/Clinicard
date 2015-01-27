@@ -11,3 +11,320 @@ File creato da Carlo Centofanti
     margin-right: auto;
     width: 70%;
 }
+
+.title{
+    text-align: center;
+    font-size: 150%;
+    margin-top: 5%;
+    margin-bottom: 2%;
+    margin-left: 20%;
+    margin-right: 20%;
+    border-style: solid;
+    border-width: 4px;
+    border-radius: 8px;
+    border-color: #0f6d75;
+}
+
+.message{
+    text-align: center;
+}
+
+.infomsg,.errormsg{
+    text-align: center;
+    font-size: 150%;
+    margin-top: 5%;
+    margin-bottom: 2%;
+    margin-left: 20%;
+    margin-right: 20%;
+    border-style: solid;
+    border-width: 2px;    
+    border-radius: 4px;    
+}
+
+.infomsg{
+    border-color: #2B547E;
+    background-color: #98AFC7;
+}
+
+.errormsg{
+    border-color: #C11B17;
+    background-color: #F75D59;
+}
+
+
+
+#home-title{ //per il momento non serve
+/*    text-align: center;
+    font-size: 150%;
+    margin-top: 80px;
+    margin-left: 20%;
+    margin-right: 20%;
+    border-style: solid;
+    border-width: 4px;
+    border-radius: 8px;*/
+}
+
+.button-form{
+    text-align: center;
+}
+
+#search-pat,#insert-pat{
+    width: 15%;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+#search-pat{
+    margin-bottom: 10%;
+}
+
+#allChecks{
+    text-align: center;
+}
+
+.spacing{
+    margin-top: 40px;
+    margin-bottom: 40px;
+}
+
+.button{
+    padding: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin: auto;
+}
+
+.log{
+    float: right;
+}
+
+#login,#logout {
+ background:url('https://dh3vbjnk0bnfa.cloudfront.net/static/centralauth/images/btn-login.png') no-repeat 5px 5px #484B4F;
+  width: 100px;
+  cursor:pointer;
+  border-radius:50px;
+  padding:10px 20px 10px 0;
+  color:White;
+  font-size:14px;
+  text-align:left;
+  text-indent:40px;
+  margin:0 auto;
+ 
+  /* Animations: */
+  -webkit-transition-timing-function: ease-in-out;
+  -webkit-transition-duration: .4s;
+  -webkit-transition-property: all;
+  
+  -moz-transition-timing-function: ease-in-out;
+  -moz-transition-duration: .4s;
+  -moz-transition-property: all;
+}
+
+#login:hover,#logout:hover {
+  background-image: url('https://dh3vbjnk0bnfa.cloudfront.net/static/centralauth/images/btn-login-hover.png');
+  background-position: 65px 5px;
+  text-indent: 20px;  
+}
+
+#login,#logout{
+    float: right;
+}
+
+table{
+    margin:0px;
+    padding:0px;
+    width:10%;
+    margin: auto;
+}
+
+.input-field, .input-area{
+    margin-bottom:10px;
+    border-style: solid;
+    border-width: 1px;
+    border-color: #B2B2B2;
+    outline: none;
+    border-radius: 5px;
+    padding: 7px;
+    -webkit-box-shadow: inset 2px 2px 2px 0px #dddddd;
+    -moz-box-shadow: inset 2px 2px 2px 0px #dddddd;
+    box-shadow: inset 2px 2px 2px 0px #dddddd;
+}
+
+.area-label{
+    padding:20px;
+    vertical-align: middle;
+}
+
+#female{
+    margin-bottom: 10px;
+}
+
+
+
+
+
+
+
+/*#allPatients{
+    margin:auto;
+    text-align: center;
+}*/
+
+/*.table-row{
+    margin:auto;
+}*/
+
+.CSSTableGenerator {
+	margin:0px;
+        padding:0px;
+	width:60%;
+	border:2px solid #000000;
+	border-radius: 5px;
+}
+
+.CSSTableGenerator table{
+        //border-collapse: collapse;
+        //border-spacing: 0;
+	width:100%;
+	height:40%;
+	margin:0px;
+        padding:0px;
+}
+
+/*.CSSTableGenerator tr:last-child td:last-child {
+	-moz-border-radius-bottomright:5px;
+	-webkit-border-bottom-right-radius:5px;
+	border-bottom-right-radius:5px;
+}
+.CSSTableGenerator table tr:first-child td:first-child {
+	-moz-border-radius-topleft:5px;
+	-webkit-border-top-left-radius:5px;
+	border-top-left-radius:5px;
+}
+.CSSTableGenerator table tr:first-child td:last-child {
+	-moz-border-radius-topright:5px;
+	-webkit-border-top-right-radius:5px;
+	border-top-right-radius:5px;
+}.CSSTableGenerator tr:last-child td:first-child{
+	-moz-border-radius-bottomleft:5px;
+	-webkit-border-bottom-left-radius:5px;
+	border-bottom-left-radius:5px;
+}.CSSTableGenerator tr:hover td{
+	
+}*/
+
+.CSSTableGenerator tr:nth-child(odd){ background-color:#aad4ff; }
+
+.CSSTableGenerator tr:nth-child(even){ background-color:#ffffff; }
+
+.CSSTableGenerator td{
+	vertical-align:middle;
+	border:1px solid #000000;
+	border-width:1px 1px 1px 1px;
+	text-align:center;
+	padding:5px;
+	font-size:10px;
+	font-family:Arial;
+	font-weight:normal;
+	color:#000000;
+}
+
+.CSSTableGenerator tr:last-child td{
+	border-width:0px 1px 0px 0px;
+}
+
+.CSSTableGenerator tr td:last-child{
+	border-width:1px 0px 1px 0px;
+}
+
+.CSSTableGenerator tr:last-child td:last-child{
+	border-width:0px 0px 0px 0px;
+}
+
+.CSSTableGenerator tr:first-child td{
+	background:-o-linear-gradient(bottom, #005fbf 5%, #003f7f 100%);
+        background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #005fbf), color-stop(1, #003f7f) );
+	background:-moz-linear-gradient( center top, #005fbf 5%, #003f7f 100% );
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr="#005fbf", endColorstr="#003f7f");
+        background: -o-linear-gradient(top,#005fbf,003f7f);
+        
+	background-color:#2B547E;
+	border:0px solid #000000;
+	text-align:center;
+	border-width:0px 0px 1px 1px;
+	font-size:14px;
+	font-family:Arial;
+	font-weight:bold;
+	color:#ffffff;
+}
+
+/*.CSSTableGenerator tr:first-child:hover td{
+	background:-o-linear-gradient(bottom, #005fbf 5%, #003f7f 100%);	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #005fbf), color-stop(1, #003f7f) );
+	background:-moz-linear-gradient( center top, #005fbf 5%, #003f7f 100% );
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr="#005fbf", endColorstr="#003f7f");	background: -o-linear-gradient(top,#005fbf,003f7f);
+
+	background-color:#005fbf;
+}*/
+
+.CSSTableGenerator tr:first-child td:first-child{
+	border-width:0px 0px 1px 0px;
+}
+
+.CSSTableGenerator tr:first-child td:last-child{
+	border-width:0px 0px 1px 1px;
+}
+
+.CSSTableGenerator{
+    margin: auto;
+}
+
+/*.CSSTableGenerator tr{
+    background-color: black;
+    font-size: 20px;
+}*/
+
+
+#patient-detail{
+    width: 40%;
+}
+
+#report-fields{
+    width: 20%;
+}
+
+.checkbox{
+    width: 25px;
+    margin: 20px 100px;
+    position: relative;
+}
+
+.checkboxFive label {
+	cursor: pointer;
+	position: absolute;
+	width: 25px;
+	height: 25px;
+	top: 0;
+  	left: 0;
+	background: #eee;
+	border:1px solid #ddd;
+}
+
+.checkboxFive label:after {
+	opacity: 0.2;
+	content: '';
+	position: absolute;
+	width: 9px;
+	height: 5px;
+	background: transparent;
+	top: 6px;
+	left: 7px;
+	border: 3px solid #333;
+	border-top: none;
+	border-right: none;
+
+	-webkit-transform: rotate(-45deg);
+	-moz-transform: rotate(-45deg);
+	-o-transform: rotate(-45deg);
+	-ms-transform: rotate(-45deg);
+	transform: rotate(-45deg);
+}

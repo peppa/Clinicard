@@ -1,64 +1,48 @@
-<br>
-	<p>Compila la form per registrarti</p>
-	<br>
+<div class="title">
+    <p>Compila la form per registrarti</p>
+</div>
 
-	<form method="POST" action="index.php?control=Registration&action=addUser">
-		<div>
-			<div>
-				<div>
-			    	<label>Nome</label>
-			    	<input type="text" name="name" placeholder="Nome">
-			  	</div>
-			</div>
-		</div>
+<div class="spacing"></div>
 
-		<div>
-	  		<div>
-			  	<div>
-			    	<label>Cognome</label>
-			    	<input type="text" name="surname" placeholder="Cognome">
-			  	</div>
-			</div>
-		</div>
+<form class="button-form" method="POST" action="index.php?control=Registration&action=addUser">
+    <table>
+        <tr>
+            <td><label class="field-label">Nome</label></td>
+            <td><input class="input-field" type="text" name="name" placeholder="Nome"></td>
+        </tr>
 
-		<div>
-			<div>
-				<div>
-			    	<label>Codice Fiscale</label>
-			    	<input type="text" name="CF" placeholder="Codice Fiscale">
-			  	</div>
-			</div>
-		</div>
-		
+        <tr>
+            <td><label class="field-label">Cognome</label></td>
+            <td><input class="input-field" type="text" name="surname" placeholder="Cognome"></td>
+        </tr>
 
-		<div>
-	  		<div>
-				<div>
-			    	<label>Indirizzo Email</label>
-			    	<input type="email" name="email" placeholder="Inserici email">
-			  	</div>
-			</div>
-		</div>
+        <tr>
+            <td><label class="field-label">Codice Fiscale</label></td>
+            <td><input class="input-field" type="text" name="CF" placeholder="Codice Fiscale"></td>
+        </tr>
 
 
-		<div>
-	  		<div>
-				<div>
-			    	<label>Username</label>
-			    	<input type="text" name="username" placeholder="Username">
-			  	</div>
-			</div>
-		</div>
+        <tr>
+            <td><label class="field-label">Indirizzo Email</label></td>
+            <td><input class="input-field" type="email" name="email" placeholder="Inserici email"></td>
+        </tr>
 
-		<div>
-	  		<div>
-			  	<div>
-			   		<label>Password</label>
-			   		<input type="password" name="password" placeholder="Password">
-			  	</div>
-			</div>
-		</div>
 
-	  	<input type="submit" value="Registrati">
+        <tr>
+            <td><label class="field-label">Username</label></td>
+            <td><input class="input-field" type="text" name="username" placeholder="Username"></td>
+        </tr>
 
-	</form>
+        <tr>
+            <td><label class="field-label">Password</label></td>
+            <td><input class="input-field" type="password" name="password" placeholder="Password"></td>
+        </tr>
+
+        <tr>
+            <td><button class="button" type="submit">Registrati</button></td>
+        </tr>
+        
+    </table>
+</form>
+
+<div class="spacing"></div>
