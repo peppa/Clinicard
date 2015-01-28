@@ -1,5 +1,5 @@
 <div class="title">
-    <p>{$message}</p>
+    <p>{strtoupper($message)}</p>
 </div>
 
 <div class="spacing"></div>

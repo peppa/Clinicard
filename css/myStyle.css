@@ -14,7 +14,8 @@ File creato da Carlo Centofanti
 
 .title{
     text-align: center;
-    font-size: 150%;
+    font-size: 120%;
+    font-family: Tahoma, Geneva, sans-serif;
     margin-top: 5%;
     margin-bottom: 2%;
     margin-left: 20%;
@@ -78,9 +79,13 @@ File creato da Carlo Centofanti
     margin-bottom: 10%;
 }
 
-#allChecks{
-    text-align: center;
+#search{
+    width: 20%;
 }
+
+/*#allChecks{
+    text-align: center;
+}*/
 
 .spacing{
     margin-top: 40px;
@@ -96,6 +101,7 @@ File creato da Carlo Centofanti
 
 .log{
     float: right;
+    width: 20%;
 }
 
 #login,#logout {
@@ -137,7 +143,8 @@ table{
     margin: auto;
 }
 
-.input-field, .input-area{
+.input-field, .input-area, .input-field-login{
+    width: 100%;
     margin-bottom:10px;
     border-style: solid;
     border-width: 1px;
@@ -148,6 +155,11 @@ table{
     -webkit-box-shadow: inset 2px 2px 2px 0px #dddddd;
     -moz-box-shadow: inset 2px 2px 2px 0px #dddddd;
     box-shadow: inset 2px 2px 2px 0px #dddddd;
+}
+
+.input-field-login{
+    //float: right;
+    width: 100%;
 }
 
 .area-label{
@@ -327,4 +339,42 @@ table{
 	-o-transform: rotate(-45deg);
 	-ms-transform: rotate(-45deg);
 	transform: rotate(-45deg);
+}
+
+#patient-checks{
+    width: 25%;
+}
+
+.row {
+    margin-left: 30%;
+    margin-right: 30%;
+}
+
+.row-buttons{
+    margin-top: 20px;
+    text-align: center;
+}
+
+.row-element{
+    border-style: solid;
+    border-color: black;
+}
+
+input[type="radio"]{
+    margin-bottom: 10px;
+}
+
+input[type="date"]{
+    width: 60%;
+}
+
+.label{
+    margin-bottom: 5px;
+    font-family: Tahoma, Geneva, sans-serif;
+}
+
+#show-username{
+    text-align: right;
+    padding-right: 15px;
+    margin-bottom: 10px;
 }

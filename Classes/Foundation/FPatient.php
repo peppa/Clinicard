@@ -28,7 +28,9 @@ class FPatient extends FDatabase {
                 $results[$numRows]=array('name'=>$row['Nome'],'surname'=>$row['Cognome'],'cf'=>$row['Codice Fiscale'],'dateBirth'=>$row['DataNascita'],'gender'=>$row['Sesso'],'link'=>md5($row['Codice Fiscale']));
                 $numRows++;                
             }
-            return $results;
+            if ( isset($results) ){ //non restituisce errori se la ricerca non da risultati
+                return $results;                
+            }
     }
     
     public function getPatientDetail($encryptedCF){

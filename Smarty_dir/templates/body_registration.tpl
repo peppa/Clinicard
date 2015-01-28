@@ -1,10 +1,10 @@
 <div class="title">
-    <p>Compila la form per registrarti</p>
+    <p>COMPILA LA FORM PER REGISTRARTI</p>
 </div>
 
 <div class="spacing"></div>
 
-<form class="button-form" method="POST" action="index.php?control=Registration&action=addUser">
+<!--<form class="button-form" method="POST" action="index.php?control=Registration&action=addUser">
     <table>
         <tr>
             <td><label class="field-label">Nome</label></td>
@@ -43,6 +43,56 @@
         </tr>
         
     </table>
+</form>-->
+
+<form method="POST" action="index.php?control=Registration&action=addUser">
+    <div class="row">
+        <div class="row-element">
+            <p class="label"><label>Nome</label></p>
+            <p><input class="input-field" type="text" name="name" placeholder="Nome"></p>
+        </div>
+    </div>
+    
+    <div class="row">
+        <div class="row-element">
+            <p class="label"><label>Cognome</label></p>
+            <p><input class="input-field" type="text" name="surname" placeholder="surname"/></p>
+        </div>
+    </div>
+    
+    <div class="row">
+        <div class="row-element">
+            <p class="label"><label>Codice Fiscale</label></p>
+            <p><input class="input-field" type="text" name="CF" placeholder="Codice Fiscale"/></p>
+        </div>
+    </div>
+    
+    <div class="row">
+        <div class="row-element">
+            <p class="label"><label>Indirizzo Email</label></p>
+            <p><input class="input-field" type="email" name="email" placeholder="Email"/></p>
+        </div>
+    </div>
+    
+    <div class="row">
+        <div class="row-element">
+            <p class="label"><label>Username</label></p>
+            <p><input class="input-field" name="username" placeholder="Username"></textarea></p>
+        </div>
+    </div>
+    
+    <div class="row">
+        <div class="row-element">
+            <p class="label"><label>Password</label></p>
+            <p><input class="input-field" name="password" placeholder="Password"></textarea></p>
+        </div>
+    </div>
+    
+    <div class="row-buttons">
+        <p> <button class="a_demo_three" type="submit"/>Registrati</button>
+            <button class="a_demo_three" type="reset"/>reset</button>
+        </p>
+    </div>
 </form>
 
 <div class="spacing"></div>

@@ -1,9 +1,9 @@
 <div class="title">
-    <p>Inserisci i dati del paziente</p>
+    <p>INSERISCI I DATI DEL PAZIENTE</p>
 </div>
 
 <div class="spacing"></div>
-
+<!--
 <form class="button-form" method="POST" action="index.php?control=manageDB&action=insert&sent=y">
     <table>
         <tr>
@@ -75,6 +75,101 @@
         </tr>
         
     </table>
+</form>-->
+
+<form method="POST" action="index.php?control=manageDB&action=insert&sent=y">
+    <div class="row">
+        <div class="row-element">
+            <p class="label"><label>Nome</label></p>
+            <p><input class="input-field" type="text" name="name"/></p>
+        </div>
+    </div>
+    
+    <div class="row">
+        <div class="row-element">
+            <p class="label"><label>Cognome</label></p>
+            <p><input class="input-field" type="text" name="surname"/></p>
+        </div>
+    </div>
+    
+    <div class="row">
+        <div class="row-element">
+            <p class="label"><label>Sesso</label></p>
+            <p>
+                <input type="radio" name="gender" value="M"> M
+                <input type="radio" name="gender" value="F"> F
+            </p>
+        </div>
+    </div>
+    
+    <div class="row">
+        <div class="row-element">
+            <p class="label"><label>Data di nascita</label></p>
+            <p><input class="input-field" type="date" name="dateBirth" /></p>
+        </div>
+    </div>
+    
+    <div class="row">
+        <div class="row-element">
+            <p class="label"><label>Codice Fiscale</label></p>
+            <p><input class="input-field" type="text" name="CF"/></p>
+        </div>
+    </div>
+    
+    <div class="row">
+        <div class="row-element">
+            <p class="label"><label>Data della visita</label></p>
+            <p><input class="input-field" type="date" name="dateCheck" /></p>
+        </div>
+    </div>
+    
+    <div class="row">
+        <div class="row-element">
+            <p class="label"><label>Anamnesi</label></p>
+            <p><textarea class="input-area" rows="4" cols="40" name="medHistory"></textarea></p>
+        </div>
+    </div>
+    
+    <div class="row">
+        <div class="row-element">
+            <p class="label"><label>Esame obiettivo</label></p>
+            <p><textarea class="input-area" rows="4" cols="40" name="medExam"></textarea></p>
+        </div>
+    </div>
+    
+    <div class="row">
+        <div class="row-element">
+            <p class="label"><label>Conclusioni</label></p>
+            <p><textarea class="input-area" rows="4" cols="40" name="conclusions"></textarea></p>
+        </div>
+    </div>
+    
+    <div class="row">
+        <div class="row-element">
+            <p class="label"><label>Prescrizione esami</label></p>
+            <p><textarea class="input-area" rows="4" cols="40" name="toDoExams"></textarea></p>
+        </div>
+    </div>
+    
+    <div class="row">
+        <div class="row-element">
+            <p class="label"><label>Terapia</label></p>
+            <p><textarea class="input-area" rows="4" cols="40" name="terapy"></textarea></p>
+        </div>
+    </div>
+    
+    <div class="row">
+        <div class="row-element">
+            <p class="label"><label>Controllo</label></p>
+            <p><textarea class="input-area" rows="4" cols="40" name="checkup"></textarea></p>
+        </div>
+    </div>
+    
+    <div class="row-buttons">
+        <p> <button class="a_demo_three" type="submit"/>invia dati</button>
+            <button class="a_demo_three" type="reset"/>reset</button>
+        </p>
+    </div>
 </form>
 
 <div class="spacing"></div>

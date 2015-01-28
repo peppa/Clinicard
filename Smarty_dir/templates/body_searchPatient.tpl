@@ -1,16 +1,14 @@
 <div class="title">
-    <p>Ricerca pazienti</p>
+    <p>RICERCA PAZIENTI</p>
 </div>
 
 <div class="spacing"></div>
 
 <form class="button-form" method="POST" action="index.php?control=manageDB&action=search">
-    <table>
-        <tr>
-            <td> <input class="input-field" type="text" name="keyValue" placeholder="inserici nome, cognome o cf"> </td>
-            <td> <button class="a_demo_three" type="submit">cerca</button></td>
-        </tr>
-    </table>
+    <div>
+        <p> <input id="search" class="input-field" type="text" name="keyValue" placeholder="inserici nome, cognome o cf"> </p>
+        <p> <button class="a_demo_three" type="submit">cerca</button></p>
+    </div>
 </form
 
 <div class="spacing"></div>

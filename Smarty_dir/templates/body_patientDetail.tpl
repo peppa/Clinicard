@@ -48,8 +48,8 @@
         
         
         <div class="title">
-            <p>Scheda del paziente {$info.name} {$info.surname}</p>
-            <p>Data della visita: {$info.dateCheck}</p>
+            <p>SCHEDA DEL PAZIENTE {$info.name} {$info.surname}</p>
+            <p>DATA DELLA VISITA: {$info.dateCheck}</p>
         </div>
         
 <div class="CSSTableGenerator" id="patient-detail" >
@@ -102,14 +102,14 @@
 <div class="spacing"></div>
 
 <div class="title">
-    <p>Scegli un'azione</p>
+    <p>SCEGLI UN'AZIONE</p>
 </div>
 
 
 <form method="POST" class="button-form">
-    <button class="button" type="submit" formaction="index.php?control=manageDB&action=modCheck&p={md5($info.CF)}&ch={md5($info.dateCheck)}">modifica</button>
-    <button class="button" type="submit" class="print-report" formaction="index.php?control=manageDB&action=printReport&pat={md5($info.CF)}&ch={md5($info.dateCheck)}">stampa report</button>
-    <button class="button" type="submit" formaction="index.php?control=manageDB&action=delCheck&p={md5($info.CF)}&ch={md5($info.dateCheck)}">cancella</button>
+    <button class="a_demo_three" type="submit" formaction="index.php?control=manageDB&action=modCheck&p={md5($info.CF)}&ch={md5($info.dateCheck)}">modifica</button>
+    <button class="a_demo_three" type="submit" class="print-report" formaction="index.php?control=manageDB&action=printReport&pat={md5($info.CF)}&ch={md5($info.dateCheck)}">stampa report</button>
+    <button class="a_demo_three" type="submit" formaction="index.php?control=manageDB&action=delCheck&p={md5($info.CF)}&ch={md5($info.dateCheck)}">cancella</button>
 </form>
 
 <div class="spacing"></div>

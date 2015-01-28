@@ -1,5 +1,5 @@
 <div class="title" id="home-title">
-    PAGINA DI GESTIONE DEL DATABASE PAZIENTI
+    <p>PAGINA DI GESTIONE DEL DATABASE PAZIENTI</p>
 </div>
 
 <form method="POST" action="index.php?control=manageDB&action=insert" class="button-form">

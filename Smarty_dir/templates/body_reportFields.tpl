@@ -83,7 +83,7 @@
     </table>
     </div>
     <div class="spacing"></div>
-    <button class="button" type="submit">Stampa</button>
+    <button class="a_demo_three" type="submit">Stampa</button>
 </form>
     
 <div class="spacing"></div>    
