@@ -58,7 +58,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                     <a href="index.php?control=manageDB">DB</a>
                 </li>
                 <li class="nav_top">
-                    <a href="index.php?control=Checkup">Prenota visita</a>
+                    <a href="index.php?control=Checkup#topnav">Prenota visita</a>
                 </li>
                 <li class="nav_top">
                     <a href="index.php?control=Registration">Registrazione</a>

@@ -8,8 +8,8 @@ class VRegistration extends View {
     }
     
     //fare template per errore anche qui
-    public function getErrorHTML($error) {
-        return "ERRORE NEI DATI INSERITI: ".$error;
+    public function getErrorMessage($error) {
+        return parent::getErrorMessage("ERRORE NEI DATI INSERITI: ".$error);
         
     }
     

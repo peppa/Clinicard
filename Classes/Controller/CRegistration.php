@@ -82,7 +82,7 @@ class CRegistration {
             }
         }
         if($this->error){
-            $this->bodyHTML=$VRegistration->getErrorHTML($this->error);
+            $this->bodyHTML=$VRegistration->getErrorMessage($this->error);
         }else{
             //saving data..
             $FRegistration->insertUser($name,$surname,$cf,$mail,$user,$pass);

@@ -1,1 +1,1 @@
-Username o password errati
+<div id="errormsg">Username o password errati</div>

@@ -172,7 +172,7 @@ class CPatientsDB{
                     }
                     else {
                             $message="La ricerca non ha prodotto nessun risultato";
-                            $this->bodyHTML=$VPatientsDB->showErrorMessage($message);
+                            $this->bodyHTML=$VPatientsDB->getErrorMessage($message);
                     }
 	    }
 	}
