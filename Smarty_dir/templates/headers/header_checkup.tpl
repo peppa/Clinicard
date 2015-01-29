@@ -3,8 +3,9 @@
 <script src='lib/js/fullcalendar/lib/jquery.min.js'></script>
 <script src='lib/js/fullcalendar/lib/moment.min.js'></script>
 <script src='lib/js/fullcalendar/fullcalendar.js'></script>
+<script src='lib/js/fullcalendar/lang/it.js'></script>
 <script src="lib/js/calendario.js"></script>
-<script src='lib/js/fullcalendar/lang/it.js'></script> <!-- needs to be -->
+ <!-- needs to be -->
 
 <!-- Google Calendar dependencies.. -->
 <script type='text/javascript' src='lib/js/fullcalendar/gcal.js'></script>
