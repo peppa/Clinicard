@@ -1,8 +1,7 @@
     <div class="wrap">
     <div class="content">
     	<div class="contact">
-    	<h2>Contact</h2>
-    	<div class="clear"> </div>
+    	<h2>Contatti</h2>
     	<div class="contact-form">
 					
 				<form>
@@ -19,7 +18,7 @@
 			 <span><textarea> </textarea></span>
 			 </div>
 			<div>
-			<span><input type="submit" value="Submit"></span>
+			<span><input type="submit" value="Invia"></span>
 			</div>
             </form>
 				

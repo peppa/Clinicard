@@ -72,9 +72,10 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 
         {$body}
 
+        <div class="separate"></div>
         <div class="footer">
             <div class="left-content">
-                <a href="index.php"><img src="images/logo1.png" title="logo" /></a>
+                <a href="index.php"><img src="images/logo_mine_footer.png" title="logo" /></a>
             </div>
             <div class="right-content">
                 <p>Healthy  &#169	 All Rights Reserved | Design By <a href="http://w3layouts.com/">W3Layouts</a></p>

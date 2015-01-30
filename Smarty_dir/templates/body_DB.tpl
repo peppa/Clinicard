@@ -14,12 +14,10 @@
     </div>
 </form>
 
-
-
 <!-- show all patients in DB -->
-<!--<div class="title">
-    <p>Tutti i pazienti nel DB</p>
-</div>-->
+<div class="title">
+    <p>TUTTI I PAZIENTI NELL'ARCHIVIO</p>
+</div>
 
 <div class="CSSTableGenerator">
 <table>
@@ -47,4 +45,5 @@
 </div>
     
 <div class="spacing"></div>
+
 

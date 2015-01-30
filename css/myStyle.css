@@ -75,9 +75,9 @@ File creato da Carlo Centofanti
     margin-bottom: 10px;
 }
 
-#search-pat{
+/*#search-pat{
     margin-bottom: 10%;
-}
+}*/
 
 #search{
     width: 20%;
@@ -235,9 +235,10 @@ table{
 	border-width:1px 1px 1px 1px;
 	text-align:center;
 	padding:5px;
-	font-size:10px;
-	font-family:Arial;
-	font-weight:normal;
+	font-size:12px;
+        font-family: Arial, Helvetica, sans-serif;
+	//font-family:Arial;
+	//font-weight:normal;
 	color:#000000;
 }
 
@@ -297,7 +298,11 @@ table{
 
 
 #patient-detail{
-    width: 40%;
+    width: 50%;
+}
+
+#patient-detail tr:first-child td:first-child{
+    width: 25%;
 }
 
 #report-fields{
@@ -377,4 +382,11 @@ input[type="date"]{
     text-align: right;
     padding-right: 15px;
     margin-bottom: 10px;
+}
+
+.separate{
+/*    border-style: dashed;
+    border-color: #D1D0CE;
+    border-width: 1px;*/
+border-bottom: 0.1244em dashed rgba(202, 202, 202, 0.41);
 }
