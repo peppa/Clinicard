@@ -12,7 +12,8 @@ class CRegistration {
             $this->bodyHTML=$VRegistration->loadRegistrationForm();
             
             if ( $USession->get('username') ) {
-                $this->bodyHTML=$VRegistration->theUserIsLoggedYet();             
+                $message= "Sei gi&agrave loggato! Per favore esci prima di registrare un nuovo utente.";
+                $this->bodyHTML=$VRegistration->getErrorMessage($message);             
             }
             else {
                 $action=$VRegistration->get('action');
@@ -82,7 +83,7 @@ class CRegistration {
             }
         }
         if($this->error){
-            $this->bodyHTML=$VRegistration->getErrorMessage($this->error);
+            $this->bodyHTML=$VRegistration->getRegistrationErrorMessage($this->error);
         }else{
             //saving data..
             $FRegistration->insertUser($name,$surname,$cf,$mail,$user,$pass);
