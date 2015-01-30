@@ -1,11 +1,11 @@
 <link rel='stylesheet' href='lib/js/fullcalendar/fullcalendar.css' />
-<link rel='stylesheet' href='lib/js/jquery-ui2/jquery-ui.theme.css' />
+<link rel='stylesheet' href='lib/js/jquery-ui/jquery-ui.theme.css' />
 <script src='lib/js/fullcalendar/lib/jquery.min.js'></script>
 <script src='lib/js/fullcalendar/lib/moment.min.js'></script>
 <script src='lib/js/fullcalendar/fullcalendar.js'></script>
 <script src='lib/js/fullcalendar/lang/it.js'></script>
-<script src="lib/js/calendario.js"></script>
-<script src='lib/js/jquery-ui2/jquery-ui.js'></script>
+<script src="lib/js/script/calendario.js"></script>
+<script src='lib/js/jquery-ui/jquery-ui.js'></script>
  <!-- needs to be -->
 
 <!-- Google Calendar dependencies.. -->

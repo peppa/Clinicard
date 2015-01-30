@@ -47,10 +47,10 @@ $(document).ready(function(){ //riempire la form di modifica del paziente
     $('.modPat').click(function(){
         $('.modPat').data('patient',"stringaProva");
     });
-    window.onload(function(){
-        var stringa=$('.modPat').data('patient');
-        alert('stringa');
-    });
+//    window.onload(function(){
+//        var stringa=$('.modPat').data('patient');
+//        alert('stringa');
+//    });
 });
 
 

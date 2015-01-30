@@ -3,9 +3,9 @@
 class CHome {  
 
     /**
-     * Initializes the site
+     * All begins here
      */
-    public function __construct() {
+    public function start() {
         $this->buildPage();
         $this->showPage();
     }
@@ -70,7 +70,7 @@ class CHome {
         if ($CLogin->checkLoggedIn()) {
             $username=$USession->get('username');
             debug('username: '.$username);
-            $VHome->showUser($username);
+            $VHome->setUsernameToShow($username);
             $VHome->loadLogoutButton();                
         }
         else {

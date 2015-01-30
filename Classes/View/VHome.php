@@ -13,7 +13,7 @@ class VHome extends View {
     	return$body;
     }
     
-    public function showUser($user){
+    public function setUsernameToShow($user){
         $this->assign('username',$user);
     }
     

@@ -15,13 +15,13 @@ class CLogin{
 		if($FLogin->checkUser($user,$pass)) {
 
                     $USession->login($user,$pass);
-                    $VLogin->loadLogoutButton();
-                    return $this->WelcomePage();//non ritorna un cazzo,..
+                    //$VLogin->loadLogoutButton();
+                    //return $this->WelcomePage();//non ritorna un cazzo,..
                 }
 
 		else  {/*user o pass non corretti*/
-                    $VLogin->loadLoginForm();
-                    return $this->ErrorPage();//non ritorna un cazzo..
+                    //$VLogin->loadLoginForm();
+                    //return $this->ErrorPage();//non ritorna un cazzo..
 		}
                 //$VLogin->showPage();
 	}
