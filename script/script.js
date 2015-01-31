@@ -51,10 +51,19 @@ $(document).ready(function(){
     $.ajax({
         type: "POST",
         url: "index.php?control=ajax-prova",
-        //dataType: "text",
+        dataType: "json",
         data: {"cf":EncCF},
-        success: function(data){
-            $('#name').val(data);
+        success: function(array){
+            $('#name').val(array["name"]);
+            $('#surname').val(array["surname"]);
+            $('#dateB').val(array["dateB"]);
+            $('#CF').val(array["CF"]);
+            if (array["gender"]=="M"){
+                 $(':radio[value="M"]').attr('checked', 'checked');
+            }
+            else {
+                $(':radio[value="F"]').attr('checked', 'checked');
+            }
         }
     });
 });
