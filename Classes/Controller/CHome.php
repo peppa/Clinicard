@@ -172,14 +172,15 @@ class CHome {
             
             for ($i=0;$i<count(EPatient::$istances);$i++){
                 if(EPatient::$istances[$i]->getEncCF()==$encCF){
-                    $nome=EPatient::$istances[$i]->getName(); //devo ancora capire come passare gli array
-                    /*$data=array("name"=>EPatient::$istances[$i]->getName(),
+                    //$nome=EPatient::$istances[$i]->getName(); //devo ancora capire come passare gli array
+                    $data=array("name"=>EPatient::$istances[$i]->getName(),
                                 "surname"=>EPatient::$istances[$i]->getSurname(),
+                                "gender"=>EPatient::$istances[$i]->getSex(),
                                 "dateB"=>EPatient::$istances[$i]->getDataN(),
-                                "CF"=>EPatient::$istances[$i]->getCF());*/
+                                "CF"=>EPatient::$istances[$i]->getCF());
                 }
             }
-            echo $nome;
+            echo json_encode($data);
             exit; //se non faccio exit mi stampa tutto il codice html della pagina dentro alla form
         }
         else {
