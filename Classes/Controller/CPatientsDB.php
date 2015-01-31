@@ -29,7 +29,7 @@ class CPatientsDB{
      */
 	public function __construct(){ 
 		$VPatientsDB=Usingleton::getInstance('VPatientsDB');
-		$this->fillArrays();
+		//$this->fillArrays();
 
 		$action=$VPatientsDB->get('action');
 		switch($action) {

@@ -43,14 +43,20 @@ $(document).ready(function(){
         });
         
 
-$(document).ready(function(){ //riempire la form di modifica del paziente
-    $('.modPat').click(function(){
-        $('.modPat').data('patient',"stringaProva");
+$(document).ready(function(){
+    urlString=window.location.href; //prende l'url della pagina corrente
+    splitUrlArray = urlString.split('='); //divide l'url in base al carattere specificato
+    var EncCF=splitUrlArray[3]; //prende l'ultimo elemento dell'array (md5 del codice fiscale)
+    
+    $.ajax({
+        type: "POST",
+        url: "index.php?control=ajax-prova",
+        //dataType: "text",
+        data: {"cf":EncCF},
+        success: function(data){
+            $('#name').val(data);
+        }
     });
-//    window.onload(function(){
-//        var stringa=$('.modPat').data('patient');
-//        alert('stringa');
-//    });
 });
 
 

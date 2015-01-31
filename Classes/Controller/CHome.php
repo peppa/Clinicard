@@ -6,6 +6,7 @@ class CHome {
      * All begins here
      */
     public function start() {
+        $this->fillArrays();
         $this->buildPage();
         $this->showPage();
     }
@@ -156,11 +157,51 @@ class CHome {
 
             case 'Contacts':
                 return $VHome->getContactsContent();
+                
+            case 'ajax-prova':
+                $this->ajax_prova();
         
             default:
                 return $VHome->getHomeContent();
         }
     }
+    
+    public function ajax_prova() {
+        if (isset($_REQUEST['cf'])){
+            $encCF=$_REQUEST['cf'];
+            
+            for ($i=0;$i<count(EPatient::$istances);$i++){
+                if(EPatient::$istances[$i]->getEncCF()==$encCF){
+                    $nome=EPatient::$istances[$i]->getName(); //devo ancora capire come passare gli array
+                    /*$data=array("name"=>EPatient::$istances[$i]->getName(),
+                                "surname"=>EPatient::$istances[$i]->getSurname(),
+                                "dateB"=>EPatient::$istances[$i]->getDataN(),
+                                "CF"=>EPatient::$istances[$i]->getCF());*/
+                }
+            }
+            echo $nome;
+            exit; //se non faccio exit mi stampa tutto il codice html della pagina dentro alla form
+        }
+        else {
+            debug("lol");
+        }
+    }
+    
+    private function fillArrays(){ // l'ho messo qua invece che a cpatients perchè altrimenti con la chiamata ajax
+                                   // e non vede le Entity
+            $FPatient=  USingleton::getInstance('FPatient');
+            $FCheckup=  USingleton::getInstance('FCheckup');
+            
+            //$this->Pazienti=$FPatient->fillPatientsArray($this->Pazienti);
+            
+            $FPatient->fillPatientsArray(); //creare tutte le entity in CHome ? altrimenti vengono create solamente quando si accede
+                                            //alla sezione DB
+                
+            for ( $i=0; $i<count(EPatient::$istances); $i++){
+                //$this->Visite=$FCheckup->fillCheckupsArray($this->Visite,$this->Pazienti[$i]->getCf() );
+                $FCheckup->fillCheckupsArray(EPatient::$istances[$i]->getCF());
+            }
+        }
 
 
 

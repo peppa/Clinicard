@@ -12,6 +12,7 @@ class EPatient {
     public $cf;
     public $dataN;
     public $sex;
+    public $encCF;
     
     public static $istances=array();
     
@@ -21,6 +22,7 @@ class EPatient {
         $this->cf=$cf;
         $this->dataN=$d;
         $this->sex=$s;
+        $this->encCF=md5($cf);
         self::$istances[]=$this;
     }
     
@@ -42,6 +44,10 @@ class EPatient {
     
     public function getSex(){
         return $this->sex;
+    }
+    
+    public function getEncCF(){
+        return $this->encCF;
     }
     
     public function toString(){

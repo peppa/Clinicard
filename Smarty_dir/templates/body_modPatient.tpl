@@ -51,14 +51,14 @@
     <div class="row">
         <div class="row-element">
             <p class="label"><label>Nome</label></p>
-            <p><input class="input-field" type="text" name="name"/></p>
+            <p><input class="input-field" type="text" name="name" id="name"/></p>
         </div>
     </div>
     
     <div class="row">
         <div class="row-element">
             <p class="label"><label>Cognome</label></p>
-            <p><input class="input-field" type="text" name="surname"/></p>
+            <p><input class="input-field" type="text" name="surname" id="surname"/></p>
         </div>
     </div>
     
@@ -75,14 +75,14 @@
     <div class="row">
         <div class="row-element">
             <p class="label"><label>Data di nascita</label></p>
-            <p><input class="input-field" type="date" name="dateBirth" /></p>
+            <p><input class="input-field" type="date" name="dateBirth" id="dateB"/></p>
         </div>
     </div>
     
     <div class="row">
         <div class="row-element">
             <p class="label"><label>Codice Fiscale</label></p>
-            <p><input class="input-field" type="text" name="CF"/></p>
+            <p><input class="input-field" type="text" name="CF" id="CF"/></p>
         </div>
     </div>
     
