@@ -15,6 +15,7 @@ class CLogin{
 		if($FLogin->checkUser($user,$pass)) {
 
                     $USession->login($user,$pass);
+                    return true;
                     //$VLogin->loadLogoutButton();
                     //return $this->WelcomePage();//non ritorna un cazzo,..
                 }
@@ -22,17 +23,18 @@ class CLogin{
 		else  {/*user o pass non corretti*/
                     //$VLogin->loadLoginForm();
                     //return $this->ErrorPage();//non ritorna un cazzo..
+                    return false;
 		}
                 //$VLogin->showPage();
 	}
 
 	public function logout(){
 		$USession=Usingleton::getInstance('USession');
-		$VLogin=USingleton::getInstance('VLogin');
+		//$VLogin=USingleton::getInstance('VLogin');
 		$USession->logout();
                 
-                $VLogin->loadLoginForm();
-                $VLogin->assign('body',"logout effettuato con successo");
+                //$VLogin->loadLoginForm();
+                //$VLogin->assign('body',"logout effettuato con successo");
 		//$VLogin->showPage();
 	}
         

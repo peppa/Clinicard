@@ -56,7 +56,7 @@
     <div class="row">
         <div class="row-element">
             <p class="label"><label>Cognome</label></p>
-            <p><input class="input-field" type="text" name="surname" placeholder="surname"/></p>
+            <p><input class="input-field" type="text" name="surname" placeholder="Cognome"/></p>
         </div>
     </div>
     

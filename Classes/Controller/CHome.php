@@ -86,23 +86,21 @@ class CHome {
         $VHome=  USingleton::getInstance('VHome');
 
         if ( $CLogin->checkLoggedIn() ){
-            $result=$FDatabase->getDocUsername();
-            $row=$result->fetch_assoc();
-            $docUsername=$row['Username'];
+            $docUsername=$FDatabase->getDocUsername();
             if ( $USession->get('username')==$docUsername){
                 $CPatientsDB=USingleton::getInstance('CPatientsDB');
                 return $CPatientsDB->getBody();
             }
             else {//utente loggato ma non medico 
-                  //Conviene lasciare questa funzione anche se rendiamo il DB visibile solo al medico ?
-                $this->addLoginBox();
+                  //Conviene lasciare questa funzione anche se rendiamo il DB visibile solo al medico ? penso di si
+                //$this->addLoginBox();
                 $message="Solo il medico pu&oacute accedere a questa sezione";
                 return $VHome->getErrorMessage($message);
                 //$VHome->showPage();
             }
         }
         else {//utente non loggato
-            $this->addLoginBox();
+            //$this->addLoginBox();
             $message="Per accedere al DB &eacute necessario effettuare il login";
             return $VHome->getErrorMessage($message);
             //$VHome->showPage();
@@ -129,8 +127,16 @@ class CHome {
 
             case 'login':
                 $CLogin=USingleton::getInstance('CLogin');
-                $return=$CLogin->manageLogin();
-                return FALSE; // vedere bene.. secondo me ritorna html di home
+                $result=$CLogin->manageLogin();
+                if ( $result==false ){
+                    $message="Username o password errati";
+                    $body=$VHome->getErrorMessage($message);
+                    return array("body"  => $body);
+                }
+                else {
+                    return FALSE; // vedere bene.. secondo me ritorna html di home
+                }
+                
                 
 
             case 'logout':

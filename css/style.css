@@ -191,7 +191,7 @@ ul#topnav li span a:hover {text-decoration: none;}
 }
 .section.group {
 	padding-bottom: 12px;
-	border-bottom: 0.1244em dashed rgba(202, 202, 202, 0.41);
+	//border-bottom: 0.1244em dashed rgba(202, 202, 202, 0.41);
 }
 .footer {
 	padding: 5px 0px;
@@ -477,7 +477,7 @@ ul#topnav li span a:hover {text-decoration: none;}
 	margin: 10px 0px;
 	font-family: 'Noto Sans', sans-serif;
 	color: #999797;
-	border-bottom: 0.1244em dashed rgba(202, 202, 202, 0.41);
+	//border-bottom: 0.1244em dashed rgba(202, 202, 202, 0.41);
 	padding-bottom: 17px;	
 }
 .about-boxs h4{
@@ -543,7 +543,7 @@ ul#topnav li span a:hover {text-decoration: none;}
 	margin:10px 0px 5px 0px;
 }
 .services,.contact{
-	border-bottom: 0.1244em dashed rgba(202, 202, 202, 0.41);
+	//border-bottom: 0.1244em dashed rgba(202, 202, 202, 0.41);
 	padding-bottom: 17px;
 }
 .service-grid h4{
@@ -709,7 +709,7 @@ form textarea{
 	text-align: center;
 	height: 315px;
 	padding-top: 99px;
-	border-bottom: 0.1244em dashed rgba(202, 202, 202, 0.41);
+	//border-bottom: 0.1244em dashed rgba(202, 202, 202, 0.41);
 }
 .error-page h3,.error-page h1{
 	font-family: 'Carrois Gothic SC', sans-serif;

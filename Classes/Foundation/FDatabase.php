@@ -29,7 +29,9 @@ class FDatabase extends mysqli{
         public function getDocUsername(){
             $query="SELECT `Username` FROM `utenti` WHERE `Medico`=1";
             $result=$this->query($query);
-            return $result;
+            $row=$result->fetch_assoc();
+            $name=$row['Username'];
+            return $name;
         }
 
 
