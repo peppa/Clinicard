@@ -361,8 +361,7 @@ table{
 }
 
 .row-element{
-    border-style: solid;
-    border-color: black;
+    width: 80%;
 }
 
 input[type="radio"]{
@@ -389,4 +388,14 @@ input[type="date"]{
     border-color: #D1D0CE;
     border-width: 1px;*/
 border-bottom: 0.1244em dashed rgba(202, 202, 202, 0.41);
+}
+
+#pass-strength, #checkUser, #insPass{
+    border-style: solid;
+    border-width: 2px;
+    border-radius: 4px;
+    padding: 4px 4px 4px 8px;
+    margin-left: 10px;
+    font-family: Tahoma, Geneva, sans-serif;
+    font-size: 14px;
 }

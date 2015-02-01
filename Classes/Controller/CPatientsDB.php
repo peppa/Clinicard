@@ -29,9 +29,10 @@ class CPatientsDB{
      */
 	public function __construct(){ 
 		$VPatientsDB=Usingleton::getInstance('VPatientsDB');
-		//$this->fillArrays();
+		$this->fillArrays();
 
-		$action=$VPatientsDB->get('action');
+                if ($VPatientsDB->get('action')!=NULL){
+                    $action=$VPatientsDB->get('action');
 		switch($action) {
 
 			case 'insert':
@@ -77,6 +78,10 @@ class CPatientsDB{
 			default:
                             $this->getHomePatients();   
 		}
+        }
+        else { //è come se partisse il caso default dello switch
+            $this->getHomePatients();
+        }
 
 	}
 
@@ -494,6 +499,42 @@ class CPatientsDB{
             $dateB=EPatient::$istances[$posCF]->getDataN();
             $values=array("Name"=>$name,"Surname"=>$surname,"CF"=>$cf,"DateB"=>$dateB);
             echo json_encode($values);
+        }
+        
+        public function preFillPat(){
+            $encCF=$_REQUEST['cf'];
+            
+            for ($i=0;$i<count(EPatient::$istances);$i++){
+                if(EPatient::$istances[$i]->getEncCF()==$encCF){
+                    //$nome=EPatient::$istances[$i]->getName(); //devo ancora capire come passare gli array
+                    $data=array("name"=>EPatient::$istances[$i]->getName(),
+                                "surname"=>EPatient::$istances[$i]->getSurname(),
+                                "gender"=>EPatient::$istances[$i]->getSex(),
+                                "dateB"=>EPatient::$istances[$i]->getDataN(),
+                                "CF"=>EPatient::$istances[$i]->getCF());
+                }
+            }
+            echo json_encode($data);
+            exit;
+        }
+        
+        public function preFillCheck(){
+            $encCF=$_REQUEST['cf'];
+            $encCH=$_REQUEST['ch'];
+        
+        for ($i=0;$i<count(EVisit::$istances);$i++){
+                if(EVisit::$istances[$i]->getEncCf()==$encCF && EVisit::$istances[$i]->getEncCh()==$encCH){
+                    $data=array("dateCh"=>EVisit::$istances[$i]->getDateCheck(),
+                                "medHistory"=>EVisit::$istances[$i]->getMedHistory(),
+                                "medExam"=>EVisit::$istances[$i]->getMedExam(),
+                                "conclusions"=>EVisit::$istances[$i]->getConclusions(),
+                                "toDoExam"=>EVisit::$istances[$i]->getToDoExam(),
+                                "terapy"=>EVisit::$istances[$i]->getTerapy(),
+                                "checkup"=>EVisit::$istances[$i]->getCheckup());
+                }
+            }
+            echo json_encode($data);
+            exit;
         }
                 
                 

@@ -6,7 +6,7 @@ class CHome {
      * All begins here
      */
     public function start() {
-        $this->fillArrays();
+        //$this->fillArrays();
         $this->buildPage();
         $this->showPage();
     }
@@ -158,15 +158,16 @@ class CHome {
             case 'Contacts':
                 return $VHome->getContactsContent();
                 
-            case 'ajax-prova':
-                $this->ajax_prova();
-        
+            case 'ajaxCall':
+                USingleton::getInstance('CAjaxSwitcher');
+                break;
+            
             default:
                 return $VHome->getHomeContent();
         }
     }
     
-    public function ajax_prova() {
+    /*public function ajax_prova() {
         if (isset($_REQUEST['cf'])){
             $encCF=$_REQUEST['cf'];
             
@@ -186,10 +187,10 @@ class CHome {
         else {
             debug("lol");
         }
-    }
+    }*/
     
     private function fillArrays(){ // l'ho messo qua invece che a cpatients perchè altrimenti con la chiamata ajax
-                                   // e non vede le Entity
+                                   // non vede le Entity
             $FPatient=  USingleton::getInstance('FPatient');
             $FCheckup=  USingleton::getInstance('FCheckup');
             

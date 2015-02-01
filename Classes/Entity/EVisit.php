@@ -16,6 +16,8 @@ class EVisit {
     public $toDoExam;
     public $terapy;
     public $checkup;
+    public $encCF;
+    public $encCH;
     
     public static $istances=array();
     
@@ -28,6 +30,8 @@ class EVisit {
         $this->toDoExam=$toDoE;
         $this->terapy=$ter;
         $this->checkup=$check;
+        $this->encCF=md5($cf);
+        $this->encCH=md5($dateC);
         self::$istances[]=$this;
     }
     
@@ -61,6 +65,14 @@ class EVisit {
     
     public function getCheckup(){
         return $this->checkup;
+    }
+    
+    public function getEncCf(){
+        return $this->encCF;
+    }
+    
+    public function getEncCh(){
+        return $this->encCH;
     }
     
     public function toString(){

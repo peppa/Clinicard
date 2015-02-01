@@ -47,7 +47,7 @@
     </table>
 </form>-->
 
-<form method="POST" action="index.php?control=manageDB&action=modPat&mod=completed&p={$link}">
+<form id="modPatient" method="POST" action="index.php?control=manageDB&action=modPat&mod=completed&p={$link}">
     <div class="row">
         <div class="row-element">
             <p class="label"><label>Nome</label></p>
