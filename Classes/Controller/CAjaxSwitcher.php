@@ -30,8 +30,8 @@ class CAjaxSwitcher{
                 break;
             
             case "saveEvent":
-                $CCheckup= USingleton::getInstance("CCheckup");
-                $CCheckup->saveEvent();
+                $CVisitBooking= USingleton::getInstance("CVisitBooking");
+                $CVisitBooking->saveEvent();
         }
     }
     
