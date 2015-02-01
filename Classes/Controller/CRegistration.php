@@ -110,6 +110,19 @@ class CRegistration {
         
     }
     
+    public function checkUsername(){
+        $VRegistration=  USingleton::getInstance('VRegistration');
+        $FRegistration=  USingleton::getInstance('FRegistration');
+        
+        $user=$VRegistration->get('user');
+        $result=$FRegistration->checkUsername($user);
+        debug($result);
+        echo json_encode($result);
+        exit;
+        
+        
+    }
+    
     /**
      * Validate the string format and after that it checks if there is yet an
      * user registered with the same CF. The archive is checked lastly to reduce

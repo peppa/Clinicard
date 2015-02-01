@@ -20,6 +20,19 @@ class FRegistration extends FDatabase {
         $this->query($query);
 
     }
+    
+    public function checkUsername($username){
+        $query='SELECT `Username` FROM `utenti` WHERE `Username`="'.$username.'"';
+        $result=$this->query($query);
+        
+        if ($result->fetch_assoc()!=NULL){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+    
+    
+    
 }
-
-?>
