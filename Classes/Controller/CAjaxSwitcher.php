@@ -28,6 +28,10 @@ class CAjaxSwitcher{
                 $CRegistration=  USingleton::getInstance('CRegistration');
                 $CRegistration->checkUsername();
                 break;
+            
+            case "saveEvent":
+                $CCheckup= USingleton::getInstance("CCheckup");
+                $CCheckup->saveEvent();
         }
     }
     
