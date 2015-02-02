@@ -12,13 +12,23 @@
  * @author Carlo
  */
 class FCalendar extends FDatabase {
-    public function saveEvent($CF,$dataInizio,$eventID,$eventObject,$titolo) {
+    public function saveEvent($CF,$dataInizio,$eventID,$eventObject,$tipoVisita) {
        
-        $query1="INSERT INTO `clinica`.`calendario` (`CodiceFiscalePrenotazione`, `DataInizio`, `EventID`, `EventObject`, `Titolo`)";
-        $query2="VALUES ('"."ssss"."','".'$dataInizio'."','".'$eventID'."','".'$eventObject'."','".'$titolo'.")";
+        $query1="INSERT INTO `clinica`.`calendario` (`CodiceFiscalePrenotazione`, `DataInizio`, `EventID`, `EventObject`, `TipoVisita`)";
+        $query2="VALUES ('$CF','$dataInizio','$eventID','$eventObject','$tipoVisita')";
         $query=$query1." ".$query2;
-        return $this->query($query);
+        $this->query($query);
+        return $this->error;
     }
+    
+    public function getAllEvents() {
+        $query= "SELECT `EventObject`  FROM `calendario` WHERE `UniqueID`='8'";
+        $res= $this->query($query);
+        $result=$res->fetch_assoc();
+        return $result["EventObject"];
+        
+    }
+    
 }
 
 ?>

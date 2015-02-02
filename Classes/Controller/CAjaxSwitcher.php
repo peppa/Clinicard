@@ -32,6 +32,11 @@ class CAjaxSwitcher{
             case "saveEvent":
                 $CVisitBooking= USingleton::getInstance("CVisitBooking");
                 $CVisitBooking->saveEvent();
+                //in realtà break nn serve perchè la saveElement fa exit..
+                break;
+            case "getMyEvents":
+                $CVisitBooking= USingleton::getInstance("CVisitBooking");
+                $CVisitBooking->getMyEvents();
         }
     }
     
