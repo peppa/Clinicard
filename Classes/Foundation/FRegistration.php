@@ -33,6 +33,18 @@ class FRegistration extends FDatabase {
         }
     }
     
+    public function checkEmail($email){
+        $query='SELECT `Email` FROM `utenti` WHERE `Email`="'.$email.'"';
+        $result=$this->query($query);
+        
+        if ($result->fetch_assoc()!=NULL){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+    
     
     
 }

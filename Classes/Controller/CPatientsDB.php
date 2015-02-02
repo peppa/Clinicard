@@ -137,7 +137,7 @@ class CPatientsDB{
 				        'dateBirth'=>$VPatientsDB->get('dateBirth'),
 				        'CF'=>strtoupper($VPatientsDB->get('CF')));
                     
-		    $arrayCheck=array('CF'=>$VPatientsDB->get('CF'),
+		    $arrayCheck=array('CF'=>strtoupper($VPatientsDB->get('CF')),
                                       'dateCheck'=>$VPatientsDB->get('dateCheck'),
 			 	      'medHistory'=>$VPatientsDB->get('medHistory'),
 			 	      'medExam'=>$VPatientsDB->get('medExam'),
@@ -488,20 +488,20 @@ class CPatientsDB{
             return $numVisits;
         }
         
-        public function manageData(){
-            $VPatientsDB=  USingleton::getInstance('VPatientsDB');
-            $encCF=$VPatientsDB->get('pat');
-            
-            $posCF=$this->getCfPosition($encCF);
-            $cf=  EPatient::$istances[$posCF]->getCF();
-            $name=EPatient::$istances[$posCF]->getName();
-            $surname=EPatient::$istances[$posCF]->getSurname();
-            $dateB=EPatient::$istances[$posCF]->getDataN();
-            $values=array("Name"=>$name,"Surname"=>$surname,"CF"=>$cf,"DateB"=>$dateB);
-            echo json_encode($values);
-        }
+//        public function manageData(){  si può togliere era una prova
+//            $VPatientsDB=  USingleton::getInstance('VPatientsDB');
+//            $encCF=$VPatientsDB->get('pat');
+//            
+//            $posCF=$this->getCfPosition($encCF);
+//            $cf=  EPatient::$istances[$posCF]->getCF();
+//            $name=EPatient::$istances[$posCF]->getName();
+//            $surname=EPatient::$istances[$posCF]->getSurname();
+//            $dateB=EPatient::$istances[$posCF]->getDataN();
+//            $values=array("Name"=>$name,"Surname"=>$surname,"CF"=>$cf,"DateB"=>$dateB);
+//            echo json_encode($values);
+//        }
         
-        public function preFillPat(){
+        public function preFillPat(){ //usato da ajax
             $encCF=$_REQUEST['cf'];
             
             for ($i=0;$i<count(EPatient::$istances);$i++){
@@ -518,7 +518,7 @@ class CPatientsDB{
             exit;
         }
         
-        public function preFillCheck(){
+        public function preFillCheck(){ //usato da ajax
             $encCF=$_REQUEST['cf'];
             $encCH=$_REQUEST['ch'];
         
@@ -534,6 +534,39 @@ class CPatientsDB{
                 }
             }
             echo json_encode($data);
+            exit;
+        }
+        
+        public function checkLastVisit(){ //usato da ajax
+            $VPatientsDB=  USingleton::getInstance('VPatientsDB');
+            
+            $encCF=$VPatientsDB->get('encCF');
+            
+            $results=0;
+            for ( $i=0;$i<count(EVisit::$istances);$i++){
+                if (EVisit::$istances[$i]->getEncCf()==$encCF){
+                    $results++;
+                }
+            }
+            $result=array("num"=>$results);
+            echo json_encode($result);
+            exit;
+        }
+        
+        public function checkCF(){ //usato da ajax
+            $VPatientsDB=  USingleton::getInstance('VPatientsDB');
+            $FPatient=  USingleton::getInstance('FPatient');
+            
+            $CF=$VPatientsDB->get('cf');
+            $result=false;
+            
+            for ($i=0;$i<count(EPatient::$istances);$i++){
+                if(EPatient::$istances[$i]->getCF()==$CF){
+                    $result=true;
+                }
+            }
+            //$data=array("result"=>$result);
+            echo json_encode($result);
             exit;
         }
                 

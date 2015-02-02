@@ -189,7 +189,7 @@ table{
 .CSSTableGenerator {
 	margin:0px;
         padding:0px;
-	width:60%;
+	width:70%;
 	border:2px solid #000000;
 	border-radius: 5px;
 }
@@ -390,7 +390,7 @@ input[type="date"]{
 border-bottom: 0.1244em dashed rgba(202, 202, 202, 0.41);
 }
 
-#pass-strength, #checkUser, #insPass{
+#pass-strength, #checkUser, #insPass, #pass-match,.no-input{
     border-style: solid;
     border-width: 2px;
     border-radius: 4px;
@@ -398,4 +398,44 @@ border-bottom: 0.1244em dashed rgba(202, 202, 202, 0.41);
     margin-left: 10px;
     font-family: Tahoma, Geneva, sans-serif;
     font-size: 14px;
+    margin-bottom: 10px;
+}
+
+.input-field-ok{
+    border-style: solid;
+    border-width: 1px;
+    border-color: green;
+}
+
+.input-message-ok, .pass-strong{
+    border-color:#00FF00;
+    background-color:#BCE954;
+}
+
+.input-message-error, .pass-weak{
+    border-color:#FF0000;
+    background-color:#F75D59;
+}
+
+.pass-medium{
+    border-color:#F88017;
+    background-color:#FF7F50;
+}
+
+.disabled{
+    opacity: 0.5;
+}
+
+#last-check{
+    text-align: center;
+    border-style: solid;
+    border-width: 2px;
+    border-radius: 8px;
+    border-color:red;
+    background-color: #E77471;
+    font-size: 120%;
+    font-family: Tahoma, Geneva, sans-serif;
+    margin-left: 20%;
+    margin-right: 20%;
+    padding: 10px 0px 10px 0px;
 }

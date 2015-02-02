@@ -81,14 +81,16 @@
     <div class="row">
         <div class="row-element">
             <p class="label"><label>Nome</label></p>
-            <p><input class="input-field" type="text" name="name"/></p>
+            <p><input class="input-field" id="nameDB" type="text" name="name"/></p>
+            <p id="name-err-DB" class="no-input" hidden>
         </div>
     </div>
     
     <div class="row">
         <div class="row-element">
             <p class="label"><label>Cognome</label></p>
-            <p><input class="input-field" type="text" name="surname"/></p>
+            <p><input class="input-field" id="surnameDB" type="text" name="surname"/></p>
+            <p id="surname-err-DB" class="no-input" hidden>
         </div>
     </div>
     
@@ -105,21 +107,24 @@
     <div class="row">
         <div class="row-element">
             <p class="label"><label>Data di nascita</label></p>
-            <p><input class="input-field" type="date" name="dateBirth" /></p>
+            <p><input id="dateBirthDB" class="input-field" type="date" name="dateBirth" /></p>
+            <p id="dateB-err-DB" class="no-input" hidden><p>
         </div>
     </div>
     
     <div class="row">
         <div class="row-element">
             <p class="label"><label>Codice Fiscale</label></p>
-            <p><input class="input-field" type="text" name="CF"/></p>
+            <p><input class="input-field" id="cfDB" type="text" name="CF"/></p>
+            <p id="cf-err-DB" class="no-input" hidden></p>
         </div>
     </div>
     
     <div class="row">
         <div class="row-element">
             <p class="label"><label>Data della visita</label></p>
-            <p><input class="input-field" type="date" name="dateCheck" /></p>
+            <p><input class="input-field" id="dateCheckDB" type="date" name="dateCheck" /></p>
+            <p id="dateC-err-DB" class="no-input" hidden><p>
         </div>
     </div>
     
@@ -166,7 +171,7 @@
     </div>
     
     <div class="row-buttons">
-        <p> <button class="a_demo_three" type="submit"/>invia dati</button>
+        <p> <button id="insertNew" class="a_demo_three disabled" type="submit" disabled/>invia dati</button>
             <button class="a_demo_three" type="reset"/>reset</button>
         </p>
     </div>

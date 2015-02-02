@@ -3,6 +3,10 @@
     <p>Confermi di voler cancellare la visita selezionata ?</p>
     <p>Non sar&aacute possibile recuperare i dati in futuro</p>
 </div>
+<div id="last-check" hidden>
+    <p>Cancellando l'ultima visita verr&agrave cancellato dall'archivio</p>
+    <p>anche il paziente stesso</p>
+</div>
 
 <div class="spacing"></div>
 

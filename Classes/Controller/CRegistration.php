@@ -8,11 +8,10 @@ class CRegistration {
     public function newUser(){
             $VRegistration=USingleton::getInstance('VRegistration');
             $USession=USingleton::getInstance('USession');
-            $VRegistration= USingleton::getInstance('VRegistration');
             $this->bodyHTML=$VRegistration->loadRegistrationForm();
             
             if ( $USession->get('username') ) {
-                $message= "Sei gi&agrave loggato! Per favore esci prima di registrare un nuovo utente.";
+                $message= "Esegui il logout prima di registrare un nuovo utente";
                 $this->bodyHTML=$VRegistration->getErrorMessage($message);             
             }
             else {
@@ -51,9 +50,9 @@ class CRegistration {
                     break;
                 case "cf":
                     $cf=$value;
-                    if(!$this->checkCF($cf)){
-                        $this->dataError("Codice Fiscale");
-                    }
+//                    if(!$this->checkCF($cf)){ la validazione del cf è fatta lato client
+//                        $this->dataError("Codice Fiscale");
+//                    }
                     break;
                 case "email":
                     $mail=$value;
@@ -65,15 +64,15 @@ class CRegistration {
                     $FUtente=USingleton::getInstance("FUtente");
                     
                     $user=$value;
-                    if(!$FUtente->usernameIsAvaiable($user)){
+                    if(!$FUtente->usernameIsAvaiable($user)){ //fatta sia lato client che server
                         $this->dataError("Username");
                     }
                     break;
                 case "password":
                     $pass=$value;
-                    if(!$this->validatePassword($pass)){
-                        $this->dataError("Password");
-                    }
+//                    if(!$this->validatePassword($pass)){ fatto lato client
+//                        $this->dataError("Password");
+//                    }
                     
                     break;
                 default :
@@ -89,18 +88,20 @@ class CRegistration {
             $FRegistration->insertUser($name,$surname,$cf,$mail,$user,$pass);
 
             //$VRegistration->showMessage($message);
-            $this->bodyHTML=$VRegistration->regSuccess();
+            $message="registrazione avvenuta con successo";
+            $this->bodyHTML=$VRegistration->showInfoMessage($message,false);
+            //$this->bodyHTML=$VRegistration->regSuccess();
             
         }
 
     }	
     
-    public function validatePassword($password) {
+    /*public function validatePassword($password) {
         if (strlen($password)<5){
             return FALSE;
         }
         return true;
-    }
+    }*/
     
     //invece di fare in questa maniera barbara, si può fa na funzione error
     //globale oppure in view e falo fare a lei così lo formatta in html
@@ -110,17 +111,24 @@ class CRegistration {
         
     }
     
-    public function checkUsername(){
+    public function checkUsername(){ //usato da ajax
         $VRegistration=  USingleton::getInstance('VRegistration');
         $FRegistration=  USingleton::getInstance('FRegistration');
         
         $user=$VRegistration->get('user');
         $result=$FRegistration->checkUsername($user);
-        debug($result);
         echo json_encode($result);
         exit;
+    }
         
+    public function checkEmail(){ //usato da ajax
+        $VRegistration=  USingleton::getInstance('VRegistration');
+        $FRegistration=  USingleton::getInstance('FRegistration');
         
+        $mail=$VRegistration->get('mail');
+        $result=$FRegistration->checkEmail($mail);
+        echo json_encode($result);
+        exit;
     }
     
     /**
@@ -132,7 +140,7 @@ class CRegistration {
      * @param string $cf
      * @return boolean TRUE means valid CF string. FALSE if it's not a valid CF.
      */
-    public function checkCF($cf){
+    /*public function checkCF($cf){
      if($cf=='')
 	return false;
 
@@ -203,6 +211,6 @@ class CRegistration {
 
     return true;
 }
-        
+        */
         
 }

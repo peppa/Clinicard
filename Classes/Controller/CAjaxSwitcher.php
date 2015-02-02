@@ -29,14 +29,25 @@ class CAjaxSwitcher{
                 $CRegistration->checkUsername();
                 break;
             
+            case 'checkEmail':
+                $CRegistration= USingleton::getInstance('CRegistration');
+                $CRegistration->checkEmail();
+                break;
+            
+            case 'checkLastVisit':
+                $CPatientsDB=  USingleton::getInstance('CPatientsDB');
+                $CPatientsDB->checkLastVisit();
+                break;
+            
+            case 'checkCF':
+                $CPatientsDB=  USingleton::getInstance('CPatientsDB');
+                $CPatientsDB->checkCF();
+                break;
+            
             case "saveEvent":
                 $CVisitBooking= USingleton::getInstance("CVisitBooking");
                 $CVisitBooking->saveEvent();
-                //in realtà break nn serve perchè la saveElement fa exit..
                 break;
-            case "getMyEvents":
-                $CVisitBooking= USingleton::getInstance("CVisitBooking");
-                $CVisitBooking->getMyEvents();
         }
     }
     
