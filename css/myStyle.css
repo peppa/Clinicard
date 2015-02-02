@@ -189,7 +189,7 @@ table{
 .CSSTableGenerator {
 	margin:0px;
         padding:0px;
-	width:60%;
+	width:70%;
 	border:2px solid #000000;
 	border-radius: 5px;
 }
@@ -424,4 +424,18 @@ border-bottom: 0.1244em dashed rgba(202, 202, 202, 0.41);
 
 .disabled{
     opacity: 0.5;
+}
+
+#last-check{
+    text-align: center;
+    border-style: solid;
+    border-width: 2px;
+    border-radius: 8px;
+    border-color:red;
+    background-color: #E77471;
+    font-size: 120%;
+    font-family: Tahoma, Geneva, sans-serif;
+    margin-left: 20%;
+    margin-right: 20%;
+    padding: 10px 0px 10px 0px;
 }

@@ -66,7 +66,7 @@
         <div class="row-element">
             <p class="label"><label>Codice Fiscale</label></p>
             <p><input class="input-field" id="cfReg" type="text" name="CF" placeholder="Codice Fiscale"/></p>
-            <p id="cf-err" class="no-input" hidden></p>
+            <p id="cf-err-DB" class="no-input" hidden></p>
         </div>
     </div>
     
