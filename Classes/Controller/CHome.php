@@ -121,9 +121,9 @@ class CHome {
         $action=$VHome->get('control');
         switch ($action) {
             
-            case 'Checkup':
-                $CCheckup=  USingleton::getInstance('CCheckup');
-                return $CCheckup->getContent();
+            case 'VisitBooking':
+                $CVisitBooking=  USingleton::getInstance('CVisitBooking');
+                return $CVisitBooking->getContent();
                 
 
             case 'login':

@@ -1,4 +1,4 @@
-<div class="title">
+<div class="title infomsg">
     <img src="images/warning.png">
     <p>Confermi di voler cancellare il paziente selezionato ?</p>
     <p>Verrano eliminate anche tutte le sue visite</p>

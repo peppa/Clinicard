@@ -5,13 +5,13 @@
  */
 
 /**
- * Description of VCheckup
+ * Description of VVisitBooking
  *
  * @access public
- * @package VCheckup
+ * @package VVisitBooking
  * @author Carlo
  */
-class VCheckup extends View {
+class VVisitBooking extends View {
     public function getBody(){
         $body= $this->fetch("body_checkup.tpl");
         return $body;
