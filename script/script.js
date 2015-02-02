@@ -433,9 +433,9 @@ function validateNameDB(){
     }
 }
 
-$(document).on('blur',"#surnameDB",function(){validaCognome()});
+$(document).on('blur',"#surnameDB",function(){validateSurname()});
 
-function validaCognome(){
+function validateSurname(){
     var cognome=$('#surnameDB').val();
     if (cognome===""){
         var message="Inserisci il cognome del paziente";
@@ -489,9 +489,9 @@ function valiDateBirthDB(){
     }
 }
 
-$(document).on('blur',"#cfDB",function(){validaCF()});
+$(document).on('blur',"#cfDB",function(){validateCF()});
 
-function validaCF(){
+function validateCF(){
     var cf=$('#cfDB').val();
     if (cf===""){
         var message="Inserisci il codice fiscale del paziente";

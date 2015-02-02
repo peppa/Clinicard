@@ -43,6 +43,11 @@ class CAjaxSwitcher{
                 $CPatientsDB=  USingleton::getInstance('CPatientsDB');
                 $CPatientsDB->checkCF();
                 break;
+            
+            case "saveEvent":
+                $CVisitBooking= USingleton::getInstance("CVisitBooking");
+                $CVisitBooking->saveEvent();
+                break;
         }
     }
     
