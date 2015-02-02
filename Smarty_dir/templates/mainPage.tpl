@@ -13,11 +13,9 @@ License URL: http://creativecommons.org/licenses/by/3.0/
         <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
         <link rel="icon" href="images/favicon.ico" type="image/x-icon">
         <link href="css/style.css" rel="stylesheet" type="text/css"  media="all" />
-        <link rel="stylesheet" href="css/camera.css" type="text/css" media="all" />
         <link href="css/myStyle.css" rel="stylesheet" type="text/css"  media="all" />
         <link href="css/style4.css" rel="stylesheet" type="text/css"  media="all" />
         <link href="css/style3.css" rel="stylesheet" type="text/css"  media="all" />
-        <link href="css/login_form.css" rel="stylesheet" type="text/css"  media="all" />
         <meta name="keywords" content="Healthy iphone web template, Andriod web template, Smartphone web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design" />
         <link rel="stylesheet" href="css/responsiveslides.css">
         <link rel="stylesheet" href="css/myStyle.css">
