@@ -6,7 +6,6 @@ class CHome {
      * All begins here
      */
     public function start() {
-        //$this->fillArrays();
         $this->buildPage();
         $this->showPage();
     }
@@ -23,6 +22,7 @@ class CHome {
         
         $this->setPage($content);
         $this->addLoginBox();
+        //$VHome->assign('loginBox',NULL); //lato client
     }
     
     /**

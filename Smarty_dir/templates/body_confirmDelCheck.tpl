@@ -1,5 +1,4 @@
-<div class="title">
-    <img src="images/warning.png">
+<div class="title warning">
     <p>Confermi di voler cancellare la visita selezionata ?</p>
     <p>Non sar&aacute possibile recuperare i dati in futuro</p>
 </div>
@@ -11,8 +10,8 @@
 <div class="spacing"></div>
 
 <form method="POST" class="button-form">
-    <button class="button" type="submit" formaction="index.php?control=manageDB&action=delCheck&conf=yes&p={$cf}&ch={$ch}">conferma</button>
-    <button class="button" type="submit" formaction="index.php?control=manageDB">annulla</button>
+    <button class="controlButton" type="submit" formaction="index.php?control=manageDB&action=delCheck&conf=yes&p={$cf}&ch={$ch}">conferma</button>
+    <button class="controlButton" type="submit" formaction="index.php?control=manageDB&action=getFullData&p={$cf}&ch={$ch}">annulla</button>
 </form>
     
 <div class="spacing"></div>

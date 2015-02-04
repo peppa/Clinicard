@@ -20,11 +20,30 @@ License URL: http://creativecommons.org/licenses/by/3.0/
         <link rel="stylesheet" href="css/responsiveslides.css">
         <link rel="stylesheet" href="css/myStyle.css">
         <script src="./script/jquery.js"></script>
+        <script src="./script/jquery.cookie.js"></script>
         <script src="./script/script.js"></script>
         {if isset($header)}
             {$header}
         {/if}
-		  
+        
+        <noscript>
+            <div id="script-disabled" class="errormsg">
+                Per avere a disposizione tutte le funzionalit&agrave; di questa applicazione web &egrave necessario abilitare
+                Javascript. Qui ci sono tutte le <a href="http://www.enable-javascript.com/it/"
+                target="_blank"> istruzioni su come abilitare JavaScript nel tuo browser</a>.
+            </div>
+        </noscript>
+        
+        <div id="cookie-disabled" class="errormsg" hidden>
+            I cookie sono disabilitati. Affinch&egrave; questa applicazione funzioni al meglio &egrave; necessario
+            che siano attivati.
+        </div>
+        
+        <div id="cookie-bar" hidden>
+            <p>Questa applicazione web utilizza i cookie. Cliccando accetta acconsenti al loro utilizzo.<a href="" id="cookie-accepted" class="cb-enable">Accetta</a></p>
+        </div>
+
+
     </head>
     
     <body>
@@ -35,7 +54,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                 </div>
 
 <!-- login -->
-                <div>
+                <div id="loginBox">
                     {$loginBox}
                 </div>
 

@@ -17,6 +17,12 @@ class Updf extends fpdf {
 		$this->SetTextColor(128);
 		$this->Cell(0,10,'Pagina '.$this->PageNo(),0,0,'C');
 	}
+        
+        function PlaceAndDate($dateString){
+                $this->SetFont('Arial','B',11);
+		$this->Cell(0,5,"L'Aquila, ".$dateString,0,1,'C',false);
+		$this->Ln(10);
+        }
 
 	function patientInfo($string){
 		$this->SetFont('Arial','',11);
@@ -41,8 +47,9 @@ class Updf extends fpdf {
 		$this->fieldBody($body);
 	}
 
-	function printPage($string1,$arrayInfo){
+	function printPage($string1,$arrayInfo,$dateString){
 		$this->AddPage();
+                $this->PlaceAndDate($dateString);
 		$this->patientInfo($string1);
 		foreach ( $arrayInfo as $key=>$value ) {
 			$this->printField($key,$value);

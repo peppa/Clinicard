@@ -2,9 +2,9 @@
   <form class="log" method="POST" action="index.php?control=login">
 
     <div>
-        <p><input class="input-field-login" type="text" name="username" placeholder="username"></p>
-        <p><input class="input-field-login" type="password" name="password" placeholder="password"></p>
-        <p><input type="checkbox" name="keepLogged" value="yes">Ricordami <input id="login" type="submit" value="Login"></p>
+        <p><input id="userLogin" class="input-field-login" type="text" name="username" placeholder="username"></p>
+        <p><input id="passLogin" class="input-field-login" type="password" name="password" placeholder="password"></p>
+        <p><input id="" type="checkbox" name="keepLogged" value="yes">Ricordami <input id="login" type="submit" value="Accedi"></p>
     </div>
 <!--
     <div>

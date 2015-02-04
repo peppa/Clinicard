@@ -52,7 +52,7 @@
             <p>DATA DELLA VISITA: {$info.dateCheck}</p>
         </div>
         
-<div class="CSSTableGenerator" id="patient-detail" >
+<div class="DBTable" id="patient-detail" >
 <table>
     <tbody>
         <tr>
@@ -107,9 +107,10 @@
 
 
 <form method="POST" class="button-form">
-    <button class="a_demo_three" type="submit" formaction="index.php?control=manageDB&action=modCheck&p={md5($info.CF)}&ch={md5($info.dateCheck)}">modifica</button>
-    <button class="a_demo_three" type="submit" class="print-report" formaction="index.php?control=manageDB&action=printReport&pat={md5($info.CF)}&ch={md5($info.dateCheck)}">stampa report</button>
-    <button class="a_demo_three" id="deleteCheck" type="submit" formaction="index.php?control=manageDB&action=delCheck&p={md5($info.CF)}&ch={md5($info.dateCheck)}">cancella</button>
+    <button class="controlButton" type="submit" formaction="index.php?control=manageDB&action=modCheck&p={md5($info.CF)}&ch={md5($info.dateCheck)}">modifica</button>
+    <button class="controlButton" type="submit" class="print-report" formaction="index.php?control=manageDB&action=printReport&pat={md5($info.CF)}&ch={md5($info.dateCheck)}">stampa report</button>
+    <button class="controlButton" id="deleteCheck" type="submit" formaction="index.php?control=manageDB&action=delCheck&p={md5($info.CF)}&ch={md5($info.dateCheck)}">cancella</button>
+    <button class="controlButton" type="submit" formaction="index.php?control=manageDB&action=getChecks&p={md5($info.CF)}">indietro</button>
 </form>
 
 <div class="spacing"></div>

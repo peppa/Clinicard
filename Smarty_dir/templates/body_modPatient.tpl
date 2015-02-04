@@ -47,7 +47,7 @@
     </table>
 </form>-->
 
-<form id="modPatient" method="POST" action="index.php?control=manageDB&action=modPat&mod=completed&p={$link}">
+<form id="modPatient" method="POST">
     <div class="row">
         <div class="row-element">
             <p class="label"><label>Nome</label></p>
@@ -86,9 +86,11 @@
         </div>
     </div>
     
-    <div class="row">
-        <p> <button class="a_demo_three" type="submit"/>invia dati</button>
-         <button class="a_demo_three" type="reset"/>reset</button> </p>
+    <div class="row-buttons">
+        <p> <button class="controlButton" type="submit" formaction="index.php?control=manageDB&action=modPat&mod=completed&p={$link}"/>invia dati</button>
+            <button class="controlButton" type="reset"/>reset</button> 
+            <button class="controlButton" type="submit" formaction="index.php?control=manageDB"/>annulla</button> 
+        </p>
     </div>
 </form>
     

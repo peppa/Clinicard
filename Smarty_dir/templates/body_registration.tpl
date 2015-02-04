@@ -103,8 +103,8 @@
     </div>
     
     <div class="row-buttons">
-        <p> <button class="a_demo_three disabled" id="registration-button" type="submit" disabled/>Registrati</button>
-            <button class="a_demo_three" id="reset" type="reset"/>reset</button>
+        <p> <button class="controlButton disabled" id="registration-button" type="submit" disabled/>Registrati</button>
+            <button class="controlButton" id="reset" type="reset"/>reset</button>
         </p>
     </div>
 </form>

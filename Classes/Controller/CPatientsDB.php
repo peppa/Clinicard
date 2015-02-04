@@ -260,15 +260,75 @@ class CPatientsDB{
 		if ( $VPatientsDB->get('fields')=="sent" ){
                     $Updf=USingleton::getInstance('Updf');
                     $patArray=$this->buildInfoArray($encCF, $encCH);
-                    $patInfo=$patArray['name']." ".$patArray['surname'].", ".$patArray['dateBirth']." \n".$patArray['CF'];
-                    //$arrayToPrint=array();
+                    //trasformo la data in formato italiano
+                    $date=$patArray['dateBirth'][8].$patArray['dateBirth'][9]."-".$patArray['dateBirth'][5].$patArray['dateBirth'][6]."-".$patArray['dateBirth'][0].$patArray['dateBirth'][1].$patArray['dateBirth'][2].$patArray['dateBirth'][3];
+                    $patInfo=$patArray['name']." ".$patArray['surname'].", ".$date." \n".$patArray['CF'];
                     
                     foreach ($patArray as $key=>$value) {
                         if ( $VPatientsDB->get($key) ) {
                             $arrayPrint[$key]=$value;                            
                         }
                     }
-                    $Updf->printPage($patInfo,$arrayPrint);
+                    
+                    //costruzione stringa della data                    
+                    $today= getdate();
+                    $day=$today["mday"];
+                    $year=$today["year"];
+                    $monthNumber=$today["mon"];
+                    switch ($monthNumber) {
+                        
+                        case 1:
+                            $month="Gennaio";
+                            break;
+                        
+                        case 2:
+                            $month="Febbraio";
+                            break;
+                        
+                        case 3:
+                            $month="Marzo";
+                            break;
+                        
+                        case 4:
+                            $month="Aprile";
+                            break;
+                        
+                        case 5:
+                            $month="Maggio";
+                            break;
+                        
+                        case 6:
+                            $month="Giugno";
+                            break;
+                        
+                        case 7:
+                            $month="Luglio";
+                            break;
+                        
+                        case 8:
+                            $month="Agosto";
+                            break;
+                        
+                        case 9:
+                            $month="Settembre";
+                            break;
+                        
+                        case 10:
+                            $month="Ottobre";
+                            break;
+                        
+                        case 11:
+                            $month="Novembre";
+                            break;
+                        
+                        case 12:
+                            $month="Dicembre";
+                            break;
+                    }
+                    
+                    $date=$day." ".$month." ".$year;
+                    
+                    $Updf->printPage($patInfo,$arrayPrint,$date);
 		}
 		else {
                     $this->bodyHTML=$VPatientsDB->getReportFields($encCF,$encCH);			

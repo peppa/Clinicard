@@ -77,7 +77,7 @@
     </table>
 </form>-->
 
-<form method="POST" action="index.php?control=manageDB&action=insert&sent=y">
+<form method="POST">
     <div class="row">
         <div class="row-element">
             <p class="label"><label>Nome</label></p>
@@ -171,8 +171,11 @@
     </div>
     
     <div class="row-buttons">
-        <p> <button id="insertNew" class="a_demo_three disabled" type="submit" disabled/>invia dati</button>
-            <button class="a_demo_three" type="reset"/>reset</button>
+        <p> 
+            <button id="insertNew" class="controlButton disabled" type="submit" formaction="index.php?control=manageDB&action=insert&sent=y" disabled/>invia dati</button>
+            <button id="reset" class="controlButton" type="reset"/>reset</button>
+            <button class="controlButton" type="submit" formaction="index.php?control=manageDB"/>annulla</button>
+            
         </p>
     </div>
 </form>

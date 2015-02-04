@@ -12,7 +12,7 @@ class VLogin extends View {
 	public function errorPage(){
             $error="user o pass non corretti";
             return $error;
-            //QUA UGUALE A SOPRA.. PORCO DIO
+            //QUA UGUALE A SOPRA..
 	}
 
 }

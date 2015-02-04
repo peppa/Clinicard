@@ -7,7 +7,7 @@
 
 <form class="button-form" method="POST" action="index.php?control=manageDB&action=printReport&fields=sent&pat={$patLink}&ch={$checkLink}" target="_blank">
     <!-- Nome e Cognome, CF e Data di nascita vengono mostrati sempre -->
-    <div class="CSSTableGenerator" id="report-fields">
+    <div class="DBTable" id="report-fields">
     <table>
         <tr>
             <td>
@@ -83,7 +83,7 @@
     </table>
     </div>
     <div class="spacing"></div>
-    <button class="a_demo_three" type="submit">Stampa</button>
+    <button id="printReport" class="controlButton disabled" type="submit" disabled>Stampa</button>
 </form>
     
 <div class="spacing"></div>    

@@ -49,7 +49,7 @@
     </table>  
 </form>-->
 
-<form method="POST" action="index.php?control=manageDB&action=modCheck&mod=completed&p={md5($CF)}&ch={md5($check)}">
+<form method="POST">
     <div class="row">
         <div class="row-element">
             <p class="label"><label>Data della visita</label></p>
@@ -100,8 +100,10 @@
     </div>
     
     <div class="row">
-        <p> <button class="a_demo_three" type="submit"/>invia dati</button>
-         <button class="a_demo_three" type="reset"/>reset</button> </p>
+        <p> <button class="controlButton" type="submit" formaction="index.php?control=manageDB&action=modCheck&mod=completed&p={md5($CF)}&ch={md5($check)}"/>invia dati</button>
+            <button class="controlButton" type="reset"/>reset</button>
+            <button class="controlButton" type="submit" formaction="index.php?control=manageDB&action=getFullData&p={md5($CF)}&ch={md5($check)}"/>annulla</button>
+        </p>
     </div>
 </form>
     

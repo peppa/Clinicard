@@ -19,7 +19,7 @@
 {/if}-->
 
 {if $numResults!=0}
-<div class="CSSTableGenerator">
+<div class="DBTable">
 <table>
     <tbody>
         <tr>
@@ -35,9 +35,9 @@
         {foreach $rows as $patient}
             <tr>
                 <td>{$patient.name}</td> <td>{$patient.surname}</td> <td>{$patient.cf}</td> <td>{$patient.dateBirth}</td> <td>{$patient.gender}</td>
-                <td><a href="index.php?control=manageDB&action=getChecks&p={$patient.link}"><button class="a_demo_four">vai</button></a></td>
-                <td><a href="index.php?control=manageDB&action=modPat&p={$patient.link}"><button class="a_demo_four">modifica</button></a></td>
-                <td><a href="index.php?control=manageDB&action=delPat&p={$patient.link}"><button class="a_demo_four">elimina</button></a></td>
+                <td><a href="index.php?control=manageDB&action=getChecks&p={$patient.link}"><button class="navButton">vai</button></a></td>
+                <td><a href="index.php?control=manageDB&action=modPat&p={$patient.link}"><button class="navButton">modifica</button></a></td>
+                <td><a href="index.php?control=manageDB&action=delPat&p={$patient.link}"><button class="navButton">elimina</button></a></td>
             </tr>
         {/foreach}
     </tbody>

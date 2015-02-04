@@ -1,10 +1,6 @@
-/*
-File creato da Carlo Centofanti
-*/
-/* 
-    Created on : 19-gen-2015, 15.58.19
-    Author     : Carlo
-*/
+/* ------------------------------------------------*/
+/*                       CSS                       */
+/* ------------------------------------------------*/
 
 #calendar{
     margin-left: auto;
@@ -50,6 +46,12 @@ File creato da Carlo Centofanti
 .errormsg{
     border-color: #C11B17;
     background-color: #F75D59;
+}
+
+#script-disabled, #cookie-disabled{
+    margin-top: 10px;
+    margin-bottom: 10px;
+    font-size: 20px;
 }
 
 
@@ -104,38 +106,6 @@ File creato da Carlo Centofanti
     width: 20%;
 }
 
-#login,#logout {
- background:url('https://dh3vbjnk0bnfa.cloudfront.net/static/centralauth/images/btn-login.png') no-repeat 5px 5px #484B4F;
-  width: 100px;
-  cursor:pointer;
-  border-radius:50px;
-  padding:10px 20px 10px 0;
-  color:White;
-  font-size:14px;
-  text-align:left;
-  text-indent:40px;
-  margin:0 auto;
- 
-  /* Animations: */
-  -webkit-transition-timing-function: ease-in-out;
-  -webkit-transition-duration: .4s;
-  -webkit-transition-property: all;
-  
-  -moz-transition-timing-function: ease-in-out;
-  -moz-transition-duration: .4s;
-  -moz-transition-property: all;
-}
-
-#login:hover,#logout:hover {
-  background-image: url('https://dh3vbjnk0bnfa.cloudfront.net/static/centralauth/images/btn-login-hover.png');
-  background-position: 65px 5px;
-  text-indent: 20px;  
-}
-
-#login,#logout{
-    float: right;
-}
-
 table{
     margin:0px;
     padding:0px;
@@ -158,7 +128,6 @@ table{
 }
 
 .input-field-login{
-    //float: right;
     width: 100%;
 }
 
@@ -170,132 +139,6 @@ table{
 #female{
     margin-bottom: 10px;
 }
-
-
-
-
-
-
-
-/*#allPatients{
-    margin:auto;
-    text-align: center;
-}*/
-
-/*.table-row{
-    margin:auto;
-}*/
-
-.CSSTableGenerator {
-	margin:0px;
-        padding:0px;
-	width:70%;
-	border:2px solid #000000;
-	border-radius: 5px;
-}
-
-.CSSTableGenerator table{
-        //border-collapse: collapse;
-        //border-spacing: 0;
-	width:100%;
-	height:40%;
-	margin:0px;
-        padding:0px;
-}
-
-/*.CSSTableGenerator tr:last-child td:last-child {
-	-moz-border-radius-bottomright:5px;
-	-webkit-border-bottom-right-radius:5px;
-	border-bottom-right-radius:5px;
-}
-.CSSTableGenerator table tr:first-child td:first-child {
-	-moz-border-radius-topleft:5px;
-	-webkit-border-top-left-radius:5px;
-	border-top-left-radius:5px;
-}
-.CSSTableGenerator table tr:first-child td:last-child {
-	-moz-border-radius-topright:5px;
-	-webkit-border-top-right-radius:5px;
-	border-top-right-radius:5px;
-}.CSSTableGenerator tr:last-child td:first-child{
-	-moz-border-radius-bottomleft:5px;
-	-webkit-border-bottom-left-radius:5px;
-	border-bottom-left-radius:5px;
-}.CSSTableGenerator tr:hover td{
-	
-}*/
-
-.CSSTableGenerator tr:nth-child(odd){ background-color:#aad4ff; }
-
-.CSSTableGenerator tr:nth-child(even){ background-color:#ffffff; }
-
-.CSSTableGenerator td{
-	vertical-align:middle;
-	border:1px solid #000000;
-	border-width:1px 1px 1px 1px;
-	text-align:center;
-	padding:5px;
-	font-size:12px;
-        font-family: Arial, Helvetica, sans-serif;
-	//font-family:Arial;
-	//font-weight:normal;
-	color:#000000;
-}
-
-.CSSTableGenerator tr:last-child td{
-	border-width:0px 1px 0px 0px;
-}
-
-.CSSTableGenerator tr td:last-child{
-	border-width:1px 0px 1px 0px;
-}
-
-.CSSTableGenerator tr:last-child td:last-child{
-	border-width:0px 0px 0px 0px;
-}
-
-.CSSTableGenerator tr:first-child td{
-	background:-o-linear-gradient(bottom, #005fbf 5%, #003f7f 100%);
-        background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #005fbf), color-stop(1, #003f7f) );
-	background:-moz-linear-gradient( center top, #005fbf 5%, #003f7f 100% );
-	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr="#005fbf", endColorstr="#003f7f");
-        background: -o-linear-gradient(top,#005fbf,003f7f);
-        
-	background-color:#2B547E;
-	border:0px solid #000000;
-	text-align:center;
-	border-width:0px 0px 1px 1px;
-	font-size:14px;
-	font-family:Arial;
-	font-weight:bold;
-	color:#ffffff;
-}
-
-/*.CSSTableGenerator tr:first-child:hover td{
-	background:-o-linear-gradient(bottom, #005fbf 5%, #003f7f 100%);	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #005fbf), color-stop(1, #003f7f) );
-	background:-moz-linear-gradient( center top, #005fbf 5%, #003f7f 100% );
-	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr="#005fbf", endColorstr="#003f7f");	background: -o-linear-gradient(top,#005fbf,003f7f);
-
-	background-color:#005fbf;
-}*/
-
-.CSSTableGenerator tr:first-child td:first-child{
-	border-width:0px 0px 1px 0px;
-}
-
-.CSSTableGenerator tr:first-child td:last-child{
-	border-width:0px 0px 1px 1px;
-}
-
-.CSSTableGenerator{
-    margin: auto;
-}
-
-/*.CSSTableGenerator tr{
-    background-color: black;
-    font-size: 20px;
-}*/
-
 
 #patient-detail{
     width: 50%;
@@ -438,4 +281,18 @@ border-bottom: 0.1244em dashed rgba(202, 202, 202, 0.41);
     margin-left: 20%;
     margin-right: 20%;
     padding: 10px 0px 10px 0px;
+}
+
+.cancel{
+    text-align: center;
+    margin-top: 10px;
+}
+
+.row-buttons{
+    text-align: center;
+}
+
+.warning{
+    padding-bottom: 10px;
+    padding-top: 10px;
 }

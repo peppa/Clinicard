@@ -1,16 +1,16 @@
 <div class="title" id="home-title">
-    <p>PAGINA DI GESTIONE DEL DATABASE PAZIENTI</p>
+    <p>PAGINA DI GESTIONE DELL'ARCHIVIO DEI PAZIENTI</p>
 </div>
 
 <form method="POST" action="index.php?control=manageDB&action=insert" class="button-form">
     <div>
-        <button type="submit" class="a_demo_three" id="insert-pat">inserisci</button>
+        <button type="submit" class="controlButton" id="insert-pat">inserisci</button>
     </div>
 </form>
 
 <form method="POST" action="index.php?control=manageDB&action=search" class="button-form">
     <div>
-        <button type="submit" class="a_demo_three"id="search-pat">cerca</button>
+        <button type="submit" class="controlButton"id="search-pat">cerca</button>
     </div>
 </form>
 
@@ -19,7 +19,7 @@
     <p>TUTTI I PAZIENTI NELL'ARCHIVIO</p>
 </div>
 
-<div class="CSSTableGenerator">
+<div class="DBTable">
 <table>
     <tbody>
         <tr>
@@ -35,9 +35,9 @@
         {foreach $people as $patient}
             <tr>
                 <td>{$patient.name}</td> <td>{$patient.surname}</td> <td>{$patient.cf}</td> <td>{$patient.dateBirth}</td> <td>{$patient.gender}</td>
-                <td><a href="index.php?control=manageDB&action=getChecks&p={$patient.link}"><button class="a_demo_four">vai</button> </a></td>
-                <td><a href="index.php?control=manageDB&action=modPat&p={$patient.link}"><button class="a_demo_four">modifica</button></a></td>
-                <td><a href="index.php?control=manageDB&action=delPat&p={$patient.link}"><button class="a_demo_four">elimina</button></a></td>
+                <td><a href="index.php?control=manageDB&action=getChecks&p={$patient.link}"><button class="navButton">vai</button> </a></td>
+                <td><a href="index.php?control=manageDB&action=modPat&p={$patient.link}"><button class="navButton">modifica</button></a></td>
+                <td><a href="index.php?control=manageDB&action=delPat&p={$patient.link}"><button class="navButton">elimina</button></a></td>
             </tr>
         {/foreach}
     </tbody>

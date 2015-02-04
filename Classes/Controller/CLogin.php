@@ -9,6 +9,11 @@ class CLogin{
 		$user=$VLogin->get('username');
 		$pass=$VLogin->get('password');
                 $keep=$VLogin->get('keepLogged');
+
+//                $user=$VLogin->get('user');   lato client
+//		  $pass=$VLogin->get('pass');
+//                $remember=$VLogin->get('remember');
+                
 		if($keep=="yes") {$remember=true;}  
 		else {$remember=false;}
 		$USession->keepAccess($remember);
@@ -47,6 +52,19 @@ class CLogin{
             else {
                 return false;
             }
+        }
+        
+        public function checkLoggedInAjax(){
+            $USession=USingleton::getInstance('USession');
+            
+            if ( $USession->get('username') ){
+                $username=ucfirst($USession->get('username'));
+            }
+            else {
+                $username=false;
+            }
+            echo json_encode($username);
+            exit;
         }
         
         public function WelcomePage(){  //riunire in un'unica funzione

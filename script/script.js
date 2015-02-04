@@ -1,3 +1,48 @@
+/* ------------------------------------------------*/
+/*               disclaimer cookie                 */
+/* ------------------------------------------------*/
+
+$(document).ready(function(){showCookieDisclaimer()});
+
+function showCookieDisclaimer(){
+    if ( navigator.cookieEnabled===true ){
+        if ($.cookie("cookieAccepted")!=="true"){
+            $('#cookie-bar').slideDown();
+        }
+    }
+}
+
+$(document).on('click','#cookie-accepted',function(){hideCookieDisclaimer()});
+
+function hideCookieDisclaimer(){
+    $('#cookie-bar').fadeOut();
+    $.cookie("cookieAccepted","true",{expires: 100}); //100 giorni
+}
+
+
+/* ------------------------------------------------*/
+/*                 stampa report                   */
+/* ------------------------------------------------*/
+
+$(document).on('click','.checkbox-field,#select-all',function(){activateReportButton()});
+
+function activateReportButton(){
+    check=false;
+    $('.checkbox-field').each(function(){
+        if (this.checked===true){
+            check=true;
+        }
+    });
+    if (check===true){
+        $('#printReport').removeClass("disabled");
+        $('#printReport').removeAttr("disabled");
+    }
+    else { //altrimenti una volta attivato il bottone lo resta sempre
+        $('#printReport').addClass("disabled");
+        $('#printReport').attr("disabled","disabled");
+    }
+}
+
 $(document).ready(function(){ //spunta tutti i checkbox
         $('#select-all').click(function() {
             if(this.checked){
@@ -14,9 +59,12 @@ $(document).ready(function(){ //spunta tutti i checkbox
         });
         
 
-$(document).ready(function(){ //riempie i campi del template modPatient
-    //if ( window.location.href.split("action=")[1].split('&')[0]==="modPat"){
-    if ( window.location.href.match(/modPat/)){
+/* ------------------------------------------------*/
+/*              prefill modPatient                 */
+/* ------------------------------------------------*/
+
+$(document).ready(function(){
+    if ( window.location.href.match(/modPat/)){ //non serve se lo script viene diviso
         
     urlString=window.location.href; //prende l'url della pagina corrente
     splitUrlArray = urlString.split('='); //divide l'url in base al carattere specificato
@@ -43,9 +91,12 @@ $(document).ready(function(){ //riempie i campi del template modPatient
 }
 });
 
-$(document).ready(function(){ //riempie i campi del template modPatient
-    //if ( window.location.href.split("action=")[1].split('&')[0]==="modCheck"){
-    if ( window.location.href.match(/modCheck/)){
+/* ------------------------------------------------*/
+/*               prefill modCheck                  */
+/* ------------------------------------------------*/
+
+$(document).ready(function(){
+    if ( window.location.href.match(/modCheck/)){ //non serve se lo script viene diviso
         var EncCF=window.location.href.split('p=')[1].split('&')[0];
         var EncCH=window.location.href.split('ch=')[1];
         $.ajax({
@@ -66,6 +117,10 @@ $(document).ready(function(){ //riempie i campi del template modPatient
     }
 });
 
+/* ------------------------------------------------*/
+/*       validazione form registrazione            */
+/* ------------------------------------------------*/
+
 $(document).on("keyup change", "#password,#password-repeat", function(){passwordMatch()});
 
 //function validaPassword(){
@@ -75,11 +130,11 @@ $(document).on("keyup change", "#password,#password-repeat", function(){password
 //}
 
 $(document).ready(function(){
-    if ( window.location.href.match(/Registration/)){
+    if ( window.location.href.match(/Registration/)){ //non serve se viene diviso il file
         $("#password").on("keyup change", function() {
             var password = this.value;
             checkStrength(password);
-            $('#pass-strength').removeAttr('hidden');
+            $('#pass-strength').show();
             $('#pass-strength').text(result);
     });
     }
@@ -106,32 +161,26 @@ function checkStrength(password){
     if (totStrength===0){
         result="password non valida";
         $('#pass-strength').css({"border-color":"#FF0000","background-color":"#F75D59"});
-        //$('#pass-strength').switchClass(".pass-medium",".pass-weak");
     }
     else if (totStrength===1){
         result="sicurezza password: molto debole";
         $('#pass-strength').css({"border-color":"#FF0000","background-color":"#F75D59"});
-        //$('#pass-strength').switchClass(".pass-medium",".pass-weak");
     }
     else if (totStrength===2){
         result="sicurezza password: debole";
         $('#pass-strength').css({"border-color":"#F88017","background-color":"#FF7F50"});
-        //$('#pass-strength').switchClass(".pass-medium",".pass-weak");
     }
     else if (totStrength===3){
         result="sicurezza password: media";
         $('#pass-strength').css({"border-color":"#F88017","background-color":"#FF7F50"});
-        //$('#pass-strength').switchClass(".pass-weak",".pass-medium");
     }
     else if (totStrength===4){
         result="sicurezza password: forte";
         $('#pass-strength').css({"border-color":"#00FF00","background-color":"#BCE954"});
-        //$('#pass-strength').switchClass(".pass-weak",".pass-strong");
     }
     else if (totStrength===5){
         result="sicurezza password: molto forte";
         $('#pass-strength').css({"border-color":"#00FF00","background-color":"#BCE954"});
-        //$('#pass-strength').switchClass(".pass-weak",".pass-strong");
     }
 }
 
@@ -140,9 +189,6 @@ function passwordMatch(){
     var pass2=$('#password-repeat').val();
     
     if (pass1!=="" && pass2!=="" && pass1===pass2){
-        //$('#pass-match').removeAttr('hidden');
-        //$('#pass-match').text("Le due password coincidono");
-        //$('#pass-match').css({"border-color":"#00FF00","background-color":"#BCE954"});
         $('#pass-match').hide();
         $("#password").addClass("input-field-ok");
         $("#password-repeat").addClass("input-field-ok");
@@ -152,31 +198,24 @@ function passwordMatch(){
         $("#password-repeat").removeClass("input-field-ok");
         $('#pass-match').show();
         $('#pass-match').text("Le due password non coincidono");
-        //$('#pass-match').css({"border-color":"#FF0000","background-color":"#F75D59"});
         $('#pass-match').addClass("input-message-error");
     }
 }
 
 
 
-$(document).on('blur', "#username", function() { validaUsername()}); 
+$(document).on('blur', "#username", function() { validateUsername()}); 
 
-function validaUsername(){
-	//VALIDO USERNAME
-	//var pattern = new RegExp("^[a-z0-9]{3,12}$");
-	var stringa = $("#username").val();
-	//checkUsernameOnDatabase($("#username").val());
-	if(stringa === ''){
-            //$("#username-err").removeAttr("hidden");
+function validateUsername(){
+	var user = $("#username").val();
+	if(user === ''){
             $('#username-err').show();
             $("#username-err").text("Inserisci un username");
             $("#username").removeClass("input-field-ok");
             $('#username-err').addClass("input-message-error");
-            //$('#username-err').switchClass("input-field-ok","input-message-error");
-            
 	} 
         else{
-		checkUsernameOnDatabase($("#username").val());
+		checkUsernameOnDatabase(user);
 	}
 }
 
@@ -189,8 +228,6 @@ function checkUsernameOnDatabase( username ) {
                 complete: function(result){
                     JSON.stringify(result);
                     if ( result.responseText==="false"){
-                        //var message="username disponibile";
-                        //$('#checkUser').css({"border-color":"#00FF00","background-color":"#BCE954"});
                         $('#username-err').hide();
                         $('#username').addClass("input-field-ok");
                     }
@@ -205,28 +242,25 @@ function checkUsernameOnDatabase( username ) {
 	});
 }
 
-$(document).ready(function(){
+$(document).ready(function(){ //fa il reset di tutit i campi 
     $('#reset').click(function(){
         $('*').removeClass("input-field-ok"); //rimuove i bordi verdi da tutti i campi
         $('.no-input,#pass-strength,#pass-match').hide(); //nasconde tutti i messaggi di info/errore sotto ai campi
-//        $('#checkUser').hide();
-//        $('#pass-strength').hide();
-//        $('#pass-match').hide();
     });
 });
 
-$(document).on('blur',"#nameReg",function(){validaNome()});
+$(document).on('blur',"#nameReg",function(){validateName()});
 
-function validaNome(){
-    var nome=$('#nameReg').val();
-    if (nome===""){
+function validateName(){
+    var name=$('#nameReg').val();
+    if (name===""){
         var message="Inserisci il tuo nome";
         $("#nameReg").removeClass("input-field-ok");
         $('#name-err').addClass("input-message-error");
         $('#name-err').text(message);
         $('#name-err').show();
     }
-    else if(nome.match(/[^A-Za-z\s\']/)){
+    else if(name.match(/[^A-Za-z\s\']/)){ //lettere upp e low, spazi, apostrofo
         var message="Il nome puo' contenere solo lettere e spazi";
         $("#nameReg").removeClass("input-field-ok");
         $('#name-err').addClass("input-message-error");
@@ -239,18 +273,18 @@ function validaNome(){
     }
 }
 
-$(document).on('blur',"#surnameReg",function(){validaCognome()});
+$(document).on('blur',"#surnameReg",function(){validateSurname()});
 
-function validaCognome(){
-    var cognome=$('#surnameReg').val();
-    if (cognome===""){
+function validateSurname(){
+    var surname=$('#surnameReg').val();
+    if (surname===""){
         var message="Inserisci il tuo cognome";
         $("#surnameReg").removeClass("input-field-ok");
         $('#surname-err').addClass("input-message-error");
         $('#surname-err').text(message);
         $('#surname-err').show();
     }
-    else if(cognome.match(/[^A-Za-z\s\']/)){
+    else if(surname.match(/[^A-Za-z\s\']/)){ //lettere upp e low, spazi, apostrofo
         var message="Il cognome puo' contenere solo lettere e spazi";
         $("#surnameReg").removeClass("input-field-ok");
         $('#surname-err').addClass("input-message-error");
@@ -263,9 +297,9 @@ function validaCognome(){
     }
 }
 
-$(document).on('blur',"#cfReg",function(){validaCF()});
+$(document).on('blur',"#cfReg",function(){validateCF()});
 
-function validaCF(){
+function validateCF(){
     var cf=$('#cfReg').val();
     if (cf===""){
         var message="Inserisci il tuo codice fiscale";
@@ -274,7 +308,7 @@ function validaCF(){
         $('#cf-err').text(message);
         $('#cf-err').show();
     }
-    else if(cf.match(/[^A-Z0-9]/)){
+    else if(cf.match(/[^A-Z0-9]/)){ //lettere maiuscole e numeri
         var message="Il codice fiscale puo' contenere solo lettere maiuscole e numeri";
         $("#cfReg").removeClass("input-field-ok");
         $('#cf-err').addClass("input-message-error");
@@ -315,8 +349,6 @@ function validaEmail(){
 //    }
     else {
         checkEmailOnDatabase(email);
-        //$('#email').addClass("input-field-ok");
-        //$('#email-err').hide();
     }
 }
 
@@ -329,8 +361,6 @@ function checkEmailOnDatabase(email){
                 complete: function(result){
                     JSON.stringify(result);
                     if ( result.responseText==="false"){
-                        //var message="email disponibile";
-                        //$('#email-err').css({"border-color":"#00FF00","background-color":"#BCE954"});
                         $('#email-err').hide();
                         $('#email').addClass("input-field-ok");
                     }
@@ -345,17 +375,17 @@ function checkEmailOnDatabase(email){
 });
 }
 
-$(document).on('blur',':text,:password',function(){activateButton()}); //attivata ogni volta che si lascia un input type text o password
+$(document).on('blur',':text,:password',function(){activateButtonReg()}); //attivata ogni volta che si lascia un input type text o password
 
-function activateButton(){
-    completed=isFormCompleted();
+function activateButtonReg(){
+    completed=isFormRegCompleted();
     if (completed===true) {
         $('#registration-button').removeAttr("disabled");
         $('#registration-button').removeClass("disabled");        
     }
 }
 
-function isFormCompleted(){
+function isFormRegCompleted(){
     var completed = false;
 
     if (window.location.href.match(/Registration/)){ //questo comando non serve se il file viene caricato solo per la pagina Registrazione
@@ -379,8 +409,10 @@ function isFormCompleted(){
 /*            controllo ultima visita              */
 /* ------------------------------------------------*/
 
+//il file va richiamato quando viene caricato il tpl confirmDelCheck
+
 $(document).ready(function(){
-    if (window.location.href.match(/delCheck/)){
+    if (window.location.href.match(/delCheck/)){ //non serve se viene diviso il file
         checkLastVisit();
     }
 });
@@ -433,9 +465,9 @@ function validateNameDB(){
     }
 }
 
-$(document).on('blur',"#surnameDB",function(){validateSurname()});
+$(document).on('blur',"#surnameDB",function(){validateSurnameDB()});
 
-function validateSurname(){
+function validateSurnameDB(){
     var cognome=$('#surnameDB').val();
     if (cognome===""){
         var message="Inserisci il cognome del paziente";
@@ -470,8 +502,8 @@ function valiDateBirthDB(){
         $('#dateB-err-DB').show();
     }
     else{
-        var day=$('#dateBirthDB').val().split('-')[2];
-        var month=$('#dateBirthDB').val().split('-')[1];
+        //var day=$('#dateBirthDB').val().split('-')[2];
+        //var month=$('#dateBirthDB').val().split('-')[1];
         var year=$('#dateBirthDB').val().split('-')[0];
         
         if (year>2100 || year<1900){
@@ -489,9 +521,9 @@ function valiDateBirthDB(){
     }
 }
 
-$(document).on('blur',"#cfDB",function(){validateCF()});
+$(document).on('blur',"#cfDB",function(){validateCfDB()});
 
-function validateCF(){
+function validateCfDB(){
     var cf=$('#cfDB').val();
     if (cf===""){
         var message="Inserisci il codice fiscale del paziente";
@@ -515,8 +547,6 @@ function validateCF(){
         $('#cf-err-DB').show();
     }
     else {
-        //$("#cfDB").addClass("input-field-ok");
-        //$('#cf-err-DB').hide();
         checkCFonDatabase(cf);
     }
 }
@@ -558,8 +588,8 @@ function valiDateCheckDB(){
         $('#dateC-err-DB').show();
     }
     else{
-        var day=$('#dateCheckDB').val().split('-')[2];
-        var month=$('#dateCheckDB').val().split('-')[1];
+        //var day=$('#dateCheckDB').val().split('-')[2];
+        //var month=$('#dateCheckDB').val().split('-')[1];
         var year=$('#dateCheckDB').val().split('-')[0];
         
         if (year>2100 || year<1900){
@@ -579,7 +609,7 @@ function valiDateCheckDB(){
 
 $(document).on('blur','.input-area',function(){validateAreas()});
 
-function validateAreas(){ //questi campi sono facoltativi
+function validateAreas(){ //tutti i campi textarea sono facoltativi
     $('.input-area').each(function(){
         if ($(this).val()!==""){
             $(this).addClass("input-field-ok");
@@ -590,20 +620,20 @@ function validateAreas(){ //questi campi sono facoltativi
     });
 }
 
-$(document).on('blur','.input-field',function(){activateButton()});
+$(document).on('blur','.input-field',function(){activateButtonInsPat()});
 
-function activateButton(){
-    completed=checkFormCompleted();
+function activateButtonInsPat(){
+    completed=checkFormCompletedPat();
     if (completed===true) {
         $('#insertNew').removeAttr("disabled");
         $('#insertNew').removeClass("disabled");        
     }
 }
 
-function checkFormCompleted(){
+function checkFormCompletedPat(){
     var completed = false;
 
-    if (window.location.href.match(/insert/)){ //questo comando non serve se il file viene caricato solo per la pagina Registrazione
+    if (window.location.href.match(/insert/)){ //questo comando non serve se il file viene caricato solo per la pagina iserimento pazienti
 	if($("#nameDB").val().length > 0 && 
 	   $("#surnameDB").val().length > 0 &&
 	   $("#dateBirthDB").val().length > 0 &&
@@ -616,3 +646,159 @@ function checkFormCompleted(){
 	return completed;
     }
 }
+
+/* ------------------------------------------------*/
+/*         validazione inserimento visita         */
+/* ------------------------------------------------*/
+
+$(document).on('blur','#dateChDB',function(){valiDateChDB()});
+
+function valiDateChDB(){
+    var date=$('#dateChDB').val();
+    
+    if (date===""){
+        var message="Inserisci la data della visita";
+        $("#dateChDB").removeClass("input-field-ok");
+        $('#dateCh-err-DB').addClass("input-message-error");
+        $('#dateCh-err-DB').text(message);
+        $('#dateCh-err-DB').show();
+    }
+    else{
+        //var day=$('#dateChDB').val().split('-')[2];
+        //var month=$('#dateChDB').val().split('-')[1];
+        var year=$('#dateChDB').val().split('-')[0];
+        
+        if (year>2100 || year<1900){
+            //se uso input type date il controllo su giorno e mese non serve
+            var message="il formato della data non e' corretto";
+            $("#dateChDB").removeClass("input-field-ok");
+            $('#dateCh-err-DB').addClass("input-message-error");
+            $('#dateCh-err-DB').text(message);
+            $('#dateCh-err-DB').show();
+        }
+        else{
+            $('#dateCh-err-DB').hide();
+            $("#dateChDB").addClass("input-field-ok");
+        }
+    }
+}
+
+// Finche tutti gli script stanno sullo stesso file quello di inerisci paziente
+// funziona anche per inserisci visita
+
+//$(document).on('blur','.input-area',function(){validateAreas()});
+//
+//function validateAreas(){ //questi campi sono facoltativi
+//    $('.input-area').each(function(){
+//        if ($(this).val()!==""){
+//            $(this).addClass("input-field-ok");
+//        }
+//        else {
+//            $(this).removeClass("input-field-ok");
+//        }
+//    });
+//}
+
+$(document).on('blur','#dateChDB',function(){activateButtonInsCh()});
+
+function activateButtonInsCh(){
+    completed=checkFormCompletedCh();
+    if (completed===true) {
+        $('#insertNewCh').removeAttr("disabled");
+        $('#insertNewCh').removeClass("disabled");        
+    }
+}
+
+function checkFormCompletedCh(){
+    var completed = false;
+
+    if (window.location.href.match(/newVisit/)){ //questo comando non serve se il file viene diviso in più file
+	if($("#dateChDB").val().length > 0)
+	{
+		completed = true;
+	}
+
+	return completed;
+    }
+}
+
+/* ------------------------------------------------*/
+/*                controllo cookie                 */
+/* ------------------------------------------------*/
+
+//funziona solo se javascript è attivato nel browser, ma se è disattivato
+// viene mostrato l'avviso 
+
+$(document).ready(function(){checkCookiesEnabled()});
+
+function checkCookiesEnabled(){
+    if (navigator.cookieEnabled===false){
+        $('#cookie-disabled').show();
+    }
+    else {
+        $('#cookie-disabled').hide();
+    }
+}
+
+
+/* ------------------------------------------------*/
+/*                     login                       */
+/* ------------------------------------------------*/
+
+//$(document).ready(function(){addLoginBox()});
+//
+//function addLoginBox(){
+//    $.ajax({
+//            type: "GET",
+//            url: "index.php?control=ajaxCall&task=checkLoggedIn",
+//            dataType: "json",
+//            complete: function(result){
+//                if (result.responseJSON===false){
+//                    $("#loginBox").load('./Smarty_dir/templates/login.tpl');
+//                }
+//                else {
+//                    $("#loginBox").load('./Smarty_dir/templates/loggedIn.tpl');
+//                    //$('#show-username').html("Ciao "+result.responseJSON);
+//                }
+//            }
+//    });
+//}
+//
+//$(document).on('click','#login',function(){handleLogin()});
+//
+//function handleLogin(){
+//    var username=$('#userLogin').val();
+//    var password=$('#passLogin').val();
+//    if ($('#rememberLogin').prop('checked')===true){
+//        var remember=true;
+//    }
+//    else {
+//        var remember=false;
+//    }
+//    
+//    $.ajax({
+//            type: "GET",
+//            url: "index.php?control=ajaxCall&task=login",
+//            dataType: "json",
+//            data: {"user":username,"pass":password,"remember":remember},
+//            complete: function(){
+//                $("#loginBox").load('./Smarty_dir/templates/loggedIn.tpl');
+//            }
+//    })
+//}
+//
+//$(document).on('click','#logout',function(){handleLogout()});
+//
+//function handleLogout(){
+//    $.ajax({
+//            type: "GET",
+//            url: "index.php?control=ajaxCall&task=logout",
+//            complete: function(){
+//                $("#loginBox").load('./Smarty_dir/templates/login.tpl');
+//            }
+//    })
+//}
+//
+//$(document).ready(function(){
+//   $('#shoe-username').html("SPLASH"); 
+//});
