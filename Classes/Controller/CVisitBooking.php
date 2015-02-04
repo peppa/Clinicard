@@ -16,13 +16,15 @@ class CVisitBooking extends FDatabase {
         $VVisitBooking=  USingleton::getInstance("VVisitBooking");
         $FCalendar=  USingleton::getInstance("FCalendar");
         
-        $CF=$VVisitBooking->get("CF");
+        $CF="cndhsjrht4512d45"; //va preso dal login
         $dataInizio=$VVisitBooking->get("dataInizio");
         $eventID=$VVisitBooking->get("eventID");
-        $eventObject=$VVisitBooking->get("eventObject");
-        $titolo=$VVisitBooking->get("tipoVisita");
+        $titolo=$VVisitBooking->get("titolo");
+        $dataFine=$VVisitBooking->get("dataFine");
         
-        $error=$FCalendar->saveEvent($CF, $dataInizio, $eventID, $eventObject, $titolo);
+        
+        
+        $error=$FCalendar->saveEvent($CF, $dataInizio, $eventID, $titolo, $dataFine);
         echo $error;
         exit();
     }
@@ -32,9 +34,14 @@ class CVisitBooking extends FDatabase {
      */
     public function getMyEvents() {
         $FCalendar=  USingleton::getInstance("FCalendar");
-        $evento=$FCalendar->getAllEvents();
+        $VVisitBooking=  USingleton::getInstance("VVisitBooking");
         
-        echo $evento;
+        $firstDate=$VVisitBooking->get("start");
+        $lastDate=$VVisitBooking->get("end");
+        
+        $eventi=$FCalendar->getAllEvents($firstDate, $lastDate);
+        
+        echo json_encode($eventi);
         exit();
     }
     
