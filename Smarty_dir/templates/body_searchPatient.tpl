@@ -4,7 +4,7 @@
 
 <div class="spacing"></div>
 
-<form class="button-form" method="POST" >
+<form class="center" method="POST" >
     <div>
         <p> <input id="search" class="input-field" type="text" name="keyValue" placeholder="inserici nome, cognome o cf"> </p>
         <p> 

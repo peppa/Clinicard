@@ -9,7 +9,7 @@
 
 <div class="spacing"></div>
 
-<form method="POST" class="button-form">
+<form method="POST" class="center">
     <button class="controlButton" type="submit" formaction="index.php?control=manageDB&action=delCheck&conf=yes&p={$cf}&ch={$ch}">conferma</button>
     <button class="controlButton" type="submit" formaction="index.php?control=manageDB&action=getFullData&p={$cf}&ch={$ch}">annulla</button>
 </form>

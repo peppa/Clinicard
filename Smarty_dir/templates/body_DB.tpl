@@ -1,18 +1,18 @@
-<div class="title" id="home-title">
+<div class="title">
     <p>PAGINA DI GESTIONE DELL'ARCHIVIO DEI PAZIENTI</p>
 </div>
 
-<form method="POST" action="index.php?control=manageDB&action=insert" class="button-form">
-    <div>
-        <button type="submit" class="controlButton" id="insert-pat">inserisci</button>
+<!--<form method="POST" action="index.php?control=manageDB&action=insert" class="center">-->
+    <div class="center">
+        <a href="index.php?control=manageDB&action=insert"><button type="submit" class="controlButton" id="insert-pat">inserisci</button></a>
     </div>
-</form>
+<!--</form>-->
 
-<form method="POST" action="index.php?control=manageDB&action=search" class="button-form">
-    <div>
-        <button type="submit" class="controlButton"id="search-pat">cerca</button>
+<!--<form method="POST" action="index.php?control=manageDB&action=search" class="center">-->
+    <div class="center">
+        <a href="index.php?control=manageDB&action=search"><button type="submit" class="controlButton"id="search-pat">cerca</button></a>
     </div>
-</form>
+<!--</form>-->
 
 <!-- show all patients in DB -->
 <div class="title">

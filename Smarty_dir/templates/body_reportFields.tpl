@@ -5,7 +5,7 @@
 
 <div class="spacing"></div>
 
-<form class="button-form" method="POST" action="index.php?control=manageDB&action=printReport&fields=sent&pat={$patLink}&ch={$checkLink}" target="_blank">
+<form class="center" method="POST" action="index.php?control=manageDB&action=printReport&fields=sent&pat={$patLink}&ch={$checkLink}" target="_blank">
     <!-- Nome e Cognome, CF e Data di nascita vengono mostrati sempre -->
     <div class="DBTable" id="report-fields">
     <table>

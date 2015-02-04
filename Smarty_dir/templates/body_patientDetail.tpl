@@ -106,11 +106,13 @@
 </div>
 
 
-<form method="POST" class="button-form">
-    <button class="controlButton" type="submit" formaction="index.php?control=manageDB&action=modCheck&p={md5($info.CF)}&ch={md5($info.dateCheck)}">modifica</button>
-    <button class="controlButton" type="submit" class="print-report" formaction="index.php?control=manageDB&action=printReport&pat={md5($info.CF)}&ch={md5($info.dateCheck)}">stampa report</button>
-    <button class="controlButton" id="deleteCheck" type="submit" formaction="index.php?control=manageDB&action=delCheck&p={md5($info.CF)}&ch={md5($info.dateCheck)}">cancella</button>
-    <button class="controlButton" type="submit" formaction="index.php?control=manageDB&action=getChecks&p={md5($info.CF)}">indietro</button>
-</form>
+<!--<form method="POST" class="center">-->
+<div class="center">
+    <a href="index.php?control=manageDB&action=modCheck&p={md5($info.CF)}&ch={md5($info.dateCheck)}"><button class="controlButton">modifica</button></a>
+    <a href="index.php?control=manageDB&action=printReport&pat={md5($info.CF)}&ch={md5($info.dateCheck)}"><button class="controlButton"class="print-report">stampa report</button></a>
+    <a href="index.php?control=manageDB&action=delCheck&p={md5($info.CF)}&ch={md5($info.dateCheck)}"><button class="controlButton" id="deleteCheck">cancella</button></a>
+    <a href="index.php?control=manageDB&action=getChecks&p={md5($info.CF)}"><button class="controlButton">indietro</button></a>
+</div>
+<!--</form>-->
 
 <div class="spacing"></div>

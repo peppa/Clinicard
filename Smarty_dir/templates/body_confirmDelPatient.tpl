@@ -6,7 +6,7 @@
 
 <div class="spacing"></div>
 
-<form method="POST" class="button-form">
+<form method="POST" class="center">
     <button class="controlButton" type="submit" formaction="index.php?control=manageDB&action=delPat&conf=yes&p={$cf}">conferma</button>
     <button class="controlButton" type="submit" formaction="index.php?control=manageDB">annulla</button>
 </form>

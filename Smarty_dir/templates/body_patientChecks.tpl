@@ -42,11 +42,13 @@
 
 <div class="spacing"></div>
 
-<form method="POST" class="button-form">
-    <p>
-        <button type="submit" class="controlButton" formaction="index.php?control=manageDB&action=newVisit&p={$pat}">Aggiungi visita</button>
-        <button type="submit" class="controlButton" formaction="index.php?control=manageDB">Home</button>
-    </p>
-</form>
+<!--<form method="POST" class="center">
+    <p>-->
+<div class=center>
+    <a href="index.php?control=manageDB&action=newVisit&p={$pat}"><button class="controlButton">Aggiungi visita</button></a>
+    <a href="index.php?control=manageDB"><button class="controlButton">Home</button></a>
+</div>
+    <!--</p>
+</form>-->
     
 <div class="spacing"></div>
