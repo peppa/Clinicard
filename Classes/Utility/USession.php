@@ -3,8 +3,6 @@
 
 class USession {
 
-	private $holdtime;
-
 	public function __construct() {
 		//$this->holdtime=60*60*24*60; //2 mesi
 		session_start();

@@ -27,6 +27,14 @@ class FUtente extends FDatabase {
         else {return FALSE;}  
         
     }
+    public function isMedic($username) {
+        $query="SELECT `Medico` FROM `utenti` WHERE `Username`='$username'";
+        $res=$this->query($query);
+        $res=$res->fetch_assoc();
+        
+        return $res['Medico'];
+       
+    }
     
 }
 

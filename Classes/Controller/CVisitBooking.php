@@ -35,14 +35,18 @@ class CVisitBooking extends FDatabase {
     public function getMyEvents() {
         $FCalendar=  USingleton::getInstance("FCalendar");
         $VVisitBooking=  USingleton::getInstance("VVisitBooking");
+        $CLogin=  USingleton::getInstance("CLogin");
+        $CLogin=new CLogin();
+        if($CLogin->isMedic()){
         
-        $firstDate=$VVisitBooking->get("start");
-        $lastDate=$VVisitBooking->get("end");
-        
-        $eventi=$FCalendar->getAllEvents($firstDate, $lastDate);
-        
-        echo json_encode($eventi);
-        exit();
+            $firstDate=$VVisitBooking->get("start");
+            $lastDate=$VVisitBooking->get("end");
+
+            $eventi=$FCalendar->getAllEvents($firstDate, $lastDate);
+
+            echo json_encode($eventi);
+            exit();
+        }
     }
     
     

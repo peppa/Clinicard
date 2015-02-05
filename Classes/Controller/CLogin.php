@@ -77,6 +77,17 @@ class CLogin{
             return $VLogin->errorPage();
         }
         
+        public function isMedic() {
+            $USession=  USingleton::getInstance("USession");
+            $FUtente=  USingleton::getInstance("FUtente");
+            
+            $username=$USession->get("username");
+            return $FUtente->isMedic($username);
+               
+                
+            
+            
+        }
         
         
 }
