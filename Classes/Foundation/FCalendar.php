@@ -14,6 +14,9 @@
 class FCalendar extends FDatabase {
     public function saveEvent($CF,$dataInizio,$eventID,$titolo, $dataFine) {
         $error=false;
+        $dataFine=new DateTime($dataFine);
+        $dataFine=$dataFine->modify("-1 seconds");
+        $dataFine=$dataFine->format(DATE_ATOM);
         
         //check if it was possible to add new event
         $q="SELECT * FROM `calendario` WHERE `start` between '$dataInizio' and '$dataFine' ";
