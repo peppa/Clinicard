@@ -5,7 +5,7 @@
 
 <div class="spacing"></div>
 
-<form class="center" method="POST" action="index.php?control=manageDB&action=printReport&fields=sent&pat={$patLink}&ch={$checkLink}" target="_blank">
+<form id="printReportForm" class="center" method="POST"  target="_blank">
     <!-- Nome e Cognome, CF e Data di nascita vengono mostrati sempre -->
     <div class="DBTable" id="report-fields">
     <table>
@@ -83,8 +83,13 @@
     </table>
     </div>
     <div class="spacing"></div>
-    <button id="printReport" class="controlButton disabled" type="submit" disabled>Stampa</button>
+    <button id="printReport" class="controlButton disabled" type="submit" disabled formaction="index.php?control=manageDB&action=printReport&fields=sent&pat={$patLink}&ch={$checkLink}" target="_blank">Stampa</button>
+    <!--<button id="printReport" class="controlButton" type="submit" formaction="index.php?control=manageDB&action=getFullData&p={$patLink}&ch={$checkLink}">Annulla</button>-->
 </form>
+
+<div class="center">
+    <a href="index.php?control=manageDB&action=getFullData&p={$patLink}&ch={$checkLink}"><button id="printReport" class="controlButton">Indietro</button></a>
+</div>
     
 <div class="spacing"></div>    
 

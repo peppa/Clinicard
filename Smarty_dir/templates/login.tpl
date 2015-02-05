@@ -1,17 +1,16 @@
-<div>
-  <form class="log" method="POST" action="index.php?control=login">
+<div class="log" id="loginTPL" hidden>
+  <!--<form class="log" method="POST" action="index.php?control=login">-->
 
     <div>
         <p><input id="userLogin" class="input-field-login" type="text" name="username" placeholder="username"></p>
         <p><input id="passLogin" class="input-field-login" type="password" name="password" placeholder="password"></p>
-        <p><input id="" type="checkbox" name="keepLogged" value="yes">Ricordami <input id="login" type="submit" value="Accedi"></p>
+        <p><input id="" type="checkbox" name="keepLogged" value="yes">Ricordami <input id="login"value="Accedi"></p>
     </div>
 <!--
     <div>
       <input type="checkbox" name="keepLogged" value="yes"> Ricordami
-    </div>-->   
-
-  </form>
+    </div>-->
+  <!--</form>-->
 
 </div>
 <!--

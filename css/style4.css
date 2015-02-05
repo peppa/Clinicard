@@ -297,7 +297,7 @@
 
 #login,#logout {
  background:url('../images/btn-login.png') no-repeat 5px 5px #484B4F;
-  width: 100px;
+  width: 90px;
   cursor:pointer;
   border-radius:50px;
   padding:10px 20px 10px 0;

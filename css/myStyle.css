@@ -2,10 +2,13 @@
 /*                       CSS                       */
 /* ------------------------------------------------*/
 
-#calendar{
-    margin-left: auto;
-    margin-right: auto;
-    width: 70%;
+.spacing{
+    margin-top: 40px;
+    margin-bottom: 40px;
+}
+
+.separate{
+    border-bottom: 0.1244em dashed rgba(202, 202, 202, 0.41);
 }
 
 .title{
@@ -48,25 +51,9 @@
     background-color: #F75D59;
 }
 
-#script-disabled, #cookie-disabled{
-    margin-top: 10px;
-    margin-bottom: 10px;
-    font-size: 20px;
-}
-
-#search-pat,#insert-pat{
-    width: 15%;
-    padding: 10px;
-    margin-bottom: 10px;
-}
-
-#search{
-    width: 30%;
-}
-
-.spacing{
-    margin-top: 40px;
-    margin-bottom: 40px;
+.warning{
+    padding-bottom: 10px;
+    padding-top: 10px;
 }
 
 .log{
@@ -88,31 +75,40 @@
     box-shadow: inset 2px 2px 2px 0px #dddddd;
 }
 
+.input-field-ok{
+    border-style: solid;
+    border-width: 1px;
+    border-color: green;
+}
+
+.input-message-ok, .pass-strong{
+    border-color:#00FF00;
+    background-color:#BCE954;
+}
+
+.input-message-error, .pass-weak{
+    border-color:#FF0000;
+    background-color:#F75D59;
+}
+
+.pass-medium{
+    border-color:#F88017;
+    background-color:#FF7F50;
+}
+
+.disabled{
+    opacity: 0.5;
+}
+
 .area-label{
     padding:20px;
     vertical-align: middle;
-}
-
-#patient-detail{
-    width: 50%;
-}
-
-#patient-detail tr:first-child td:first-child{
-    width: 30%;
-}
-
-#report-fields{
-    width: 20%;
 }
 
 .checkbox{
     width: 25px;
     margin: 20px 100px;
     position: relative;
-}
-
-#patient-checks{
-    width: 25%;
 }
 
 .row {
@@ -146,10 +142,7 @@ input[type="date"]{
     text-align: right;
     padding-right: 15px;
     margin-bottom: 10px;
-}
-
-.separate{
-    border-bottom: 0.1244em dashed rgba(202, 202, 202, 0.41);
+    font-family: Tahoma, Geneva, sans-serif;
 }
 
 #pass-strength, #checkUser, #insPass, #pass-match,.no-input{
@@ -161,31 +154,6 @@ input[type="date"]{
     font-family: Tahoma, Geneva, sans-serif;
     font-size: 14px;
     margin-bottom: 10px;
-}
-
-.input-field-ok{
-    border-style: solid;
-    border-width: 1px;
-    border-color: green;
-}
-
-.input-message-ok, .pass-strong{
-    border-color:#00FF00;
-    background-color:#BCE954;
-}
-
-.input-message-error, .pass-weak{
-    border-color:#FF0000;
-    background-color:#F75D59;
-}
-
-.pass-medium{
-    border-color:#F88017;
-    background-color:#FF7F50;
-}
-
-.disabled{
-    opacity: 0.5;
 }
 
 #last-check{
@@ -202,7 +170,44 @@ input[type="date"]{
     padding: 10px 0px 10px 0px;
 }
 
-.warning{
-    padding-bottom: 10px;
-    padding-top: 10px;
+#printReportForm{
+    margin-bottom: 15px;
+}
+
+#calendar{
+    margin-left: auto;
+    margin-right: auto;
+    width: 70%;
+}
+
+#script-disabled, #cookie-disabled{
+    margin-top: 10px;
+    margin-bottom: 10px;
+    font-size: 20px;
+}
+
+#search-pat,#insert-pat{
+    width: 15%;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+#search{
+    width: 30%;
+}
+
+#patient-detail{
+    width: 50%;
+}
+
+#patient-detail tr:first-child td:first-child{
+    width: 30%;
+}
+
+#report-fields{
+    width: 20%;
+}
+
+#patient-checks{
+    width: 25%;
 }

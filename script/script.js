@@ -6,7 +6,7 @@ $(document).ready(function(){showCookieDisclaimer()});
 
 function showCookieDisclaimer(){
     if ( navigator.cookieEnabled===true ){
-        if ($.cookie("cookieAccepted")!=="true"){
+        if (typeof $.cookie("cookieAccepted") === 'undefined'){
             $('#cookie-bar').slideDown();
         }
     }
@@ -16,7 +16,7 @@ $(document).on('click','#cookie-accepted',function(){hideCookieDisclaimer()});
 
 function hideCookieDisclaimer(){
     $('#cookie-bar').fadeOut();
-    $.cookie("cookieAccepted","true",{expires: 100}); //100 giorni
+    $.cookie("cookieAccepted","true",{expires: 100},{path: '/'}); //100 giorni
 }
 
 
@@ -219,12 +219,12 @@ function validateUsername(){
 	}
 }
 
-function checkUsernameOnDatabase( username ) {
+function checkUsernameOnDatabase( usernameP ) {
 	$.ajax({
 		type: "POST",
 		url: "index.php?control=ajaxCall&task=checkUsername",
 		dataType: "json",
-                data: {"user":username},
+                data: {"user":usernameP},
                 complete: function(result){
                     JSON.stringify(result);
                     if ( result.responseText==="false"){
@@ -745,60 +745,79 @@ function checkCookiesEnabled(){
 /*                     login                       */
 /* ------------------------------------------------*/
 
-//$(document).ready(function(){addLoginBox()});
+$(document).ready(function(){showLoginBox()});
+
+function showLoginBox(){
+    $.ajax({
+            type: "GET",
+            url: "index.php?control=ajaxCall&task=checkLoggedIn",
+            dataType: "json",
+            complete: function(result){
+                if (result.responseJSON===false){
+                    $('#logoutTPL').hide();
+                    $('#loginTPL').show();
+                }
+                else {
+                    $('#loginTPL').hide();
+                    $('#login-error').hide();
+                    $('#logoutTPL').show();
+                    $('#show-username').html("Ciao "+$.cookie("username"));
+                }
+            }
+    });
+}
 //
-//function addLoginBox(){
-//    $.ajax({
-//            type: "GET",
-//            url: "index.php?control=ajaxCall&task=checkLoggedIn",
-//            dataType: "json",
-//            complete: function(result){
-//                if (result.responseJSON===false){
-//                    $("#loginBox").load('./Smarty_dir/templates/login.tpl');
-//                }
-//                else {
-//                    $("#loginBox").load('./Smarty_dir/templates/loggedIn.tpl');
-//                    //$('#show-username').html("Ciao "+result.responseJSON);
-//                }
-//            }
-//    });
-//}
-//
-//$(document).on('click','#login',function(){handleLogin()});
-//
-//function handleLogin(){
-//    var username=$('#userLogin').val();
-//    var password=$('#passLogin').val();
-//    if ($('#rememberLogin').prop('checked')===true){
-//        var remember=true;
-//    }
-//    else {
-//        var remember=false;
-//    }
-//    
-//    $.ajax({
-//            type: "GET",
-//            url: "index.php?control=ajaxCall&task=login",
-//            dataType: "json",
-//            data: {"user":username,"pass":password,"remember":remember},
-//            complete: function(){
-//                $("#loginBox").load('./Smarty_dir/templates/loggedIn.tpl');
-//            }
-//    })
-//}
-//
-//$(document).on('click','#logout',function(){handleLogout()});
-//
-//function handleLogout(){
-//    $.ajax({
-//            type: "GET",
-//            url: "index.php?control=ajaxCall&task=logout",
-//            complete: function(){
-//                $("#loginBox").load('./Smarty_dir/templates/login.tpl');
-//            }
-//    })
-//}
-//
-//$(document).ready(function(){
-//   $('#shoe-username').html("SPLASH"); 
-//});
+$(document).on('click','#login',function(){handleLogin()});
+
+function handleLogin(){
+    username=$('#userLogin').val();
+    password=$('#passLogin').val();
+    if ($('#rememberLogin').prop('checked')===true){
+        remember=true;
+    }
+    else {
+        remember=false;
+    }
+    
+    $.ajax({
+            type: "GET",
+            url: "index.php?control=ajaxCall&task=login",
+            dataType: "text",
+            data: {"user":username,"pass":password,"remember":remember},
+            complete: function(result){
+                if (result.responseText==="true"){
+                    if (remember===true){
+                        $.cookie("username",username,{expires: 60}); //valido in tutto il dominio
+                    }
+                    else {
+                        $.cookie("username",username) //scade con la sessione
+                    }
+                    $('#loginTPL').hide();
+                    $('#login-error').hide();
+                    $('#logoutTPL').show();
+                    $('#show-username').html("Ciao "+$.cookie("username"));
+                }
+                else if (result.responseText==="false"){
+                    $('#login-error').show();
+                    $('#login-error').html("Username o password non corretti");
+                }
+            }
+    });
+}
+
+$(document).on('click','#logout',function(){handleLogout()});
+
+function handleLogout(){
+    $.ajax({
+            type: "GET",
+            url: "index.php?control=ajaxCall&task=logout",
+            complete: function(){
+                $('#logoutTPL').hide();
+                $('#loginTPL').show();
+                $.removeCookie("username");
+                if (window.location.href.match(/manageDB/)){ //poi va aggiunto anche il controllo per la pagina prenotazione
+                    window.location.href="index.php";
+                }                
+            }
+    })
+}

@@ -21,7 +21,7 @@ class CHome {
         if(!$content){$content=$VHome->getHomeContent();}
         
         $this->setPage($content);
-        $this->addLoginBox();
+        //$this->addLoginBox();
         //$VHome->assign('loginBox',NULL); //lato client
     }
     

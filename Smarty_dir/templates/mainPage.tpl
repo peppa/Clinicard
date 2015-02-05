@@ -40,7 +40,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
         </div>
         
         <div id="cookie-bar" hidden>
-            <p>Questa applicazione web utilizza i cookie. Cliccando accetta acconsenti al loro utilizzo.<a href="" id="cookie-accepted" class="cb-enable">Accetta</a></p>
+            <p>Questa applicazione web utilizza i cookie. Proseguendo acconsenti al loro utilizzo.<a href="" id="cookie-accepted" class="cb-enable">Ho capito</a></p>
         </div>
 
 
@@ -54,8 +54,23 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                 </div>
 
 <!-- login -->
-                <div id="loginBox">
-                    {$loginBox}
+                <div class="log">
+                    <div id="loginTPL" hidden>
+                        <div>
+                            <p id="login-error" class="no-input input-message-error" hidden><p>
+                            <p><input id="userLogin" class="input-field-login" type="text" name="username" placeholder="username"></p>
+                            <p><input id="passLogin" class="input-field-login" type="password" name="password" placeholder="password"></p>
+                            <p><input id="rememberLogin" type="checkbox" name="keepLogged" value="yes">Ricordami <input id="login" value="Accedi"></p>
+                        </div>
+                    </div>
+
+                <div id="logoutTPL" hidden>
+                    <!--<form method="POST" action="index.php?control=logout">-->
+                        <p id="show-username"></p>
+                        <p><input id="logout"value="Esci"></p>
+                   <!-- </form>-->
+                </div>  
+
                 </div>
 
 
@@ -75,7 +90,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                     <a href="index.php?control=manageDB">DB</a>
                 </li>
                 <li class="nav_top">
-                    <a href="index.php?control=VisitBooking#topnav">Prenota visita</a>
+                    <a href="index.php?control=VisitBooking">Prenota visita</a>
                 </li>
                 <li class="nav_top">
                     <a href="index.php?control=Registration">Registrazione</a>

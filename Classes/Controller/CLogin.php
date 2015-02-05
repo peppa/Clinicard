@@ -6,21 +6,23 @@ class CLogin{
 		$USession=USingleton::getInstance('USession');
 		$FLogin=USingleton::getInstance('FLogin');
 
-		$user=$VLogin->get('username');
-		$pass=$VLogin->get('password');
-                $keep=$VLogin->get('keepLogged');
+//		$user=$VLogin->get('username');
+//		$pass=$VLogin->get('password');
+//                $keep=$VLogin->get('keepLogged');
 
-//                $user=$VLogin->get('user');   lato client
-//		  $pass=$VLogin->get('pass');
-//                $remember=$VLogin->get('remember');
+                //lato client
+                $user=$VLogin->get('user');
+		$pass=$VLogin->get('pass');
+                $remember=$VLogin->get('remember');
                 
-		if($keep=="yes") {$remember=true;}  
-		else {$remember=false;}
+//		if($keep=="yes") {$remember=true;}  
+//		else {$remember=false;}
 		$USession->keepAccess($remember);
 		if($FLogin->checkUser($user,$pass)) {
 
                     $USession->login($user,$pass);
-                    return true;
+                    echo "true";
+                    exit;
                     //$VLogin->loadLogoutButton();
                     //return $this->WelcomePage();//non ritorna un cazzo,..
                 }
@@ -28,7 +30,8 @@ class CLogin{
 		else  {/*user o pass non corretti*/
                     //$VLogin->loadLoginForm();
                     //return $this->ErrorPage();//non ritorna un cazzo..
-                    return false;
+                    echo "false";
+                    exit;
 		}
                 //$VLogin->showPage();
 	}
@@ -67,7 +70,7 @@ class CLogin{
             exit;
         }
         
-        public function WelcomePage(){  //riunire in un'unica funzione
+        /*public function WelcomePage(){  //riunire in un'unica funzione
             $VLogin=  USingleton::getInstance('VLogin');
             return $VLogin->WelcomePage();
         }
@@ -75,7 +78,7 @@ class CLogin{
         public function ErrorPage(){
             $VLogin=  USingleton::getInstance('VLogin');
             return $VLogin->errorPage();
-        }
+        }*/
         
         
         
