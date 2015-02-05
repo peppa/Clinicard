@@ -16,13 +16,18 @@ class FCalendar extends FDatabase {
         $error=false;
         $dataFine=new DateTime($dataFine);
         $dataFine=$dataFine->modify("-1 seconds");
-        $dataFine=$dataFine->format(DATE_ATOM);
+        $dataFine=$dataFine->format("Y-m-d\TH:i:s");
+
         
         //check if it was possible to add new event
-        $q="SELECT * FROM `calendario` WHERE `start` between '$dataInizio' and '$dataFine' ";
-        $result=$this->query($q);
+        $queryCheckAvaiableSlot="SELECT * FROM `calendario` WHERE `start` between '$dataInizio' and '$dataFine' OR `end` between '$dataInizio' and '$dataFine' OR '$dataInizio' between `start` and `end`";
+        $result= $this->query($queryCheckAvaiableSlot);
+//        var_dump($result);
+//        exit();
+
         
-        //if the affected rows are more than 0, there is another event yet
+        
+        //if the affected rows are more than 0 (TRUE), there is another event yet
         if($this->affected_rows){
             $error="Purtroppo un altro utente si è prenotato nell'ora selezionata. Si prega di scegliere un orario diverso";
         }
