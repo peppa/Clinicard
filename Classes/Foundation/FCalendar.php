@@ -21,10 +21,7 @@ class FCalendar extends FDatabase {
         
         //check if it was possible to add new event
         $queryCheckAvaiableSlot="SELECT * FROM `calendario` WHERE `start` between '$dataInizio' and '$dataFine' OR `end` between '$dataInizio' and '$dataFine' OR '$dataInizio' between `start` and `end`";
-        $result= $this->query($queryCheckAvaiableSlot);
-//        var_dump($result);
-//        exit();
-
+        $this->query($queryCheckAvaiableSlot);
         
         
         //if the affected rows are more than 0 (TRUE), there is another event yet
@@ -39,6 +36,16 @@ class FCalendar extends FDatabase {
             $this->query($insertEvent);
             if ($this->error && ! $error){$error="Si è verificato un errore, si prega di riprovare: ".$this->error;}
         }
+        
+        //now i need to check if noone entered another visit at the same time
+        $this->query($queryCheckAvaiableSlot);
+        if(!$this->affected_rows==1){//deny save and restore db
+            $queryDelete="DELETE FROM `calendario` WHERE `id` = $eventID";
+            $this->query($queryDelete);
+            $error="Siamo spiacenti ma la data selezionata non è più disponibile, provare a selezionarne un altra";
+            
+        }
+        
      
         return $error;
     }
