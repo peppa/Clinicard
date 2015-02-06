@@ -96,14 +96,14 @@ class CHome {
                   //Conviene lasciare questa funzione anche se rendiamo il DB visibile solo al medico ? penso di si
                 //$this->addLoginBox();
                 $message="Solo il medico pu&oacute accedere a questa sezione";
-                return $VHome->getErrorMessage($message,false);
+                return $VHome->getErrorMessage($message);
                 //$VHome->showPage();
             }
         }
         else {//utente non loggato
             //$this->addLoginBox();
             $message="Per accedere al DB &eacute necessario effettuare il login";
-            return $VHome->getErrorMessage($message,false);
+            return $VHome->getErrorMessage($message);
             //$VHome->showPage();
         }
     }
@@ -131,7 +131,7 @@ class CHome {
                 $result=$CLogin->manageLogin();
                 if ( $result==false ){
                     $message="Username o password errati";
-                    $body=$VHome->getErrorMessage($message,false);
+                    $body=$VHome->getErrorMessage($message);
                     return array("body"  => $body);
                 }
                 else {

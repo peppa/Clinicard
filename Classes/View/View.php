@@ -46,7 +46,7 @@ Class View extends Smarty {
      * e sicuramente non possiamo farlo facendo scomparire il body in questa maniera... va un attimo pensato meglio,
      * per ora lascio così finche non ne parliamo
      */
-    public function showInfoMessage($message,$addButton){
+    public function getInfoMessage($message,$addButton=false){
         $this->assign('message',$message);
         $this->assign('addButton',$addButton);
         $body=$this->fetch('infoMessage.tpl');

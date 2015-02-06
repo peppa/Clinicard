@@ -1,4 +1,4 @@
-<div class="center"> <!-- per adesso è uguale a errorMessage.tpl, vanno messi gli identificatori dentro al div -->
+<div class="center"> 
     <div class="infomsg">
         <p>{$message}</p>
     </div>

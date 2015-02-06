@@ -150,7 +150,7 @@ class CPatientsDB{
                     $FPatient->insertNewPatient($arrayPatient);
                     $FCheckup->insertNewCheckup($arrayCheck);
                     $message="Inserimento avvenuto con successo";
-                    $this->bodyHTML=$VPatientsDB->showInfoMessage($message,true);
+                    $this->bodyHTML=$VPatientsDB->getInfoMessage($message,true);
 		}
 		else {
                     $this->bodyHTML=$VPatientsDB->showInsertForm();			
@@ -178,7 +178,7 @@ class CPatientsDB{
                     }
                     else {
                             $message="La ricerca non ha prodotto nessun risultato";
-                            $this->bodyHTML=$VPatientsDB->getErrorMessage($message,false);
+                            $this->bodyHTML=$VPatientsDB->getErrorMessage($message);
                     }
 	    }
 	}
@@ -363,7 +363,7 @@ class CPatientsDB{
                 
                 $FPatient->updatePatient($arrayPatient,$cfPatient);
                 $message="modifica completata con successo";
-                $this->bodyHTML=$VPatientsDB->showInfoMessage($message,true);
+                $this->bodyHTML=$VPatientsDB->getInfoMessage($message,true);
             }
             else {
                 $this->bodyHTML=$VPatientsDB->getPatientModPage($cfPatient);
@@ -399,7 +399,7 @@ class CPatientsDB{
                 
                 $FCheckup->UpdateCheck($arrayCheck,$PatientInfo['CF'],$dateCH);
                 $message="modifica completata con successo";
-                $this->bodyHTML=$VPatientsDB->showInfoMessage($message,true);
+                $this->bodyHTML=$VPatientsDB->getInfoMessage($message,true);
             }
             else {
                 $this->bodyHTML=$VPatientsDB->getCheckModPage($PatientInfo,$dateCH);
@@ -425,7 +425,7 @@ class CPatientsDB{
                     $FPatient->deletePatient($cfPatient);
                     $FCheckup->deleteCheckup($cfPatient,"all"); //oltre al paziente cancello anche tutte le sue visite
                     $message="eliminazione completata con successo";
-                    $this->bodyHTML=$VPatientsDB->showInfoMessage($message,true);
+                    $this->bodyHTML=$VPatientsDB->getInfoMessage($message,true);
                 }
                 else {
                     $this->bodyHTML=$VPatientsDB->showPatientConfirmPage($cfPatient);
@@ -460,7 +460,7 @@ class CPatientsDB{
                     $FCheckup->deleteCheckup($cfPatient,$dateCH);
                 }
                 $message="eliminazione completata con successo";
-                $this->bodyHTML=$VPatientsDB->showInfoMessage($message,true);
+                $this->bodyHTML=$VPatientsDB->getInfoMessage($message,true);
             }
             else {
                 $this->bodyHTML=$VPatientsDB->showCheckConfirmPage($cfPatient,$dateCH);
@@ -495,7 +495,7 @@ class CPatientsDB{
                 $FCheckup->insertNewCheckup($arrayCheck);
                 
                 $message="inserimento avvenuto con successo";
-                $this->bodyHTML=$VPatientsDB->showInfoMessage($message,true);                
+                $this->bodyHTML=$VPatientsDB->getInfoMessage($message,true);                
             }
             else {
                 $this->bodyHTML=$VPatientsDB->showCheckForm($cfPatient,$name,$surname);                
