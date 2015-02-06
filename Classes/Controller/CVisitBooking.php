@@ -3,19 +3,20 @@
 class CVisitBooking extends FDatabase {
     
     public function getContent() {
+        $error=false;
         $VVisitBooking=  USingleton::getInstance("VVisitBooking");
         $CLogin=new CLogin();
         $VVisitBooking->setUserHeader();//must set to avoid smarty crash
         if($CLogin->isMedic()){//set medic prviledges
             $VVisitBooking->setMedicHeader();
-            $content=$VVisitBooking->getContent();
-        }elseif ($CLogin->checkLoggedIn()) {//get normal user view priviledges
-            $content=$VVisitBooking->getContent();
-        }else{
+        }elseif(!$CLogin->checkLoggedIn()){
             $message="Per accedere a quest'area devi prima effettuare il Login";
-            $content=  $VVisitBooking->getErrorMessage($message);
+            $error= $VVisitBooking->getErrorMessage($message);
         }
-        $content=$VVisitBooking->getContent();
+        if($error){
+            $content=$VVisitBooking->makeContentArray($error);
+        }else $content=$VVisitBooking->getContent();
+        
         return $content;
     }
     
@@ -57,6 +58,16 @@ class CVisitBooking extends FDatabase {
             echo json_encode($eventi);
             exit();
         }
+    }
+    
+    public function getUserData() {
+        $CLogin=  USingleton::getInstance("CLogin");
+        $FUtente=  USingleton::getInstance("FUtente");
+        $username=$CLogin->getMyUsername();
+        $userdata=$FUtente->getAllUtenteDataFromUsername($username);
+        echo json_encode($userdata);
+        exit();
+        
     }
     
     

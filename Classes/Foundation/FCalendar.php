@@ -62,7 +62,7 @@ class FCalendar extends FDatabase {
         
         $query= "SELECT * FROM `calendario` WHERE `start` between '$start' and '$end' ";
        
-        $result=  $this->associativeArrayQuery($query);
+        $result=  $this->QueryAssociativeArray($query);
         return $result;
         
     }

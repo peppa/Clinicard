@@ -42,6 +42,19 @@ class FUtente extends FDatabase {
        
     }
     
+    public function getAllUtenteDataFromCF($cf){
+        $query="SELECT * FROM `utenti` WHERE `Codice Fiscale`='$cf'";
+        $res=$this->QueryassociativeArray($query);
+    }
+    
+    public function getAllUtenteDataFromUsername($uname){
+        $query="SELECT * FROM `utenti` WHERE `Username`='$uname'";
+        $res=$this->query($query);
+        
+        return ($res->fetch_assoc());
+        
+    }
+    
 }
 
 ?>

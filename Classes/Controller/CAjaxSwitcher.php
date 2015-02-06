@@ -73,6 +73,10 @@ class CAjaxSwitcher{
                 $CVisitBooking= USingleton::getInstance("CVisitBooking");
                 $CVisitBooking->getMyEvents();
                 break;
+            case "getUserData":
+                $CVisitBooking=new CVisitBooking();
+                $CVisitBooking->getUserData();
+                break;
         }
     }
     

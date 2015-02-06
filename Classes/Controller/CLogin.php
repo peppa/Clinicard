@@ -86,9 +86,12 @@ class CLogin{
             
             $username=$USession->get("username");
             return $FUtente->isMedic($username);
-               
-                
             
+        }
+        
+        public function getMyUsername() {
+            $USession=  USingleton::getInstance("USession");
+            return $USession->get("username");
             
         }
         

@@ -43,7 +43,7 @@ class FDatabase extends mysqli{
 	 * @param string $q Contains the query to be sended to the database.
 	 * @return mixed On success : an associative array that contains all the rows of the query's result. On failure : false.
 	 */
-	public function associativeArrayQuery($q)
+	public function QueryAssociativeArray($q)
 	{
 		$result = $this->query($q); 
 		

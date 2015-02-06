@@ -4,5 +4,61 @@
 </div>
   -->
  
+<div id="popup-form" class="popup">
+    <form id="Visit-Form" method="POST" action="">
+      <div class="row">
+          <div class="row-element">
+              <p class="label"><label>Nome</label></p>
+              <p><input class="input-field" id="name" type="text" name="name" placeholder="Nome"></p>
+              <p id="name-err" class="no-input" hidden></p>
+          </div>
+      </div>
 
-  <div id='calendar' draggable="false"></div>
+      <div class="row">
+          <div class="row-element">
+              <p class="label"><label>Cognome</label></p>
+              <p><input class="input-field" id="surname" type="text" name="surname" placeholder="Cognome"/></p>
+              <p id="surname-err" class="no-input" hidden></p>
+          </div>
+      </div>
+
+      <div class="row">
+          <div class="row-element">
+              <p class="label"><label>Codice Fiscale</label></p>
+              <p><input class="input-field" id="cfReg" type="text" name="CF" placeholder="Codice Fiscale"/></p>
+              <p id="cf-err" class="no-input" hidden></p>
+          </div>
+      </div>
+
+      <div class="row">
+          <div class="row-element">
+              <p class="label"><label>Indirizzo Email</label></p>
+              <p><input class="input-field" id="email" type="text" name="email" placeholder="Email"/></p>
+              <p id="email-err" class="no-input" hidden></p>
+          </div>
+      </div>
+      
+      <div class="row">
+          <div class="row-element">
+              <p class="label"><label>Data visita</label></p>
+              <p><input class="input-field" id="dataVisita" type="text" name="email" placeholder="Data Visita"/></p>
+              <p id="data-err" class="no-input" hidden></p>
+          </div>
+      </div>
+      
+
+      <div class="row-buttons">
+          <p> <button class="controlButton disabled" id="registration-button" type="submit"/>Salva</button>
+              <button class="controlButton" id="reset" type="reset"/>reset</button>
+          </p>
+      </div>
+
+  </form>
+      
+</div>
+  
+  
+<!-- The calendar will be placed here -->
+<div id='calendar' draggable="false"></div>
+
+
