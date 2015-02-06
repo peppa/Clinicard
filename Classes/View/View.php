@@ -53,7 +53,7 @@ Class View extends Smarty {
         return $body;
     }
     
-    public function getErrorMessage($message,$addButton){
+    public function getErrorMessage($message,$addButton=false){
         $this->assign('message',$message);
         $this->assign('addButton',$addButton);
         $body=$this->fetch('errorMessage.tpl');
