@@ -94,4 +94,12 @@ Class View extends Smarty {
         
     }
     
+    public function loadInstallPage(){
+        $this->display('ConfigurationPage.tpl');
+    }
+    
+    public function showConfigSuccess(){
+        $this->display('ConfigurationSuccess.tpl');
+    }
+    
 }

@@ -780,7 +780,7 @@ function showLoginBox(){
             url: "index.php?control=ajaxCall&task=checkLoggedIn",
             dataType: "json",
             complete: function(result){
-                if (result.responseJSON===false){
+                if (result.responseJSON===false || $.cookie("username")===undefined){
                     $('#logoutTPL').hide();
                     $('#loginTPL').show();
                 }

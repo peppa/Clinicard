@@ -1,6 +1,22 @@
 /* ------------------------------------------------*/
 /*                       CSS                       */
 /* ------------------------------------------------*/
+.mainContent{
+    border-style: solid;
+    border-color: black;
+    border-width: 2px;
+    border-radius: 5px;
+    margin-left: 20%;
+    margin-right: 20%;
+    background: url(../images/bg1.png);
+    background-repeat: repeat;
+}
+
+.mainContent .row{
+    margin: 0;
+    width: 70%;
+    margin-left: 30px;  
+}
 
 .spacing{
     margin-top: 40px;
@@ -23,6 +39,20 @@
     border-width: 4px;
     border-radius: 8px;
     border-color: #0f6d75;
+}
+
+.contactInfo{
+    font-family: Tahoma, Geneva, sans-serif;
+    font-size: 75%;
+    color:grey;
+}
+
+.footerCategory{
+    color:black;
+}
+
+.shareButtons{
+    text-align: right;
 }
 
 .center{

@@ -157,6 +157,7 @@ class CPatientsDB{
                     $message="Inserimento avvenuto con successo";
                     $this->bodyHTML=$VPatientsDB->getInfoMessage($message,true);
 		}
+                }
 		else {
                     $this->bodyHTML=$VPatientsDB->showInsertForm();			
 		}	
@@ -508,6 +509,7 @@ class CPatientsDB{
                 
                 $message="inserimento avvenuto con successo";
                 $this->bodyHTML=$VPatientsDB->getInfoMessage($message,true);                
+            }
             }
             else {
                 $this->bodyHTML=$VPatientsDB->showCheckForm($cfPatient,$name,$surname);                
