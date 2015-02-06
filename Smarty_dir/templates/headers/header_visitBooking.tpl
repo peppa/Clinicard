@@ -1,6 +1,7 @@
 <!-- calendar's css -->
 <link rel='stylesheet' href='lib/js/fullcalendar/fullcalendar.css' />
 <link rel='stylesheet' href='lib/js/jquery-ui/jquery-ui.theme.css' />
+<link rel='stylesheet' href='lib/datetimepicker/jquery.datetimepicker.css' />
 
 <!-- used lib -->
 <script type='text/javascript' src='lib/js/jquery-2.1.3'></script>
@@ -9,6 +10,7 @@
 <script type='text/javascript' src='lib/js/fullcalendar/fullcalendar.js'></script>
 <script type='text/javascript' src='lib/js/fullcalendar/lang/it.js'></script>
 <script type='text/javascript' src='lib/js/bPopup.js'></script>
+<script type='text/javascript' src='lib/datetimepicker/jquery.datetimepicker.js'></script>
 
 <!-- personal scripts -->
 {if $isMedic}

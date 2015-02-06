@@ -26,11 +26,17 @@ class CVisitBooking extends FDatabase {
     public function saveEvent() {
         $VVisitBooking=  USingleton::getInstance("VVisitBooking");
         $FCalendar=  USingleton::getInstance("FCalendar");
+        $FUtente=  USingleton::getInstance("FUtente");
+        $CLogin=  USingleton::getInstance("CLogin");
         
-        $CF="cndhsjrht4512d45"; //va preso dal login
+        $user=$CLogin->getMyUsername();
+        $userdata=$FUtente->getAllUtenteDataFromUsername($user);
+        $CF=$userdata["Codice Fiscale"];
+        
+       
         $dataInizio=$VVisitBooking->get("dataInizio");
         $eventID=$VVisitBooking->get("eventID");
-        $titolo=$VVisitBooking->get("titolo");
+        $titolo=$VVisitBooking->get("titolo")." ".$userdata["Nome"]." ".$userdata["Cognome"];
         $dataFine=$VVisitBooking->get("dataFine");
         
         
@@ -47,8 +53,7 @@ class CVisitBooking extends FDatabase {
         $FCalendar=  USingleton::getInstance("FCalendar");
         $VVisitBooking=  USingleton::getInstance("VVisitBooking");
         $CLogin=  USingleton::getInstance("CLogin");
-        $CLogin=new CLogin();
-        if($CLogin->isMedic()){
+        if($CLogin->isMedic()){//medico
         
             $firstDate=$VVisitBooking->get("start");
             $lastDate=$VVisitBooking->get("end");
@@ -58,6 +63,39 @@ class CVisitBooking extends FDatabase {
             echo json_encode($eventi);
             exit();
         }
+        elseif($CLogin->checkLoggedIn()){//utente normale
+            $FUtente=  USingleton::getInstance("FUtente");
+            
+            $firstDate=$VVisitBooking->get("start");
+            $lastDate=$VVisitBooking->get("end");
+            $user=$CLogin->getMyUsername();
+            $userdata=$FUtente->getAllUtenteDataFromUsername($user);
+            $cf=$userdata["Codice Fiscale"];
+            
+            
+            $eventi=$FCalendar->getMyEvents($firstDate, $lastDate,$cf);
+            
+
+            echo json_encode($eventi);
+            exit();
+        }
+    }
+    
+    public function getMyPlaceHolders() {
+        $VVisitBooking=  USingleton::getInstance("VVisitBooking");
+        $CLogin=  USingleton::getInstance("CLogin");
+        $FUtente=  USingleton::getInstance("FUtente");
+        $FCalendar=  USingleton::getInstance("FCalendar");
+        
+        $firstDate=$VVisitBooking->get("start");
+        $lastDate=$VVisitBooking->get("end");
+        $user=$CLogin->getMyUsername();
+        $userdata=$FUtente->getAllUtenteDataFromUsername($user);
+        $cf=$userdata["Codice Fiscale"];
+
+        $eventi=$FCalendar->getMyPlaceholders($firstDate, $lastDate,$cf);
+        echo json_encode($eventi);
+        exit();
     }
     
     public function getUserData() {

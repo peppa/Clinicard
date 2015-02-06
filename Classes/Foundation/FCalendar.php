@@ -67,6 +67,22 @@ class FCalendar extends FDatabase {
         
     }
     
+    public function getMyEvents($start, $end, $cf) {
+        
+        $query= "SELECT * FROM `calendario` WHERE `CodiceFiscalePrenotazione`='$cf' AND `start` between '$start' and '$end' ";
+       
+        $result=  $this->QueryAssociativeArray($query);
+        return $result;
+        
+    }
+    
+    public function getMyPlaceholders($start,$end,$cf){
+        $query= "SELECT `start`,`end` FROM `calendario` WHERE `start` between '$start' and '$end' ";
+        
+        $result= $this->QueryAssociativeArray($query);
+        return $result;
+    }
+    
 }
 
 ?>
