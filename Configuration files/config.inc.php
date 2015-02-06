@@ -1,10 +1,16 @@
 <?php
-/* 
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 
 global $config;
+
+
+//I dati per l'accesso al Database
+//Per Effettuare di nuovo la configurazione del database 
+//sostituire il primo valore con 'user _ example' (senza spazi)
+$config['mysql']['user'] = 'root';
+$config['mysql']['password'] = 'pippo';
+$config['mysql']['host'] = 'localhost';
+$config['mysql']['database'] = 'clinica';
+
 
 //progettazione guidata dei dati.
 //questo è un file di configurazione, qui dovrei trovare tutto!!! però per esempio
@@ -22,16 +28,8 @@ $config['smarty']['caching']=FALSE;
 //MYSQL:
 //attivare per abilitare il debug del mysql
 $config['debug']=false;
-/*
-$config['mysql']['user'] = 'clinicard';
-$config['mysql']['password'] = 'splashnabbo';
-$config['mysql']['host'] = 'db4free.net';
-$config['mysql']['database'] = 'clinicard';
-*/
-$config['mysql']['user'] = 'root';
-$config['mysql']['password'] = 'pippo';
-$config['mysql']['host'] = 'localhost';
-$config['mysql']['database'] = 'clinica';
+
+
  
 
 //

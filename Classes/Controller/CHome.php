@@ -57,7 +57,14 @@ class CHome {
      */
     public function showPage() {
         $VHome=  USingleton::getInstance('VHome');
-        $VHome->showPage();
+        $FDatabase=  USingleton::getInstance('FDatabase');
+        $USession=  USingleton::getInstance('USession');
+        if ($FDatabase->getDocUsername()==$USession->get("username")){
+            $VHome->showPage(true);
+        }
+        else {
+            $VHome->showPage(false);            
+        }
     }
 
     /**

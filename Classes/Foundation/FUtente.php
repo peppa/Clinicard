@@ -33,6 +33,7 @@ class FUtente extends FDatabase {
         if (!$this->affected_rows){return TRUE;}
         else {return FALSE;} 
     }
+    
     public function isMedic($username) {
         $query="SELECT `Medico` FROM `utenti` WHERE `Username`='$username'";
         $res=$this->query($query);

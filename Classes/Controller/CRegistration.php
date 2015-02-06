@@ -118,7 +118,7 @@ class CRegistration {
             $this->dataError("cognome");
         }
         
-        if (preg_match('/[^A-Z\d]/', $cf)||!$FUtente->codiceFiscaleIsAvailable($cf)){
+        if (strlen($cf)!=16 || preg_match('/[^A-Z\d]/', $cf)|| !$FUtente->codiceFiscaleIsAvailable($cf)){
             $valid=false;
             $this->dataError("codice fiscale");
         }

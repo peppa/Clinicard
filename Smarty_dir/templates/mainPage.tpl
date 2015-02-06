@@ -86,9 +86,15 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                 <li class="nav_top">
                     <a href="index.php">Home</a>
                 </li>
+                {if isset($isDoctor)}
                 <li class="nav_top">
-                    <a href="index.php?control=manageDB">DB</a>
+                    <a href="index.php?control=manageDB">Pazienti</a>
                 </li>
+                {else}
+                <li class="nav_top">
+                    <a href="index.php?control=Services">Serivizi</a>
+                </li>
+                {/if}
                 <li class="nav_top">
                     <a href="index.php?control=VisitBooking">Prenota visita</a>
                 </li>
@@ -108,6 +114,16 @@ License URL: http://creativecommons.org/licenses/by/3.0/
         <div class="footer">
             <div class="left-content">
                 <a href="index.php"><img src="images/logo_footer.png" title="logo" /></a>
+            </div>
+            <div class="contactInfo">
+                <p><text class="footerCategory">Indirizzo:</text> via del tutto eccezionale n.&infin;</p>
+                <p><text class="footerCategory">Telefono:</text>  101-8008555</p>
+                <p><text class="footerCategory">Email:</text>  clinicard@gmail.com</p>
+            </div>
+            <div class="shareButtons">
+                <a href=""><img alt="follow me on twitter" src="//login.create.net/images/icons/user/twitter_30x30.png" border=0></a>
+                <a href=""><img alt="follow me on twitter" src="//login.create.net/images/icons/user/twitter-b_30x30.png" border=0></a>
+                <a href=""><img alt="follow me on facebook" src="//login.create.net/images/icons/user/facebook_30x30.png" border=0></a>
             </div>
             <div class="right-content">
                 <p>Healthy  &#169	 All Rights Reserved | Design By <a href="http://w3layouts.com/">W3Layouts</a></p>
