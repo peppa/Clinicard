@@ -12,7 +12,7 @@ class CRegistration {
             
             if ( $USession->get('username') ) {
                 $message= "Esegui il logout prima di registrare un nuovo utente";
-                $this->bodyHTML=$VRegistration->getErrorMessage($message,false);             
+                $this->bodyHTML=$VRegistration->getErrorMessage($message);             
             }
             else {
                 $action=$VRegistration->get('action');
@@ -98,7 +98,7 @@ class CRegistration {
             //saving data..
             $FRegistration->insertUser($name,$surname,$cf,$mail,$user,$pass1);
             $message="registrazione avvenuta con successo";
-            $this->bodyHTML=$VRegistration->showInfoMessage($message,false);
+            $this->bodyHTML=$VRegistration->getInfoMessage($message);
             
         }
 

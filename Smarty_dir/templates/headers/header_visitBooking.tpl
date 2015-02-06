@@ -11,7 +11,12 @@
 <script type='text/javascript' src='lib/js/bPopup.js'></script>
 
 <!-- personal scripts -->
-<script type='text/javascript' src="lib/js/script/calendario.js"></script>
+{if $isMedic}
+    <script type='text/javascript' src="lib/js/script/calendario_medico.js"></script>
+{else}
+    <script type='text/javascript' src="lib/js/script/calendario_utente.js"></script>
+{/if}
+
 
 
  <!-- needs to be -->
