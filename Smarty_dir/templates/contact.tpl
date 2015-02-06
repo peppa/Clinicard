@@ -1,7 +1,9 @@
     <div class="wrap">
     <div class="content">
     	<div class="contact">
-    	<h2>Contatti</h2>
+            <div class="title">
+                <h2>Contatti</h2>
+            </div>    	
     	<div class="contact-form">
 					
 				<form>

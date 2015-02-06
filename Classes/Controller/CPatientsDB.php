@@ -27,7 +27,7 @@ class CPatientsDB{
     /**
      *
      */
-	public function __construct(){ 
+	public function __construct(){
 		$VPatientsDB=Usingleton::getInstance('VPatientsDB');
 		$this->fillArrays();
 
@@ -130,7 +130,12 @@ class CPatientsDB{
 		if( $VPatientsDB->get('sent') ){
                     $FPatient=  USingleton::getInstance('FPatient');
                     $FCheckup=  USingleton::getInstance('FCheckup');
-                    debug($VPatientsDB->get('gender'));
+                    $result=$this->validateInsertForms();
+                    if ($result==false){
+                        $message="Errore nei dati inseriti";
+                        $this->bodyHTML=$VPatientsDB->getErrorMessage($message,true);
+                    }
+                    else {
                     
                     $arrayPatient=array('name'=>$VPatientsDB->get('name'),
                                         'surname'=>$VPatientsDB->get('surname'),
@@ -151,6 +156,7 @@ class CPatientsDB{
                     $FCheckup->insertNewCheckup($arrayCheck);
                     $message="Inserimento avvenuto con successo";
                     $this->bodyHTML=$VPatientsDB->showInfoMessage($message,true);
+                    }
 		}
 		else {
                     $this->bodyHTML=$VPatientsDB->showInsertForm();			
@@ -481,7 +487,14 @@ class CPatientsDB{
             $name=EPatient::$istances[$posCF]->getName();
             $surname=EPatient::$istances[$posCF]->getSurname();
             
-            if ( $VPatientsDB->get('sent')=="y"){              
+            
+            if ( $VPatientsDB->get('sent')=="y"){
+                $result=$this->validateInsertForms();
+                    if ($result==false){
+                        $message="Errore nei dati inseriti";
+                        $this->bodyHTML=$VPatientsDB->getErrorMessage($message,true);
+                    }
+                    else {
                 
                 $arrayCheck=array('CF'=>EPatient::$istances[$posCF]->getCF(),
                                   'dateCheck'=>$VPatientsDB->get('dateCheck'),
@@ -496,6 +509,7 @@ class CPatientsDB{
                 
                 $message="inserimento avvenuto con successo";
                 $this->bodyHTML=$VPatientsDB->showInfoMessage($message,true);                
+            }
             }
             else {
                 $this->bodyHTML=$VPatientsDB->showCheckForm($cfPatient,$name,$surname);                
@@ -616,7 +630,7 @@ class CPatientsDB{
         
         public function checkCF(){ //usato da ajax
             $VPatientsDB=  USingleton::getInstance('VPatientsDB');
-            $FPatient=  USingleton::getInstance('FPatient');
+            //$FPatient=  USingleton::getInstance('FPatient');
             
             $CF=$VPatientsDB->get('cf');
             $result=false;
@@ -630,6 +644,56 @@ class CPatientsDB{
             echo json_encode($result);
             exit;
         }
+        
+        public function validateInsertForms(){
+            $FPatient=  USingleton::getInstance('FPatient');
+            $VPatientsDB=  USingleton::getInstance('VPatientsDB');
+        
+        $valid=true;
+        if ($VPatientsDB->get('name')!=null){
+            $name=$VPatientsDB->get('name');
+        if (preg_match('/[^A-Za-z\s\']/', $name)){
+            $valid=false;
+        }            
+        }
+        
+        if ($VPatientsDB->get('surname')!=null){
+            $surname=$VPatientsDB->get('surname');
+        if (preg_match('/[^A-Za-z\s\']/', $surname)){
+            $valid=false;
+        }
+        }
+        
+        if ($VPatientsDB->get('CF')!=null){
+            $cf=$VPatientsDB->get('CF');
+        if (strlen($cf)!=16 || preg_match('/[^A-Z\d]/', $cf) || $FPatient->checkCFPat($cf)==true){
+            $valid=false;
+        }
+        }
+        
+        if ($VPatientsDB->get('dateBirth')!=null){
+            $dateB=$VPatientsDB->get('dateBirth');
+            $year=$dateB[0].$dateB[1].$dateB[2].$dateB[3];
+            $month=$dateB[5].$dateB[6];
+            $day=$dateB[8].$dateB[9];
+            if ($year<1850 || $year>2100 || $month>12 || $day>31){
+                $valid=false;
+            }
+        }
+        
+        if ($VPatientsDB->get('dateCheck')!=null){
+            $dateB=$VPatientsDB->get('dateCheck');
+            $year=$dateB[0].$dateB[1].$dateB[2].$dateB[3];
+            $month=$dateB[5].$dateB[6];
+            $day=$dateB[8].$dateB[9];
+            if ($year<1850 || $year>2100 || $month>12 || $day>31){
+                $valid=false;
+            }
+        }        
+        return $valid;
+        }
+        
+        
                 
                 
                 

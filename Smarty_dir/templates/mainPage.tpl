@@ -86,9 +86,15 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                 <li class="nav_top">
                     <a href="index.php">Home</a>
                 </li>
+                {if isset($isDoctor)}
                 <li class="nav_top">
-                    <a href="index.php?control=manageDB">DB</a>
+                    <a href="index.php?control=manageDB">Pazienti</a>
                 </li>
+                {else}
+                <li class="nav_top">
+                    <a href="index.php?control=Services">Serivizi</a>
+                </li>
+                {/if}
                 <li class="nav_top">
                     <a href="index.php?control=VisitBooking">Prenota visita</a>
                 </li>

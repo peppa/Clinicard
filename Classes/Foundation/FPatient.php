@@ -85,6 +85,13 @@ class FPatient extends FDatabase {
         $this->query($query);
     }
     
+    public function checkCFPat($cf) {
+        $query="SELECT * FROM `pazienti` WHERE `Codice Fiscale`='".$cf."'";
+        $result=$this->query($query);
+        if (!$this->affected_rows){return TRUE;}
+        else {return FALSE;}        
+    }
+    
     
     
     

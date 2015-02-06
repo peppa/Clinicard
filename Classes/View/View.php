@@ -34,7 +34,10 @@ Class View extends Smarty {
         //$this->assign('username',$user);
     }
 
-    public function showPage(){
+    public function showPage($doctor){
+        if ($doctor==true){
+            $this->assign('isDoctor',true);            
+        }
     	$this->display('mainPage.tpl');     
     }
     
