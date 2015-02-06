@@ -31,7 +31,7 @@ class CPatientsDB{
 		$VPatientsDB=Usingleton::getInstance('VPatientsDB');
 		$this->fillArrays();
 
-                if ($VPatientsDB->get('action')!=NULL){
+                if ($VPatientsDB->get('action')!=NULL){ //le chiamate di ajax non passano per lo switch
                     $action=$VPatientsDB->get('action');
 		switch($action) {
 
@@ -80,6 +80,7 @@ class CPatientsDB{
 		}
         }
         else { //è come se partisse il caso default dello switch
+            //controllare bene se serve
             $this->getHomePatients();
         }
 
@@ -177,7 +178,7 @@ class CPatientsDB{
                     }
                     else {
                             $message="La ricerca non ha prodotto nessun risultato";
-                            $this->bodyHTML=$VPatientsDB->getErrorMessage($message);
+                            $this->bodyHTML=$VPatientsDB->getErrorMessage($message,false);
                     }
 	    }
 	}
@@ -450,10 +451,10 @@ class CPatientsDB{
                 $FCheckup=  USingleton::getInstance('FCheckup');
             
                 $numVisits=$this->checkNumVisit($cfPatient);
-                //scrivere funzione che cicla su tutte le istanze di EVisit per controllare se un paziente ne ha solo una
                 if ($numVisits==1){ //Se viene cancellata l'unica visita del paziente viene cancellato anche il paziente stesso
                     $FPatient=  USingleton::getInstance('FPatient');
                     $FPatient->deletePatient($cfPatient);
+                    $FCheckup->deleteCheckup($cfPatient,$dateCH);
                 }
                 else {
                     $FCheckup->deleteCheckup($cfPatient,$dateCH);

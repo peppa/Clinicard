@@ -39,9 +39,14 @@ class CAjaxSwitcher{
                 $CPatientsDB->checkLastVisit();
                 break;
             
-            case 'checkCF':
+            case 'checkCFPatient':
                 $CPatientsDB=  USingleton::getInstance('CPatientsDB');
                 $CPatientsDB->checkCF();
+                break;
+            
+            case 'checkCFUser':
+                $CRegistration= USingleton::getInstance('CRegistration');
+                $CRegistration->checkCFUser();
                 break;
             
             case "saveEvent":

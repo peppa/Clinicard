@@ -76,10 +76,10 @@ $(document).ready(function(){
         dataType: "json",
         data: {"cf":EncCF},
         success: function(array){
-            $('#name').val(array["name"]);
-            $('#surname').val(array["surname"]);
-            $('#dateB').val(array["dateB"]);
-            $('#CF').val(array["CF"]);
+            $('#modName').val(array["name"]);
+            $('#modSurname').val(array["surname"]);
+            $('#modDateBirth').val(array["dateB"]);
+            $('#modCF').val(array["CF"]);
             if (array["gender"]==="M"){
                  $(':radio[value="M"]').attr('checked', 'checked');
             }
@@ -323,9 +323,33 @@ function validateCF(){
         $('#cf-err').show();
     }
     else {
-        $("#cfReg").addClass("input-field-ok");
-        $('#cf-err').hide();
+        //$("#cfReg").addClass("input-field-ok");
+        //$('#cf-err').hide();
+        checkCFonDB(cf);
     }
+}
+
+function checkCFonDB(cf){
+    $.ajax({
+            type: "POST",
+            url: "index.php?control=ajaxCall&task=checkCFUser",
+            dataType: "json",
+            data: {"cf":cf},
+            complete: function(result){
+                JSON.stringify(result);
+                if ( result.responseJSON===false ){
+                    var message="Esiste gia' un utente registrato con questo codice fiscale";
+                    $('#cfReg').removeClass("input-field-ok");
+                    $('#cf-err').addClass("input-message-error");
+                    $('#cf-err').text(message);
+                    $('#cf-err').show();                        
+                }
+                else{
+                    $('#cf-err').hide();
+                    $('#cfReg').addClass("input-field-ok");
+                }
+            }
+    });
 }
 
 $(document).on('blur',"#email",function(){validaEmail()});
@@ -403,6 +427,9 @@ function isFormRegCompleted(){
 	return completed;
     }
 }
+
+//serve per tornare indietro alla form nel caso in cui c'è un errore nei dati inseriti
+$(document).on('click',"#errorBack", function(){window.history.back()});
 
 
 /* ------------------------------------------------*/
@@ -554,7 +581,7 @@ function validateCfDB(){
 function checkCFonDatabase(cf){
     $.ajax({
 		type: "POST",
-		url: "index.php?control=ajaxCall&task=checkCF",
+		url: "index.php?control=ajaxCall&task=checkCFPatient",
 		dataType: "json",
                 data: {"cf":cf},
                 complete: function(result){
@@ -796,6 +823,7 @@ function handleLogin(){
                     $('#login-error').hide();
                     $('#logoutTPL').show();
                     $('#show-username').html("Ciao "+$.cookie("username"));
+                    window.location.href="index.php";
                 }
                 else if (result.responseText==="false"){
                     $('#login-error').show();

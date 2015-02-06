@@ -25,7 +25,8 @@ class VRegistration extends View {
             "cf"=>$this->get('CF'),
             "email"=>$this->get('email'),
             "username"=>$this->get('username'),
-            "password"=>$this->get('password'),
+            "password1"=>$this->get('password1'),
+            "password2"=>$this->get('password2'),
         );
     }
     

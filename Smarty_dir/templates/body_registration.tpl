@@ -89,7 +89,7 @@
     <div class="row">
         <div class="row-element">
             <p class="label"><label>Password</label></p>
-            <p><input class="input-field" id="password" type="password" name="password" placeholder="Password"></p>
+            <p><input class="input-field" id="password" type="password" name="password1" placeholder="Password"></p>
             <p id="pass-strength" hidden></p>
         </div>
     </div>
@@ -97,13 +97,13 @@
     <div class="row">
         <div class="row-element">
             <p class="label"><label>Ripeti password</label></p>
-            <p><input class="input-field" id="password-repeat" type="password" name="password" placeholder="Password"></p>
+            <p><input class="input-field" id="password-repeat" type="password" name="password2" placeholder="Password"></p>
             <p id="pass-match" hidden></p>
         </div>
     </div>
     
     <div class="row-buttons">
-        <p> <button class="controlButton disabled" id="registration-button" type="submit" disabled/>Registrati</button>
+        <p> <button class="controlButton disabled" id="registration-button" type="submit"/>Registrati</button>
             <button class="controlButton" id="reset" type="reset"/>reset</button>
         </p>
     </div>

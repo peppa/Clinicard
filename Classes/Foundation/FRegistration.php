@@ -45,6 +45,18 @@ class FRegistration extends FDatabase {
         }
     }
     
+    public function checkCF($cf){
+        $query='SELECT * FROM `utenti` WHERE `Codice Fiscale`="'.$cf.'"';
+        $result=$this->query($query);
+        
+        if ($result->fetch_assoc()!=NULL){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+    
     
     
 }

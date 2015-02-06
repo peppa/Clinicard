@@ -13,19 +13,25 @@
  */
 class FUtente extends FDatabase {
     
-    public function usernameIsAvaiable($user) {
+    public function usernameIsAvailable($user) {
         $query="SELECT * FROM `utenti` WHERE `Username`='".$user."'";
         $result=$this->query($query);
         if (!$this->affected_rows){return TRUE;}
         else {return FALSE;}  
     }
     
-    public function codiceFiscaleIsAvaiable($cf) {
+    public function codiceFiscaleIsAvailable($cf) {
         $query="SELECT * FROM `utenti` WHERE `Codice Fiscale`='".$cf."'";
         $result=$this->query($query);
         if (!$this->affected_rows){return TRUE;}
-        else {return FALSE;}  
-        
+        else {return FALSE;}        
+    }
+    
+    public function emailIsAvailable($email){
+        $query="SELECT * FROM `utenti` WHERE `Email`='".$email."'";
+        $result=$this->query($query);
+        if (!$this->affected_rows){return TRUE;}
+        else {return FALSE;} 
     }
     
 }

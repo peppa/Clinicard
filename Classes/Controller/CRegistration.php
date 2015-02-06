@@ -12,14 +12,14 @@ class CRegistration {
             
             if ( $USession->get('username') ) {
                 $message= "Esegui il logout prima di registrare un nuovo utente";
-                $this->bodyHTML=$VRegistration->getErrorMessage($message);             
+                $this->bodyHTML=$VRegistration->getErrorMessage($message,false);             
             }
             else {
                 $action=$VRegistration->get('action');
                 if ($action=="addUser") {
                     $this->addNewUser();
                }else {
-                        $this->loadRegForm();
+                    $this->loadRegForm();
                 }
             }
             return$this->bodyHTML;
@@ -56,58 +56,94 @@ class CRegistration {
                     break;
                 case "email":
                     $mail=$value;
-                    if (!filter_var($mail, FILTER_VALIDATE_EMAIL)){
-                        $this->dataError("Email");
-                    }
+//                    if (!filter_var($mail, FILTER_VALIDATE_EMAIL)){
+//                        $this->dataError("Email");
+//                    }
                     break;
                 case"username":
-                    $FUtente=USingleton::getInstance("FUtente");
+                    //$FUtente=USingleton::getInstance("FUtente");
                     
                     $user=$value;
-                    if(!$FUtente->usernameIsAvaiable($user)){ //fatta sia lato client che server
-                        $this->dataError("Username");
-                    }
+//                    if(!$FUtente->usernameIsAvaiable($user)){ //fatta sia lato client che server
+//                        $this->dataError("Username");
+//                    }
                     break;
-                case "password":
-                    $pass=$value;
+                case "password1":
+                    $pass1=$value;
 //                    if(!$this->validatePassword($pass)){ fatto lato client
 //                        $this->dataError("Password");
 //                    }
                     
                     break;
+                
+                case 'password2':
+                    $pass2=$value;
+                    
                 default :
                     debug("L'Array ha restituito dei dati inattesi nome: ".$key." valore:".$value);
 
                     break;
             }
         }
-        if($this->error){
-            $this->bodyHTML=$VRegistration->getRegistrationErrorMessage($this->error);
-        }else{
+//        if($this->error){
+//            $this->bodyHTML=$VRegistration->getRegistrationErrorMessage($this->error);
+//        }
+        
+        $valid=$this->validateRegForm($name, $surname, $cf, $mail, $user, $pass1,$pass2);
+        if ($valid==false){
+            $message="Registrazione non effettuata, i seguenti dati non sono corretti :"."<br>".$this->error;
+            $this->bodyHTML=$VRegistration->getErrorMessage($message,true);
+        }
+        else{
             //saving data..
-            $FRegistration->insertUser($name,$surname,$cf,$mail,$user,$pass);
-
-            //$VRegistration->showMessage($message);
+            $FRegistration->insertUser($name,$surname,$cf,$mail,$user,$pass1);
             $message="registrazione avvenuta con successo";
             $this->bodyHTML=$VRegistration->showInfoMessage($message,false);
-            //$this->bodyHTML=$VRegistration->regSuccess();
             
         }
 
-    }	
+    }
     
-    /*public function validatePassword($password) {
-        if (strlen($password)<5){
-            return FALSE;
+    public function validateRegForm($name, $surname, $cf, $mail, $user, $pass1,$pass2){
+        $FUtente=  USingleton::getInstance('FUtente');
+        
+        $valid=true;
+        if (preg_match('/[^A-Za-z\s\']/', $name)){
+            $valid=false;
+            $this->dataError("nome");
         }
-        return true;
-    }*/
+        
+        if (preg_match('/[^A-Za-z\s\']/', $surname)){
+            $valid=false;
+            $this->dataError("cognome");
+        }
+        
+        if (preg_match('/[^A-Z\d]/', $cf)||!$FUtente->codiceFiscaleIsAvailable($cf)){
+            $valid=false;
+            $this->dataError("codice fiscale");
+        }
+        
+        if (!$FUtente->emailIsAvailable($mail)){
+            $valid=false;
+            $this->dataError("email");
+        }
+        
+        if (!$FUtente->usernameIsAvailable($user)){
+            $valid=false;
+            $this->dataError("username");
+        }
+        
+        if ($pass1!=$pass2 || strlen($pass1)<5){
+            $valid=false;
+            $this->dataError("password");
+        }
+        return $valid;
+    }
     
     //invece di fare in questa maniera barbara, si può fa na funzione error
     //globale oppure in view e falo fare a lei così lo formatta in html
-    public function dataError($error) {
-        $this->error=($this->error." ".$error." NON VALIDA. ");
-        debug($error." non valido!!");
+    public function dataError($field) {
+        $this->error=($this->error.$field."<br>");
         
     }
     
@@ -127,6 +163,16 @@ class CRegistration {
         
         $mail=$VRegistration->get('mail');
         $result=$FRegistration->checkEmail($mail);
+        echo json_encode($result);
+        exit;
+    }
+    
+    public function checkCFUser(){
+        $VRegistration=  USingleton::getInstance('VRegistration');
+        $FUtente=  USingleton::getInstance('FUtente');
+        
+        $cf=$VRegistration->get('cf');
+        $result=$FUtente->codiceFiscaleIsAvailable($cf);
         echo json_encode($result);
         exit;
     }
