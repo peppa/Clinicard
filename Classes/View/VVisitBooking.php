@@ -13,12 +13,12 @@
  */
 class VVisitBooking extends View {
     public function getBody(){
-        $body= $this->fetch("body_checkup.tpl");
+        $body= $this->fetch("body_visitBooking.tpl");
         return $body;
     }
     
     public function getHeader() {
-        $header= $this->fetch("./headers/header_checkup.tpl");
+        $header= $this->fetch("./headers/header_visitBooking.tpl");
         return $header;
         
     }
