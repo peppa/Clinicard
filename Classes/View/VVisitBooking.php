@@ -30,6 +30,15 @@ class VVisitBooking extends View {
         return $content;
         
     }
+    
+    public function setMedicHeader() {
+        $this->assign('isMedic',1);
+    }
+    
+    public function setUserHeader() {
+        $this->assign('isMedic',0);
+    }
+    
 }
 
 ?>

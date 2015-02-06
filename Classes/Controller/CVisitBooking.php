@@ -4,7 +4,17 @@ class CVisitBooking extends FDatabase {
     
     public function getContent() {
         $VVisitBooking=  USingleton::getInstance("VVisitBooking");
-        
+        $CLogin=new CLogin();
+        $VVisitBooking->setUserHeader();//must set to avoid smarty crash
+        if($CLogin->isMedic()){//set medic prviledges
+            $VVisitBooking->setMedicHeader();
+            $content=$VVisitBooking->getContent();
+        }elseif ($CLogin->checkLoggedIn()) {//get normal user view priviledges
+            $content=$VVisitBooking->getContent();
+        }else{
+            $message="Per accedere a quest'area devi prima effettuare il Login";
+            $content=  $VVisitBooking->getErrorMessage($message);
+        }
         $content=$VVisitBooking->getContent();
         return $content;
     }
