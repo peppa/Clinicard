@@ -48,7 +48,7 @@
       
 
       <div class="row-buttons">
-          <p> <button class="controlButton disabled" id="registration-button" type="submit"/>Salva</button>
+          <p> <button class="controlButton" id="registration-button" type="submit"/>Salva</button>
               <button class="controlButton" id="reset" type="reset"/>reset</button>
           </p>
       </div>
