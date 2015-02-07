@@ -83,6 +83,11 @@ class CAjaxSwitcher{
                 $CVisitBooking= USingleton::getInstance("CVisitBooking");
                 $CVisitBooking->getMyPlaceHolders();
                 break;
+            
+            case "deleteEvent":
+                $CVisitBooking= USingleton::getInstance("CVisitBooking");
+                $CVisitBooking->deleteEvent();
+                break;
         }
     }
     

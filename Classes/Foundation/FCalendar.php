@@ -77,10 +77,23 @@ class FCalendar extends FDatabase {
     }
     
     public function getMyPlaceholders($start,$end,$cf){
-        $query= "SELECT `start`,`end` FROM `calendario` WHERE `start` between '$start' and '$end' ";
+        $query= "SELECT `start`,`end` FROM `calendario` WHERE `start` between '$start' and '$end' AND `CodiceFiscalePrenotazione` != '$cf' ";
         
         $result= $this->QueryAssociativeArray($query);
         return $result;
+    }
+    
+    public function deleteEvent($serialNumber,$isMedic,$cf) {
+        if($isMedic){
+            $query="DELETE FROM `calendario` WHERE `SerialNumber` = '$serialNumber'";
+            
+        }else{
+            $query="DELETE FROM `calendario` WHERE `SerialNumber` = '$serialNumber' AND `CodiceFiscalePrenotazione`='$cf";
+            
+        }
+        $this->query($query);
+        return $this->error;
+        
     }
     
 }

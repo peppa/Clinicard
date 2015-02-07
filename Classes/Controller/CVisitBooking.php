@@ -108,6 +108,24 @@ class CVisitBooking extends FDatabase {
         
     }
     
+    public function deleteEvent() {
+        $VVisitBooking=  USingleton::getInstance("VVisitBooking");
+        $FCalendar=  USingleton::getInstance("FCalendar");
+        $CLogin=  USingleton::getInstance("CLogin");
+        $FUtente=  USingleton::getInstance("FUtente");
+        
+        $user=$CLogin->getMyUsername();
+        $isMedic=$CLogin->isMedic();
+        $userdata=$FUtente->getAllUtenteDataFromUsername($user);
+        $cf=$userdata["Codice Fiscale"];
+        
+        $SN=$VVisitBooking->get("SerialNumber");
+        $error=$FCalendar->deleteEvent($SN);
+        
+        echo json_encode($error,$isMedic,$cf);
+        exit();
+    }
+    
     
     
     
